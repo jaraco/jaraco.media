@@ -8,7 +8,6 @@ Copyright © 2009 Jason R. Coombs
 from ez_setup import use_setuptools
 use_setuptools()
 from setuptools import setup, find_packages
-import pypi_fix
 
 __author__ = 'Jason R. Coombs <jaraco@jaraco.com>'
 __version__ = '$Rev$'[6:-2]
