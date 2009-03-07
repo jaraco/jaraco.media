@@ -171,7 +171,7 @@ def get_mpeg4_options():
 	return options
 
 def get_video_copy_options():
-	return HyphenArgs(ovc='copy')
+	return HyphenArgs(ovc='copy', ffourcc='XVID')
 
 def get_audio_copy_options():
 	return HyphenArgs(
