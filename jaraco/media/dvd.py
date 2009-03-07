@@ -13,7 +13,7 @@ from os.path import join
 from copy import deepcopy
 from cStringIO import StringIO
 import logging
-from jaraco.util import flatten, ordinalth
+from jaraco.util import flatten, ordinalth, trim
 from jaraco.media import cropdetect
 from jaraco.media.arguments import *
 
@@ -52,8 +52,20 @@ class MEncoderCommand(object):
 	>>> cmd2_args = tuple(cmd2.get_args())
 	>>> assert cmd_args == cmd2_args, '%s != %s' % (cmd_args, cmd2_args)
 	"""
-	
-	exe_path = [r'c:\Program Files (x86)\Slysoft\CloneDVDmobile\apps\mencoder.exe']
+
+	#@staticmethod
+	def find_mencoder_exe():
+		search_path = [
+			r'c:\Program Files\Slysoft\CloneDVDmobile\apps\mencoder.exe',
+			r'c:\Program Files (x86)\Slysoft\CloneDVDmobile\apps\mencoder.exe',
+			]
+		found = (path for path in search_path if os.path.exists(path))
+		try:
+			return found.next()
+		except StopIteration:
+			raise RuntimeException("Cannot find mencoder; admittedly didn't try very hard.")
+		
+	exe_path = [find_mencoder_exe()]
 	
 	def __init__(self):
 		self.other_options = HyphenArgs()
@@ -158,6 +170,26 @@ def get_mpeg4_options():
 	options.update(lavcopts=lavcopts)
 	return options
 
+def get_video_copy_options():
+	return HyphenArgs(ovc='copy')
+
+def get_audio_copy_options():
+	return HyphenArgs(
+		oac='copy',
+		aid='128',
+		)
+
+def get_mp3_options():
+	return HyphenArgs(
+		oac='mp3lame',
+		aid='128',
+		lameopts=ColonDelimitedArgs(
+			abr=None,
+			br='96',
+			vol='6',
+			)
+		)
+
 def encode_dvd():
 	logging.basicConfig(level=logging.INFO)
 	
@@ -195,11 +227,7 @@ def encode_dvd():
 	dvd_title = options.title
 	command.source = ['dvd://%(dvd_title)s' % vars()]
 	
-	audio_options = HyphenArgs(
-		oac='copy',
-		aid='128',
-		)
-	command.audio_options = audio_options
+	command.audio_options = get_audio_copy_options()
 
 	crop = cropdetect.get_crop(device, dvd_title)
 	log.info('crop is %s', crop)
@@ -215,7 +243,7 @@ def encode_dvd():
 
 	assert not os.path.exists(command.other_options['o']), 'Output file %s alread exists' % command.other_options['o']
 
-	errors = open('nul', 'w')
+	errors = open(os.devnull, 'w')
 	two_pass_handler = MultiPassHandler(command)
 	for _pass in two_pass_handler:
 		_pass_args = tuple(_pass.get_args())
@@ -223,4 +251,26 @@ def encode_dvd():
 		proc = subprocess.Popen(_pass_args, stderr=errors)
 		proc.wait()
 		
-	#C:\Users\jaraco\Public>"C:\Program Files (x86)\Slysoft\CloneDVDmobile\apps\mencoder.exe" -dvd-device "C:\Users\jaraco\Videos\rips\JEAN_DE_FLORETTE" dvd:// -sws 2 -vf crop=720:352:0:62 -nosound -ovc lavc -lavcopts vcodec=libx264:threads=2:vbitrate=1200:autoaspect:turbo:vpass=1  -sid 0 -o nul -passlogfile"C:\Users\jaraco\Videos\Jean de Florette_pass.log"  2>nul
+def transcode():
+	"""
+	%prog <source_file> <dest_file>
+	
+	Transcode a video by copying the video, but encoding the audio
+	into mp3 format.
+	"""
+	parser = optparse.OptionParser(usage=trim(transcode.__doc__))
+	options, args = parser.parse_args()
+	try:
+		source, dest = args
+	except ValueError:
+		parser.error("Invalid number of arguments")
+	
+	command = MEncoderCommand()
+	command['o'] = dest
+	command.source = [source]
+	command.audio_options = get_mp3_options()
+	command.video_options = get_video_copy_options()
+	errors = open(os.devnull, 'w')
+	print 'executing with', tuple(command.get_args())
+	proc = subprocess.Popen(command.get_args(), stderr=errors)
+	proc.wait()
