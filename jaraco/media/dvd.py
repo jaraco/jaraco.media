@@ -176,13 +176,11 @@ def get_video_copy_options():
 def get_audio_copy_options():
 	return HyphenArgs(
 		oac='copy',
-		aid='128',
 		)
 
 def get_mp3_options():
 	return HyphenArgs(
 		oac='mp3lame',
-		aid='128',
 		lameopts=ColonDelimitedArgs(
 			abr=None,
 			br='96',
@@ -228,6 +226,7 @@ def encode_dvd():
 	command.source = ['dvd://%(dvd_title)s' % vars()]
 	
 	command.audio_options = get_audio_copy_options()
+	command.audio_options.update(aid='128')
 
 	crop = cropdetect.get_crop(device, dvd_title)
 	log.info('crop is %s', crop)
