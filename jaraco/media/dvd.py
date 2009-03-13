@@ -246,7 +246,7 @@ def encode_dvd():
 	two_pass_handler = MultiPassHandler(command)
 	for _pass in two_pass_handler:
 		_pass_args = tuple(_pass.get_args())
-		print 'executing with', _pass_args
+		log.debug('executing with %s', _pass_args)
 		proc = subprocess.Popen(_pass_args, stderr=errors)
 		proc.wait()
 		
