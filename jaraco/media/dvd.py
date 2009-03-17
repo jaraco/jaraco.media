@@ -4,6 +4,7 @@ import sys
 import optparse
 import re
 import os
+import shutil
 import subprocess
 try:
 	import win32api
@@ -168,6 +169,7 @@ def get_mpeg4_options():
 	options=HyphenArgs()
 	options.update(ovc='lavc')
 	options.update(lavcopts=lavcopts)
+	options.update(ffourcc='XVID')
 	return options
 
 def get_video_copy_options():
@@ -249,27 +251,52 @@ def encode_dvd():
 		log.debug('executing with %s', _pass_args)
 		proc = subprocess.Popen(_pass_args, stderr=errors)
 		proc.wait()
-		
+
+def re_encode(file, video_options, audio_options):
+	command = MEncoderCommand()
+	fn, ext = os.path.splitext(file)
+	dest = ''.join((fn, ' (fixed)', ext))
+	command['o'] = dest
+	command.source = [file]
+	command.audio_options = audio_options
+	command.video_options = video_options
+	errors = open(os.devnull, 'w')
+	print 'executing with', tuple(command.get_args())
+	proc = subprocess.Popen(command.get_args(), stderr=errors)
+	if(proc.wait() == 0): print 'success'
+	#assert os.path.exists(dest)
+	#os.remove(file)
+	#shutil.move(dest, file)
+
 def transcode():
 	"""
-	%prog <source_file> <dest_file>
+	%prog <source_file>
 	
 	Transcode a video by copying the video, but encoding the audio
 	into mp3 format.
 	"""
-	parser = optparse.OptionParser(usage=trim(transcode.__doc__))
+	parser = optparse.OptionParser(usage=trim(fix_fourcc.__doc__))
 	options, args = parser.parse_args()
 	try:
-		source, dest = args
-	except ValueError:
+		assert len(args) == 1
+		source = args.pop()
+	except AssertionError:
 		parser.error("Invalid number of arguments")
 	
-	command = MEncoderCommand()
-	command['o'] = dest
-	command.source = [source]
-	command.audio_options = get_mp3_options()
-	command.video_options = get_video_copy_options()
-	errors = open(os.devnull, 'w')
-	print 'executing with', tuple(command.get_args())
-	proc = subprocess.Popen(command.get_args(), stderr=errors)
-	proc.wait()
+	re_encode(source, get_video_copy_options(), get_mp3_options())
+	
+def fix_fourcc():
+	"""
+	%prog <source_file>
+	
+	Re-encode the video, but change the ffourcc to XVID
+	"""
+	parser = optparse.OptionParser(usage=trim(fix_fourcc.__doc__))
+	options, args = parser.parse_args()
+	try:
+		assert len(args) == 1
+		source = args.pop()
+	except AssertionError:
+		parser.error("Invalid number of arguments")
+	
+	re_encode(source, get_video_copy_options(), get_audio_copy_options())

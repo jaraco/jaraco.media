@@ -34,6 +34,7 @@ setup (name = 'jaraco.media',
 				'crop-detect = jaraco.media.cropdetect:execute',
 				'dvd-info = jaraco.media.dvd_info:main',
 				'transcode = jaraco.media.dvd:transcode',
+				'fix-fourcc = jaraco.media.dvd:fix_fourcc',
 				],
 		},
 		install_requires=[
