@@ -191,9 +191,14 @@ def get_mp3_options():
 		)
 
 def encode_dvd():
+	"""
+	%prog <dvd_source>
+	
+	Encode a DVD where the source is a DVD drive or RIP directory of a DVD.
+	"""
 	logging.basicConfig(level=logging.INFO)
 	
-	parser = optparse.OptionParser()
+	parser = optparse.OptionParser(usage=trim(encode_dvd.__doc__))
 	#parser.add_option('-t', '--titles', 'enter the title or titles to process (i.e. 1 or 1,5 or 1-5)' default='')
 	parser.add_option('-t', '--title', help='enter the dvd title number to process', default='')
 	parser.add_option('-s', '--subtitle', help='enter the subtitle ID')
@@ -300,3 +305,54 @@ def fix_fourcc():
 		parser.error("Invalid number of arguments")
 	
 	re_encode(source, get_video_copy_options(), get_audio_copy_options())
+
+def rip_subtitles():
+	"""
+	%prog <dvd_source>
+	"""
+	logging.basicConfig(level=logging.INFO)
+	
+	parser = optparse.OptionParser(usage=trim(encode_dvd.__doc__))
+	#parser.add_option('-t', '--titles', 'enter the title or titles to process (i.e. 1 or 1,5 or 1-5)' default='')
+	parser.add_option('-t', '--title', help='enter the dvd title number to process', default='')
+	parser.add_option('-s', '--subtitle', help='enter the subtitle ID')
+	options, args = parser.parse_args()
+
+	command = MEncoderCommand()
+	# todo, print "device" list
+	rips = join(os.environ['USERPROFILE'], 'videos', 'rips')
+
+	assert len(args) <= 1
+	if args:
+		device = args[0]
+	else:
+		device = raw_input('enter device> ')
+
+	print 'device is', device
+	command.set_device(device)
+
+	videos_path = join(os.environ['PUBLIC'], 'Videos', 'Movies')
+
+	default_title = infer_name(device)
+	title_prompt = 'Enter output filename [%s]> ' % default_title
+	user_title = raw_input(title_prompt) or default_title
+	target = os.path.join(videos_path, user_title)
+
+	dvd_title = options.title
+	command.source = ['dvd://%(dvd_title)s' % vars()]
+	
+	command['o'] = os.devnull
+	
+	command.audio_options = HyphenArgs(nosound=None)
+	command.video_options = get_video_copy_options()
+	
+	command['sid'] = options.subtitle or '0'
+
+	command['vobsubout'] = target
+	command['vobsuboutindex'] = '0'
+	#command['vobsuboutid'] = 'en'
+
+	command = tuple(command.get_args())
+	errors = open(os.devnull, 'w')
+	proc = subprocess.Popen(command, stderr=errors)
+	proc.wait()

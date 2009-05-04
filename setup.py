@@ -5,8 +5,6 @@
 Copyright © 2009 Jason R. Coombs
 """
 
-from ez_setup import use_setuptools
-use_setuptools()
 from setuptools import setup, find_packages
 
 __author__ = 'Jason R. Coombs <jaraco@jaraco.com>'
@@ -31,6 +29,7 @@ setup (name = 'jaraco.media',
 		entry_points = {
 			'console_scripts': [
 				'encode-dvd = jaraco.media.dvd:encode_dvd',
+				'rip-subtitles = jaraco.media.dvd:rip_subtitles',
 				'crop-detect = jaraco.media.cropdetect:execute',
 				'dvd-info = jaraco.media.dvd_info:main',
 				'transcode = jaraco.media.dvd:transcode',
