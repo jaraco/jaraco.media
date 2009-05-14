@@ -112,7 +112,6 @@ class MultiPassHandler(object):
 		self.passes = passes
 
 	def setup_log_file(self):
-		#multi_pass_temp_file = join(os.environ['USERPROFILE'], 'Videos', '%(user_title)s_pass.log' % vars())
 		filename, ext = os.path.splitext(self.command.other_options['o'])
 		multi_pass_temp_file = filename + '_pass.log'
 		self.command['passlogfile'] = multi_pass_temp_file
@@ -202,6 +201,7 @@ def encode_dvd():
 	#parser.add_option('-t', '--titles', 'enter the title or titles to process (i.e. 1 or 1,5 or 1-5)' default='')
 	parser.add_option('-t', '--title', help='enter the dvd title number to process', default='')
 	parser.add_option('-s', '--subtitle', help='enter the subtitle ID')
+	parser.add_option('--test', help='just encode one chapter', default=False, action='store_true')
 	options, args = parser.parse_args()
 
 	command = MEncoderCommand()
@@ -231,6 +231,8 @@ def encode_dvd():
 	
 	dvd_title = options.title
 	command.source = ['dvd://%(dvd_title)s' % vars()]
+	if options.test:
+		command['chapter'] = '2-2'
 	
 	command.audio_options = get_audio_copy_options()
 	command.audio_options.update(aid='128')
@@ -246,12 +248,14 @@ def encode_dvd():
 	
 	if options.subtitle:
 		command['sid'] = options.subtitle
+		command['vobsubout'] = target
+		command['vobsuboutindex'] = '0'
 
-	assert not os.path.exists(command.other_options['o']), 'Output file %s alread exists' % command.other_options['o']
+	assert not os.path.exists(command.other_options['o']), 'Output file %s already exists' % command.other_options['o']
 
 	errors = open(os.devnull, 'w')
 	two_pass_handler = MultiPassHandler(command)
-	for _pass in two_pass_handler:
+	for _pass in (two_pass_handler):
 		_pass_args = tuple(_pass.get_args())
 		log.debug('executing with %s', _pass_args)
 		proc = subprocess.Popen(_pass_args, stderr=errors)
