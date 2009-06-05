@@ -348,12 +348,12 @@ def rip_subtitles():
 	command['o'] = os.devnull
 	
 	command.audio_options = HyphenArgs(nosound=None)
-	command.video_options = get_video_copy_options()
+	command.video_options = HyphenArgs(ovc='frameno')
 	
 	command['sid'] = options.subtitle or '0'
 
 	command['vobsubout'] = target
-	command['vobsuboutindex'] = '0'
+	command['vobsuboutindex'] = command['sid']
 	#command['vobsuboutid'] = 'en'
 
 	command = tuple(command.get_args())
