@@ -1,5 +1,6 @@
 import re
 import sys
+import os
 from itertools import imap, takewhile, ifilter
 import logging
 
@@ -64,16 +65,19 @@ def parse_args():
 	return dvd_device, title
 
 def build_command(dvd_device=None, title=""):
-	from jaraco.media.dvd import MEncoderCommand, HyphenArgs
+	from jaraco.media.dvd import MEncoderCommand, HyphenArgs, ColonDelimitedArgs
 	command = MEncoderCommand()
 	command.source = ['dvd://%(title)s' % vars()]
 	command.audio_options = HyphenArgs(nosound=None)
-	command.video_filter = HyphenArgs(vf='cropdetect')
+	limit = 24
+	round = 16
+	command.video_filter = HyphenArgs(vf='cropdetect=%(limit)s:%(round)s' % vars())
 	command.video_options = HyphenArgs(ovc='lavc')
-	command['o']='nul'
+	command['o']=os.path.devnull
+	#command['ss'] = '20' # skip the first 20 seconds
 	# As a rule-of-thumb, use the 2nd or 3rd chapter to determine the crop;
 	#  The first chapter can tend to have a different format.
-	command['chapter'] = '3-3'
+	command['chapter'] = '2'
 
 	dvd_device and command.set_device(dvd_device)
 	return command
