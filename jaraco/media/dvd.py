@@ -195,14 +195,16 @@ def encode_dvd():
 	
 	Encode a DVD where the source is a DVD drive or RIP directory of a DVD.
 	"""
-	logging.basicConfig(level=logging.INFO)
-	
 	parser = optparse.OptionParser(usage=trim(encode_dvd.__doc__))
 	#parser.add_option('-t', '--titles', 'enter the title or titles to process (i.e. 1 or 1,5 or 1-5)' default='')
 	parser.add_option('-t', '--title', help='enter the dvd title number to process', default='')
 	parser.add_option('-s', '--subtitle', help='enter the subtitle ID')
 	parser.add_option('--test', help='just encode one chapter', default=False, action='store_true')
+	parser.add_option('-l', '--log-level', help='log level (debug, info, warning, error)',
+		default='info')
 	options, args = parser.parse_args()
+
+	logging.basicConfig(level=getattr(logging, options.log_level.upper()))
 
 	command = MEncoderCommand()
 	# todo, print "device" list
