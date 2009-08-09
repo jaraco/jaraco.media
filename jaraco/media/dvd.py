@@ -56,9 +56,12 @@ class MEncoderCommand(object):
 
 	#@staticmethod
 	def find_mencoder_exe():
+		program_files = (
+			os.environ.get('PROGRAMFILES(X86)') or
+			os.environ.get('PROGRAMFILES')
+			)
 		search_path = [
-			r'c:\Program Files\Slysoft\CloneDVDmobile\apps\mencoder.exe',
-			r'c:\Program Files (x86)\Slysoft\CloneDVDmobile\apps\mencoder.exe',
+			os.path.join(program_files, r'mencoder\mencoder.exe'),
 			]
 		found = (path for path in search_path if os.path.exists(path))
 		try:
