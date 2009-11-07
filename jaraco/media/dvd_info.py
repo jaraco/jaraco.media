@@ -66,9 +66,11 @@ class MaxTitlesParser(TitleParser):
 		self.info['max_titles'] = int(match.groupdict()['max_titles'])
 
 class ChaptersParser(TitleParser):
-	pattern = '^There are (?P<chapters>\d+) chapters'
+	pattern = '^ID_DVD_TITLE_(?P<title>\d+)_CHAPTERS=(?P<chapters>\d+)'
 	def handle(self, match):
-		self.info['chapters'] = int(match.groupdict()['chapters'])
+		title, chapters = map(int, map(match.groupdict().get, ['title', 'chapters']))
+		if title == self.info['number']:
+			self.info['chapters'] = chapters
 
 class AudioParser(TitleParser):
 	pattern = '^audio stream: (?P<stream>\d+) format: (?P<format>.+) language: (?P<language>.+) aid: (?P<aid>\d+)'
