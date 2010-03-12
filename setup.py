@@ -34,6 +34,7 @@ setup (name = 'jaraco.media',
 				'dvd-info = jaraco.media.dvd_info:main',
 				'transcode = jaraco.media.dvd:transcode',
 				'fix-fourcc = jaraco.media.dvd:fix_fourcc',
+				'serve-index = jaraco.media.index:serve',
 				],
 		},
 		install_requires=[
