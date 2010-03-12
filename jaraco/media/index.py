@@ -15,9 +15,6 @@ class Index(object):
 		names = itertools.imap(self.remove_extension, mfiles)
 		return names
 
-	def __iter__(self):
-		return iter(['A', 'B', 'C'])
-
 	@staticmethod
 	def is_media(path):
 		media_extensions = ('.mp4', '.avi')
@@ -69,7 +66,8 @@ class Site:
 	def factory(cls):
 		"The entry point for when the ISAPIDLL is triggered"
 		try:
-			return isapi_wsgi.ISAPISimpleHandler(cls.setup_application('/'))
+			import isapi_wsgi
+			return isapi_wsgi.ISAPISimpleHandler(cls.setup_application('/media'))
 		except:
 			traceback.print_exc()
 
