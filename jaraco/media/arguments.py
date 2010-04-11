@@ -5,7 +5,7 @@ __all__ = ['DelimitedArgs', 'HyphenArgs', 'ColonDelimitedArgs']
 
 from itertools import ifilter
 from jaraco.util.odict import odict
-from jaraco.util import flatten
+from jaraco.util.iter_ import flatten
 
 class DelimitedArgs(odict):
 	value_join = '='
