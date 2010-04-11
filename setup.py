@@ -38,6 +38,7 @@ setup (name = 'jaraco.media',
 				],
 		},
 		install_requires=[
+			'jaraco.util',
 		],
 		extras_require = {
 		},
