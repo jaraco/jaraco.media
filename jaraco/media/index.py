@@ -44,27 +44,21 @@ class Index(object):
 class Site:
 	@cherrypy.expose
 	def index(self):
-		res = self.for_iphone()
-		if res: return res
+		template = self.get_template()
 		index = Index()
-		items = [
-			'<div><a href="{link}">{title}</a></div>'.format(**vars())
-			for title, link in zip(index, index.iter_links())
-			]
-		return '<html><body>%s</body></html>' % ''.join(items)
+		return template.generate(movies=index.movies(), title="Movies to Watch").render('xml')
 
-	def for_iphone(self):
+	def get_template(self):
 		"""
 		iPhone user agent is
 		Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_1_2 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7D11 Safari/528.16
 		"""
 		def is_iphone():
-			return 'iPhone' not in cherrypy.request.headers['User-Agent']
-		title = "Movies to Watch"
-		index = Index()
-		template = genshi.template.MarkupTemplate(iweb_template)
-		res = template.generate(movies=index.movies(), title="Movies to Watch").render('xml')
-		return res
+			return 'iPhone' in cherrypy.request.headers['User-Agent']
+		template_type = 'iweb' if is_iphone() else ''
+		template_text = globals().get(template_type+'_template', default_template)
+		template = genshi.template.MarkupTemplate(template_text)
+		return template
 
 	@classmethod
 	def setup_application(cls, root):
@@ -125,6 +119,17 @@ def serve():
 		})
 	cherrypy.engine.start()
 	cherrypy.engine.block()
+
+default_template = """\
+<html xmlns:py="http://genshi.edgewall.org/">
+	<body>
+		<h1 py:content="title">Title</h1>
+		<div py:for="movie in movies">
+			<a href="${movie.link}" py:content="movie.title">Movie Title</a>
+		</div>
+	</body>
+</html>
+"""
 
 iweb_template = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html
