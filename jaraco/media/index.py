@@ -4,6 +4,12 @@ from glob import glob
 import urllib
 import cherrypy
 import traceback
+import genshi.template
+
+class Movie(object):
+	def __init__(self, title, link):
+		self.title = title
+		self.link = link
 
 class Index(object):
 	root = r'\\drake\videos\movies'
@@ -32,6 +38,9 @@ class Index(object):
 			link = 'http://www.imdb.com/find?s=all&'+q
 			yield link
 
+	def movies(self):
+		return itertools.imap(Movie, self, self.iter_links())
+
 class Site:
 	@cherrypy.expose
 	def index(self):
@@ -49,24 +58,12 @@ class Site:
 		iPhone user agent is
 		Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_1_2 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7D11 Safari/528.16
 		"""
-		if 'iPhone' not in cherrypy.request.headers['User-Agent']:
-			return
-		item_template = """<ul class="pageitem">
-	<li class="menu">
-		<a href="{link}">
-			<img alt="Description" src="/iweb/thumbs/basics.png" />
-			<span class="name">{title}</span>
-			<span class="arrow"></span>
-		</a>
-	</li>
-</ul>"""
-		index = Index()
-		items = '\n'.join(
-			item_template.format(**vars())
-			for title, link in zip(index, index.iter_links())
-			)
+		def is_iphone():
+			return 'iPhone' not in cherrypy.request.headers['User-Agent']
 		title = "Movies to Watch"
-		res = iweb_template.format(**vars())
+		index = Index()
+		template = genshi.template.MarkupTemplate(iweb_template)
+		res = template.generate(movies=index.movies(), title="Movies to Watch").render('xml')
 		return res
 
 	@classmethod
@@ -130,7 +127,9 @@ def serve():
 	cherrypy.engine.block()
 
 iweb_template = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:py="http://genshi.edgewall.org/">
 
 <head>
 <meta content="yes" name="apple-mobile-web-app-capable" />
@@ -145,11 +144,19 @@ iweb_template = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "htt
 
 <body>
 <div id="topbar">
-	<div id="title">{title}</div>
+	<div id="title" py:content="title">Title</div>
 </div>
 <div id="content">
 
-{items}
+<ul py:for="movie in movies" class="pageitem">
+	<li class="menu">
+		<a href="movie.link">
+			<img alt="Description" src="/iweb/thumbs/basics.png" />
+			<span class="name">movie.title</span>
+			<span class="arrow"></span>
+		</a>
+	</li>
+</ul>
 
 </div>
 <div id="footer">
