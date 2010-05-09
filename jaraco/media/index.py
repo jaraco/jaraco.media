@@ -63,7 +63,7 @@ class Site:
 		template = self.get_template()
 		not_watched = lambda m: m.class_ != 'watched'
 		movies = Index(filter=not_watched)
-		return template.generate(movies=Index(), title="Movies to Watch").render('xml')
+		return template.generate(movies=movies, title="Movies to Watch").render('xml')
 
 	def get_template(self):
 		"""
@@ -173,8 +173,11 @@ iweb_template = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "htt
 <ul py:for="movie in movies" class="pageitem">
 	<li class="menu">
 		<a href="${movie.link}">
-			<img alt="Description" src="/iweb/thumbs/basics.png" />
-			<span class="name" py:content="movie.title">Movie Title</span>
+			<img alt="Description" src="/iweb/thumbs/video.png" />
+			<span class="name">
+				<span py:replace="movie.title">Movie Title</span>
+				<span class="class" py:if="movie.class_">(<span py:replace="movie.class_" />)</span>
+			</span>
 			<span class="arrow"></span>
 		</a>
 	</li>
