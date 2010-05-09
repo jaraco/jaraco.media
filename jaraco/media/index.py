@@ -7,19 +7,43 @@ import traceback
 import genshi.template
 
 class Movie(object):
-	def __init__(self, title, link):
-		self.title = title
-		self.link = link
+	def __init__(self, filename, class_):
+		self.class_ = class_
+		self.filename = filename
+
+	@property
+	def title(self):
+		filename = os.path.basename(self.filename)
+		return os.path.splitext(filename)[0]
+
+	@property
+	def link(self):
+		q = urllib.urlencode(dict(q=self.title))
+		return 'http://www.imdb.com/find?s=all&'+q
 
 class Index(object):
 	root = r'\\drake\videos\movies'
 
-	def __iter__(self):
-		items = (os.path.join(self.root, item) for item in os.listdir(self.root))
+	def get_named_map(self):
+		items = (
+			os.path.join(self.root, item)
+			for item in os.listdir(self.root)
+			)
+		subdirs = filter(os.path.isdir, items)
+		names = [''] + map(os.path.basename, subdirs)
+		dirs = [self.root] + subdirs
+		return dict(zip(names, dirs))
+
+	def get_media(self, root):
+		items = (os.path.join(root, item) for item in os.listdir(root))
 		files = itertools.ifilter(os.path.isfile, items)
 		mfiles = itertools.ifilter(self.is_media, files)
-		names = itertools.imap(self.remove_extension, mfiles)
-		return names
+		return mfiles
+
+	def __iter__(self):
+		for class_, root in self.get_named_map().items():
+			for media in self.get_media(root):
+				yield Movie(media, class_)
 
 	@staticmethod
 	def is_media(path):
@@ -27,26 +51,11 @@ class Index(object):
 		name, ext = os.path.splitext(path)
 		return ext in media_extensions
 
-	@staticmethod
-	def remove_extension(filename):
-		filename = os.path.basename(filename)
-		return os.path.splitext(filename)[0]
-
-	def iter_links(self):
-		for title in self:
-			q = urllib.urlencode(dict(q=title))
-			link = 'http://www.imdb.com/find?s=all&'+q
-			yield link
-
-	def movies(self):
-		return itertools.imap(Movie, self, self.iter_links())
-
 class Site:
 	@cherrypy.expose
 	def index(self):
 		template = self.get_template()
-		index = Index()
-		return template.generate(movies=index.movies(), title="Movies to Watch").render('xml')
+		return template.generate(movies=Index(), title="Movies to Watch").render('xml')
 
 	def get_template(self):
 		"""
