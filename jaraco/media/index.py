@@ -164,9 +164,9 @@ iweb_template = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "htt
 
 <ul py:for="movie in movies" class="pageitem">
 	<li class="menu">
-		<a href="movie.link">
+		<a href="${movie.link}">
 			<img alt="Description" src="/iweb/thumbs/basics.png" />
-			<span class="name">movie.title</span>
+			<span class="name" py:content="movie.title">Movie Title</span>
 			<span class="arrow"></span>
 		</a>
 	</li>
