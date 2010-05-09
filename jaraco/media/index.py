@@ -24,6 +24,9 @@ class Movie(object):
 class Index(object):
 	root = r'\\drake\videos\movies'
 
+	def __init__(self, filter=None):
+		self.filter = filter
+
 	def get_named_map(self):
 		items = (
 			os.path.join(self.root, item)
@@ -41,6 +44,9 @@ class Index(object):
 		return mfiles
 
 	def __iter__(self):
+		return itertools.ifilter(self.filter, self.get_all())
+
+	def get_all(self):
 		for class_, root in self.get_named_map().items():
 			for media in self.get_media(root):
 				yield Movie(media, class_)
@@ -55,6 +61,8 @@ class Site:
 	@cherrypy.expose
 	def index(self):
 		template = self.get_template()
+		not_watched = lambda m: m.class_ != 'watched'
+		movies = Index(filter=not_watched)
 		return template.generate(movies=Index(), title="Movies to Watch").render('xml')
 
 	def get_template(self):
