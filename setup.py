@@ -6,15 +6,15 @@ Setup script for building jaraco.media distribution
 Copyright © 2009-2010 Jason R. Coombs
 """
 
-from setuptools import setup, find_packages
+from setuptools import find_packages
 
 __author__ = 'Jason R. Coombs <jaraco@jaraco.com>'
 
 name = 'jaraco.media'
 
-setup(
+setup_params = dict(
 	name = name,
-	version = '1.0',
+	use_hg_version=True,
 	description = 'DVD and other multimedia tools',
 	author = 'Jason R. Coombs',
 	author_email = 'jaraco@jaraco.com',
@@ -49,4 +49,11 @@ setup(
 		'nose>=0.10',
 	],
 	test_suite = "nose.collector",
+	setup_requires = [
+		'hgtools',
+	],
 )
+
+if __name__ == '__main__':
+	from setuptools import setup
+	setup(**setup_params)
