@@ -36,7 +36,8 @@ setup_params = dict(
 			'transcode = jaraco.media.dvd:transcode',
 			'fix-fourcc = jaraco.media.dvd:fix_fourcc',
 			'serve-index = jaraco.media.index:serve',
-			'multibrake = jaraco.media.multibrake:main',
+			'multibrake = jaraco.media.handbrake:multibrake',
+			'quick-brake = jaraco.media.handbrake:quick_brake',
 			],
 	},
 	install_requires=[
