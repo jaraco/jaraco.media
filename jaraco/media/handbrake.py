@@ -12,7 +12,7 @@ def get_handbrake_cmd():
 def get_titles(root):
 	title_no = eval(raw_input('enter starting DVD title number> '))
 	if root.files():
-		print('last is', sorted(season_dir.files())[-1].basename())
+		print('last is', sorted(root.files())[-1].basename())
 	episode = eval(raw_input('enter starting episode> '))
 	ext = '.mp4'
 	while True:
