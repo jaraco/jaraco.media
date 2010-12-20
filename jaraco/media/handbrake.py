@@ -10,6 +10,7 @@ def get_handbrake_cmd():
 	return ['handbrake', '-i', input, '-N', 'eng']
 
 def get_titles(root):
+	title_durations()
 	title_no = eval(raw_input('enter starting DVD title number> '))
 	if root.files():
 		print('last is', sorted(root.files())[-1].basename())
@@ -51,3 +52,12 @@ def multibrake():
 	for title in list(get_titles(root)):
 		args = get_handbrake_cmd() + args + title
 		subprocess.Popen(args).wait()
+
+def title_durations():
+	cmd = get_handbrake_cmd() + ['-t', '0']
+	print('scanning...')
+	output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+	lines = [
+		line for line in output.splitlines()
+		if '+ title' in line or '+ duration:' in line]
+	for line in lines: print(line)
