@@ -46,12 +46,25 @@ def find_root():
 	season_dir.makedirs_p()
 	return season_dir
 
+def two_stage_encode(args):
+	proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	stdout, stderr = proc.communicate()
+	for line in stdout:
+		if 'Muxing:' in line:
+			# start a thread to finish the process
+			t = Thread(target=proc.wait)
+			t.start()
+			return t
+	
 def multibrake():
 	root = find_root()
 	options, args = optparse.OptionParser().parse_args()
+	threads = []
 	for title in list(get_titles(root)):
 		args = get_handbrake_cmd() + args + title
-		subprocess.Popen(args).wait()
+		print('running', args)
+		threads.append(two_stage_encode(args))
+	[t.join() for t in threads]
 
 def title_durations():
 	cmd = get_handbrake_cmd() + ['-t', '0']
