@@ -4,6 +4,7 @@ import subprocess
 import optparse
 from jaraco.util import ui
 from path import path
+from threading import Thread
 
 def get_handbrake_cmd():
 	input = os.environ.get('DVD', 'D:\\')
@@ -47,21 +48,21 @@ def find_root():
 	return season_dir
 
 def two_stage_encode(args):
-	proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	stdout, stderr = proc.communicate()
-	for line in stdout:
+	proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+	for line in proc.stdout:
 		if 'Muxing:' in line:
 			# start a thread to finish the process
+			print('Muxing.')
 			t = Thread(target=proc.wait)
 			t.start()
 			return t
 	
 def multibrake():
 	root = find_root()
-	options, args = optparse.OptionParser().parse_args()
+	options, cmd_args = optparse.OptionParser().parse_args()
 	threads = []
 	for title in list(get_titles(root)):
-		args = get_handbrake_cmd() + args + title
+		args = get_handbrake_cmd() + cmd_args + title
 		print('running', args)
 		threads.append(two_stage_encode(args))
 	[t.join() for t in threads]
