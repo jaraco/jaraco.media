@@ -5,6 +5,9 @@ import optparse
 from jaraco.util import ui
 from path import path
 from threading import Thread
+from jaraco.util.string import local_format as lf
+
+from dvd import infer_name
 
 def get_handbrake_cmd():
 	input = os.environ.get('DVD', 'D:\\')
@@ -26,7 +29,8 @@ def get_titles(root):
 		episode += 1
 
 def quick_brake():
-	title = raw_input("Movie title> ")
+	name = infer_name()
+	title = raw_input(lf("Movie title ({name})> ")) or name
 	dest = os.path.join(os.path.expanduser('~/Public/Videos/Movies'), title+'.mp4')
 	cmd = get_handbrake_cmd() + ['-L', '-o', dest]
 	subprocess.Popen(cmd).wait()

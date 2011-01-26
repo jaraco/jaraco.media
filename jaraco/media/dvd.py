@@ -36,7 +36,8 @@ def guess_output_filename(name):
 	names = map(str.capitalize, names)
 	return ' '.join(names)
 
-def infer_name(device):
+def infer_name(device=None):
+	device = device or os.environ.get('DVD', 'D:\\')
 	try:
 		label = win32api.GetVolumeInformation(device)[0]
 	except Exception:
