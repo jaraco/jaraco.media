@@ -56,7 +56,10 @@ class MEncoderCommand(object):
 	>>> assert cmd_args == cmd2_args, '%s != %s' % (cmd_args, cmd2_args)
 	"""
 
-	#@staticmethod
+	def __init__(self):
+		self.exe_path = [self.find_mencoder_exe()]
+
+	@staticmethod
 	def find_mencoder_exe():
 		program_files = (
 			os.environ.get('PROGRAMFILES(X86)') or
@@ -69,10 +72,8 @@ class MEncoderCommand(object):
 		try:
 			return found.next()
 		except StopIteration:
-			raise RuntimeException("Cannot find mencoder; admittedly didn't try very hard.")
-		
-	exe_path = [find_mencoder_exe()]
-	
+			raise RuntimeError("Cannot find mencoder; admittedly didn't try very hard.")
+
 	def __init__(self):
 		self.other_options = HyphenArgs()
 

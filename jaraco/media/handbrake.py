@@ -11,7 +11,7 @@ from dvd import infer_name
 
 def get_handbrake_cmd():
 	input = os.environ.get('DVD', 'D:\\')
-	return ['handbrake', '-i', input, '-N', 'eng']
+	return ['HandbrakeCLI', '-i', input, '-N', 'eng']
 
 def get_titles(root):
 	title_durations()
