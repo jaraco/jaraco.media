@@ -31,7 +31,7 @@ def get_titles(root):
 def quick_brake():
 	name = infer_name()
 	title = raw_input(lf("Movie title ({name})> ")) or name
-	dest = os.path.join(os.path.expanduser('~/Public/Videos/Movies'), title+'.mp4')
+	dest = os.path.join(os.path.expanduser('//drake/videos/Movies'), title+'.mp4')
 	cmd = get_handbrake_cmd() + ['--main-feature', '-o', dest]
 	subprocess.Popen(cmd).wait()
 
