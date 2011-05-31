@@ -51,12 +51,23 @@ def find_root():
 	season_dir.makedirs_p()
 	return season_dir
 
+def get_starts(stream, limit):
+	"""
+	Read lines from a stream, but only read the first `limit` bytes of each
+	line (in order to read text from an incomplete line).
+	"""
+	while True:
+		res = stream.read(limit)
+		if not res: return
+		yield res
+		stream.readline()
+
 def two_stage_encode(args):
 	proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-	for line in proc.stdout:
-		if 'Muxing:' in line:
+	for start in get_starts(proc.stdout, 7):
+		if 'Muxing:' in start:
 			# start a thread to finish the process
-			print('Muxing.')
+			print('Muxing...')
 			t = Thread(target=proc.wait)
 			t.start()
 			return t
