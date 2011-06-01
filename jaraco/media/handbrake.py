@@ -65,13 +65,13 @@ def get_starts(stream, limit):
 def two_stage_encode(args):
 	proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 	for start in get_starts(proc.stdout, 7):
-		if 'Muxing:' in start:
+		if 'Muxing' in start:
 			# start a thread to finish the process
 			print('Muxing...')
-			t = Thread(target=proc.wait)
+			t = Thread(target=proc.communicate)
 			t.start()
 			return t
-	
+
 def multibrake():
 	root = find_root()
 	options, cmd_args = optparse.OptionParser().parse_args()
@@ -80,7 +80,7 @@ def multibrake():
 		args = get_handbrake_cmd() + cmd_args + title
 		print('running', args)
 		threads.append(two_stage_encode(args))
-	[t.join() for t in threads]
+	[t.join() for t in threads if t]
 
 def title_durations():
 	cmd = get_handbrake_cmd() + ['-t', '0']
