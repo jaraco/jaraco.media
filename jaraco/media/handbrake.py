@@ -7,17 +7,29 @@ from path import path
 from threading import Thread
 from jaraco.util.string import local_format as lf
 
+from jaraco.windows import filesystem
+
 from dvd import infer_name
 
 def get_handbrake_cmd():
 	input = os.environ.get('DVD', 'D:\\')
 	return ['HandbrakeCLI', '-i', input, '-N', 'eng']
 
+def is_hidden(filepath):
+	filepath = os.path.abspath(filepath)
+	return filepath.startswith('.') or has_hidden_attribute(filepath)
+
+def has_hidden_attribute(filepath):
+	return filesystem.GetFileAttributes(filepath).hidden
+
+path.is_hidden = is_hidden
+
 def get_titles(root):
 	title_durations()
 	title_no = eval(raw_input('enter starting DVD title number> '))
-	if root.files():
-		print('last is', sorted(root.files())[-1].basename())
+	visible_files = sorted(file for file in root.files() if not file.is_hidden())
+	if visible_files:
+		print('last is', visible_files[-1].basename())
 	episode = eval(raw_input('enter starting episode> '))
 	ext = '.mp4'
 	while True:
