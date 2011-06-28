@@ -24,6 +24,22 @@ def has_hidden_attribute(filepath):
 
 path.is_hidden = is_hidden
 
+class TitleInfo(object):
+	def __init__(self, title_no, title, episode, root, ext):
+		self.__dict__.update(vars())
+		del self.self
+
+	def __iter__(self):
+		"Return the parameters to handbrake to rip for this title"
+		return iter(['-t', str(self.title_no), '-o', self.root/self.filename])
+
+	@property
+	def filename(self):
+		return '{episode:02} - {title}{ext}'.format(**vars(self))
+
+	def __str__(self):
+		return self.title
+
 def get_titles(root):
 	title_durations()
 	title_no = eval(raw_input('enter starting DVD title number> '))
@@ -35,8 +51,7 @@ def get_titles(root):
 	while True:
 		title = raw_input('enter title> ')
 		if not title: return
-		filename = '{episode:02} - {title}{ext}'.format(**vars())
-		yield ['-t', str(title_no), '-o', root/filename]
+		yield TitleInfo(title_no, title, episode, root, ext)
 		title_no += 1
 		episode += 1
 
@@ -89,8 +104,8 @@ def multibrake():
 	options, cmd_args = optparse.OptionParser().parse_args()
 	threads = []
 	for title in list(get_titles(root)):
-		args = get_handbrake_cmd() + cmd_args + title
-		print('running', args)
+		args = get_handbrake_cmd() + cmd_args + list(title)
+		print('ripping', title)
 		threads.append(two_stage_encode(args))
 	[t.join() for t in threads if t]
 
