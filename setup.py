@@ -38,6 +38,7 @@ setup_params = dict(
 			'serve-index = jaraco.media.index:serve',
 			'multibrake = jaraco.media.handbrake:multibrake',
 			'quick-brake = jaraco.media.handbrake:quick_brake',
+			'mkv-to-mp4 = jaraco.media.matroska:handle_command_line',
 			],
 	},
 	install_requires=[
