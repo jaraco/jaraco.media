@@ -63,7 +63,7 @@ def quick_brake():
 	subprocess.Popen(cmd).wait()
 
 def find_root():
-	root = path('~/Public/Videos/TV').expanduser()
+	root = path('//drake/videos/TV').expanduser()
 	choices = [showdir.basename() for showdir in root.dirs()]
 	show = ui.Menu(choices).get_choice('Choose show (blank for new)> ')
 	if not show:
