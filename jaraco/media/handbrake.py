@@ -2,14 +2,16 @@ from __future__ import print_function
 import os
 import subprocess
 import optparse
+import re
+from threading import Thread
+
 from jaraco.util import ui
 from path import path
-from threading import Thread
 from jaraco.util.string import local_format as lf
 
 from jaraco.windows import filesystem
 
-from dvd import infer_name
+from .dvd import infer_name
 
 def get_handbrake_cmd():
 	input = os.environ.get('DVD', 'D:\\')
@@ -45,8 +47,13 @@ def get_titles(root):
 	title_no = eval(raw_input('enter starting DVD title number> '))
 	visible_files = sorted(file for file in root.files() if not file.is_hidden())
 	if visible_files:
-		print('last is', visible_files[-1].basename())
-	episode = eval(raw_input('enter starting episode> '))
+		last_file = visible_files[-1].basename()
+		print('last file is', last_file)
+		last_episode = int(re.match('\d+', last_file).group(0))+1
+	else:
+		last_episode = 1
+	prompt = lf('enter starting episode [{last_episode}]> ')
+	episode = eval(raw_input(prompt) or 'None') or last_episode
 	ext = '.mp4'
 	while True:
 		title = raw_input('enter title> ')
