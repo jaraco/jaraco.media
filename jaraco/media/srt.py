@@ -4,7 +4,7 @@
 from datetime import timedelta
 import datetime
 from itertools import izip_longest, takewhile
-from jaraco.util.iter_ import grouper
+from jaraco.util.itertools import grouper
 
 _sample_srt_entries = """\
 1
@@ -27,27 +27,27 @@ class SubEntry(object):
 	An SRT subtitle entry parser and manager.
 	To get the SubEntry entries from an SRT file, just call get_entries
 	on a filename or file-like object.
-	
+
 	>>> from StringIO import StringIO
 	>>> sample = StringIO(_sample_srt_entries)
 	>>> entries = SubEntry.get_entries(sample)
-	
+
 	Entries is now a generator which will parse the entries as they're
 	requested. If you have enough memory to load them all in, then you
 	can load them into a list or tuple.
 	>>> entries = list(entries)
-	
+
 	>>> len(entries)
 	3
 	>>> entries[0].text
 	['jaraco.media.srt presents\n']
 	>>> entries[1].start
 	datetime.timedelta(0, 29, 590000)
-	
+
 	Then, you can adjust when the entries occur. For example, this adds
 	one second to the start and end times for the last subtitle.
 	>>> entries[2] += datetime.timedelta(seconds=1)
-	
+
 	Finally, you can easily re-serialize the entries.
 	>>> str(entries[2])
 	'3\n00:00:39,370 --> 00:00:48,870\nCopyright \xa92009-2010 Jason R. Coombs\nLicensed for redistribution under the MIT license.\n'
@@ -89,7 +89,7 @@ class SubEntry(object):
 			minutes = int(min),
 			seconds = int(sec),
 			milliseconds = int(msec),
-			) 
+			)
 
 	def __sub__(self, difference):
 		"Subtract a time difference from the start and stop values"

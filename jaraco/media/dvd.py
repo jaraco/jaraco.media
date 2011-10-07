@@ -15,7 +15,7 @@ from copy import deepcopy
 from cStringIO import StringIO
 import logging
 from jaraco.util import ordinalth, trim
-from jaraco.util.iter_ import flatten
+from jaraco.util.itertools import flatten
 from jaraco.media import cropdetect
 from jaraco.media.arguments import *
 
@@ -28,7 +28,7 @@ def guess_output_filename(name):
 	"""
 	>>> guess_output_filename('JEAN_DE_FLORETTE')
 	'Jean De Florette'
-	
+
 	>>> guess_output_filename('')
 	''
 	"""
@@ -91,14 +91,14 @@ class MEncoderCommand(object):
 			if arg is None: continue
 			for value in arg:
 				yield str(value)
-	
+
 	def set_device(self, value):
 		assert os.path.exists(value), "Couldn't find device %s" % value
 		self.device = HyphenArgs({'dvd-device': value})
-		
+
 	def __setitem__(self, key, value):
 		self.other_options[key]=value
-	
+
 	def __getitem__(self, key):
 		return self.other_options[key]
 
@@ -128,7 +128,7 @@ class MultiPassHandler(object):
 			log.info('Modifying command for %s pass.' % current_pass_th)
 			method = [self.early_pass, self.last_pass][current_pass == self.passes]
 			yield method(current_pass)
-	
+
 	def early_pass(self, pass_number):
 		command = self.command.copy()
 		command.audio_options=HyphenArgs(nosound=None)
@@ -143,7 +143,7 @@ class MultiPassHandler(object):
 
 	def __del__(self):
 		self.cleanup_log_file()
-		
+
 	def cleanup_log_file(self):
 		try:
 			filename = self.command['passlogfile']
@@ -153,7 +153,7 @@ class MultiPassHandler(object):
 			os.path.exists(filename) and os.remove(filename)
 		except:
 			log.error('Error removing logfile %s', filename)
-		
+
 def get_x264_options():
 	lavcopts = ColonDelimitedArgs()
 	lavcopts.update(vcodec='libx264')
@@ -198,7 +198,7 @@ def get_mp3_options():
 def encode_dvd():
 	"""
 	%prog <dvd_source>
-	
+
 	Encode a DVD where the source is a DVD drive or RIP directory of a DVD.
 	"""
 	parser = optparse.OptionParser(usage=trim(encode_dvd.__doc__))
@@ -236,12 +236,12 @@ def encode_dvd():
 	output_filename = os.path.join(videos_path, filename)
 
 	command['o'] = output_filename
-	
+
 	dvd_title = options.title
 	command.source = ['dvd://%(dvd_title)s' % vars()]
 	if options.test:
 		command['chapter'] = '2-2'
-	
+
 	command.audio_options = get_audio_copy_options()
 	command.audio_options.update(aid='128')
 
@@ -253,7 +253,7 @@ def encode_dvd():
 		)
 
 	command.video_options = get_mpeg4_options()
-	
+
 	if options.subtitle:
 		command['sid'] = options.subtitle
 		command['vobsubout'] = target
@@ -288,7 +288,7 @@ def re_encode(file, video_options, audio_options):
 def transcode():
 	"""
 	%prog <source_file>
-	
+
 	Transcode a video by copying the video, but encoding the audio
 	into mp3 format.
 	"""
@@ -299,13 +299,13 @@ def transcode():
 		source = args.pop()
 	except AssertionError:
 		parser.error("Invalid number of arguments")
-	
+
 	re_encode(source, get_video_copy_options(), get_mp3_options())
-	
+
 def fix_fourcc():
 	"""
 	%prog <source_file>
-	
+
 	Re-encode the video, but change the ffourcc to XVID
 	"""
 	parser = optparse.OptionParser(usage=trim(fix_fourcc.__doc__))
@@ -315,7 +315,7 @@ def fix_fourcc():
 		source = args.pop()
 	except AssertionError:
 		parser.error("Invalid number of arguments")
-	
+
 	re_encode(source, get_video_copy_options(), get_audio_copy_options())
 
 def rip_subtitles():
@@ -323,7 +323,7 @@ def rip_subtitles():
 	%prog <dvd_source>
 	"""
 	logging.basicConfig(level=logging.INFO)
-	
+
 	parser = optparse.OptionParser(usage=trim(encode_dvd.__doc__))
 	#parser.add_option('-t', '--titles', 'enter the title or titles to process (i.e. 1 or 1,5 or 1-5)' default='')
 	parser.add_option('-t', '--title', help='enter the dvd title number to process', default='')
@@ -352,12 +352,12 @@ def rip_subtitles():
 
 	dvd_title = options.title
 	command.source = ['dvd://%(dvd_title)s' % vars()]
-	
+
 	command['o'] = os.devnull
-	
+
 	command.audio_options = HyphenArgs(nosound=None)
 	command.video_options = HyphenArgs(ovc='frameno')
-	
+
 	command['sid'] = options.subtitle or '0'
 
 	command['vobsubout'] = target

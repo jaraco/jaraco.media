@@ -3,14 +3,18 @@
 """
 Setup script for building jaraco.media distribution
 
-Copyright © 2009-2010 Jason R. Coombs
+Copyright © 2009-2011 Jason R. Coombs
 """
+
+import sys
 
 from setuptools import find_packages
 
 __author__ = 'Jason R. Coombs <jaraco@jaraco.com>'
 
 name = 'jaraco.media'
+
+py26reqs = ['jaraco.compat'] if sys.version_info < (2,7) else []
 
 setup_params = dict(
 	name = name,
@@ -43,7 +47,7 @@ setup_params = dict(
 	},
 	install_requires=[
 		'jaraco.util',
-	],
+	] + py26reqs,
 	extras_require = {
 	},
 	dependency_links = [

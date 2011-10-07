@@ -4,16 +4,16 @@
 __all__ = ['DelimitedArgs', 'HyphenArgs', 'ColonDelimitedArgs']
 
 from itertools import ifilter
-from jaraco.util.odict import odict
-from jaraco.util.iter_ import flatten
+from py26compat.collections import OrderedDict
+from jaraco.util.itertools import flatten
 
-class DelimitedArgs(odict):
+class DelimitedArgs(OrderedDict):
 	value_join = '='
-	
+
 	def __str__(self):
 		return self.delimiter.join(self.get_args())
 
-	arg_items = odict.items
+	arg_items = OrderedDict.items
 
 	def get_args(self):
 		args = self.arg_items()
@@ -25,25 +25,25 @@ class DelimitedArgs(odict):
 class HyphenArgs(DelimitedArgs):
 	"""
 	Construct args suitable for unix-style command lines.
-	
+
 	e.g. -flag
 	>>> print HyphenArgs({'flag':None})
 	-flag
-	
+
 	e.g. -filename myfile.txt
 	>>> print HyphenArgs(filename='myfile.txt')
 	-filename myfile.txt
-	
+
 	>>> args = HyphenArgs([('a','a'), ('b','b')])
 	>>> args_copy = args.copy()
 	>>> print args_copy
 	-a a -b b
 	>>> print HyphenArgs([('a', '1'), ('b', None)])
 	-a 1 -b
-	""" 
+	"""
 	value_join=' '
 	delimiter=' '
-	
+
 	@staticmethod
 	def add_hyphen(value):
 		return '-%s' % value
@@ -66,7 +66,7 @@ class ColonDelimitedArgs(DelimitedArgs):
 	y=4:x=3
 	"""
 	delimiter = ':'
-	
+
 	def __iter__(self):
 		yield str(self)
 
