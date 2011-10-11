@@ -15,7 +15,8 @@ from .dvd import infer_name
 
 def get_handbrake_cmd():
 	input = os.environ.get('DVD', 'D:\\')
-	return ['HandbrakeCLI', '-i', input, '-N', 'eng']
+	return ['HandbrakeCLI', '-i', input, '--subtitle', 'scan',
+		'--sibtitle-forced', '--native-language', 'eng']
 
 def is_hidden(filepath):
 	filepath = os.path.abspath(filepath)
