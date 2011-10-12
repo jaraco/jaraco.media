@@ -98,6 +98,12 @@ def get_starts(stream, limit):
 		stream.readline()
 
 def two_stage_encode(args):
+	"""
+	Handbrake does a rip/encode and then multiplexes (muxes) the audio
+	with the encoded video. This function watches handbrake for when the
+	multiplexing begins and then returns a thread that will complete the
+	multiplexing so that another rip/encode job can proceed.
+	"""
 	proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 	for start in get_starts(proc.stdout, 7):
 		if 'Muxing' in start:
