@@ -14,7 +14,8 @@ from os.path import join
 from copy import deepcopy
 from cStringIO import StringIO
 import logging
-from jaraco.util import ordinalth, trim
+from jaraco.util.numbers import ordinalth
+from jaraco.util.string import trim
 from jaraco.util.itertools import flatten
 from jaraco.media import cropdetect
 from jaraco.media.arguments import *
