@@ -18,8 +18,12 @@ class Movie(object):
 
 	@property
 	def link(self):
+		return 'http://www.imdb.com/find?s=all&'+self.search
+
+	@property
+	def search(self):
 		q = urllib.urlencode(dict(q=self.title))
-		return 'http://www.imdb.com/find?s=all&'+q
+		return q
 
 class Index(object):
 	root = r'\\drake\videos\movies'
@@ -60,6 +64,7 @@ class Index(object):
 class Site:
 	@cherrypy.expose
 	def index(self):
+		cherrypy.response.headers['Content-Type'] = 'application/xhtml+xml'
 		template = self.get_template()
 		not_watched = lambda m: m.class_ != 'watched'
 		movies = Index(filter=not_watched)
@@ -172,7 +177,7 @@ iweb_template = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "htt
 
 <ul py:for="movie in movies" class="pageitem">
 	<li class="menu">
-		<a href="${movie.link}">
+		<a href="imdb:///find?${movie.search}">
 			<img alt="Description" src="/iweb/thumbs/video.png" />
 			<span class="name">
 				<span py:replace="movie.title">Movie Title</span>
