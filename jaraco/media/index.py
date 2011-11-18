@@ -143,7 +143,7 @@ def serve():
 	cherrypy.engine.block()
 
 default_template = """\
-<html xmlns:py="http://genshi.edgewall.org/">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:py="http://genshi.edgewall.org/">
 	<body>
 		<h1 py:content="title">Title</h1>
 		<div py:for="movie in movies">
