@@ -13,9 +13,15 @@ from jaraco.windows import filesystem
 
 from .dvd import infer_name
 
+def get_source():
+	return os.environ.get('DVD', 'D:\\')
+
+def source_is_high_def():
+	blueray_dir = os.path.join(get_source(), 'BDMV')
+	return os.path.isdir(blueray_dir)
+
 def get_handbrake_cmd():
-	input = os.environ.get('DVD', 'D:\\')
-	return ['HandbrakeCLI', '-i', input, '--subtitle', 'scan',
+	return ['HandbrakeCLI', '-i', get_source(), '--subtitle', 'scan',
 		'--subtitle-forced', '--native-language', 'eng']
 
 def is_hidden(filepath):
@@ -67,7 +73,12 @@ def quick_brake():
 	name = infer_name()
 	title = raw_input(lf("Movie title ({name})> ")) or name
 	dest = os.path.join(os.path.expanduser('//drake/videos/Movies'), title+'.mp4')
-	cmd = get_handbrake_cmd() + ['--main-feature', '-o', dest]
+	quality = 22 if source_is_high_def() else 20
+	cmd = get_handbrake_cmd() + [
+		'--main-feature',
+		'--quality', str(quality),
+		'-o', dest,
+	]
 	subprocess.Popen(cmd).wait()
 
 def find_root():
