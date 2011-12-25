@@ -76,6 +76,7 @@ def quick_brake():
 	quality = 22 if source_is_high_def() else 20
 	cmd = get_handbrake_cmd() + [
 		'--main-feature',
+		'--encoder', 'x264',
 		'--quality', str(quality),
 		'-o', dest,
 	]
