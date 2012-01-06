@@ -16,11 +16,10 @@ class DelimitedArgs(OrderedDict):
 	arg_items = OrderedDict.items
 
 	def get_args(self):
-		args = self.arg_items()
-		remove_none_values = lambda item: filter(None, item)
-		join_key_values = lambda item: self.value_join.join(item)
-		args = map(join_key_values, map(remove_none_values, args))
-		return args
+		return [
+			self.value_join.join(item for item in arg if item)
+			for arg in self.arg_items()
+		]
 
 class HyphenArgs(DelimitedArgs):
 	"""
@@ -54,19 +53,9 @@ class HyphenArgs(DelimitedArgs):
 	def hyphenated_keys(self):
 		return map(self.add_hyphen, super(self.__class__, self).keys())
 
-	def __iter__(self):
-		return ifilter(None, flatten(self.arg_items()))
-		#for key, value in self.arg_items():
-		#	yield key
-		#	yield value
-
 class ColonDelimitedArgs(DelimitedArgs):
 	"""
 	>>> print ColonDelimitedArgs(x='3', y='4')
 	y=4:x=3
 	"""
 	delimiter = ':'
-
-	def __iter__(self):
-		yield str(self)
-
