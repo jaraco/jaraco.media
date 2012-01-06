@@ -1,11 +1,10 @@
-#!python
 # -*- coding: utf-8 -*-
 
-__all__ = ['DelimitedArgs', 'HyphenArgs', 'ColonDelimitedArgs']
+from __future__ import print_function
 
-from itertools import ifilter
 from py26compat.collections import OrderedDict
-from jaraco.util.itertools import flatten
+
+__all__ = ['DelimitedArgs', 'HyphenArgs', 'ColonDelimitedArgs']
 
 class DelimitedArgs(OrderedDict):
 	value_join = '='
@@ -26,18 +25,18 @@ class HyphenArgs(DelimitedArgs):
 	Construct args suitable for unix-style command lines.
 
 	e.g. -flag
-	>>> print HyphenArgs({'flag':None})
+	>>> print(HyphenArgs({'flag':None}))
 	-flag
 
 	e.g. -filename myfile.txt
-	>>> print HyphenArgs(filename='myfile.txt')
+	>>> print(HyphenArgs(filename='myfile.txt'))
 	-filename myfile.txt
 
 	>>> args = HyphenArgs([('a','a'), ('b','b')])
 	>>> args_copy = args.copy()
-	>>> print args_copy
+	>>> print(args_copy)
 	-a a -b b
-	>>> print HyphenArgs([('a', '1'), ('b', None)])
+	>>> print(HyphenArgs([('a', '1'), ('b', None)]))
 	-a 1 -b
 	"""
 	value_join=' '
@@ -55,7 +54,7 @@ class HyphenArgs(DelimitedArgs):
 
 class ColonDelimitedArgs(DelimitedArgs):
 	"""
-	>>> print ColonDelimitedArgs(x='3', y='4')
+	>>> print(ColonDelimitedArgs(x='3', y='4'))
 	y=4:x=3
 	"""
 	delimiter = ':'
