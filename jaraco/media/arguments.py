@@ -2,12 +2,18 @@
 
 from __future__ import print_function
 
+import abc
+
 from py26compat.collections import OrderedDict
 
 __all__ = ['DelimitedArgs', 'HyphenArgs', 'ColonDelimitedArgs']
 
 class DelimitedArgs(OrderedDict):
 	value_join = '='
+
+	@abc.abstractproperty
+	def delimiter(self):
+		"The delimited between arguments"
 
 	def __str__(self):
 		return self.delimiter.join(self.get_args())
