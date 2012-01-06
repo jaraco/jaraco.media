@@ -32,9 +32,14 @@ def guess_output_filename(name):
 
 	>>> guess_output_filename('')
 	''
+
+	>>> guess_output_filename('COWBOYS_ALIENS_RENTAL')
+	'Cowboys Aliens'
 	"""
 	names = name.split('_')
 	names = map(str.capitalize, names)
+	if names and names[-1] == 'Rental':
+		names = names[:-1]
 	return ' '.join(names)
 
 def infer_name(device=None):

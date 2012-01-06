@@ -11,7 +11,7 @@ from jaraco.util.string import local_format as lf
 
 from jaraco.windows import filesystem
 
-from .dvd import infer_name
+from . import dvd
 
 def get_source():
 	return os.environ.get('DVD', 'D:\\')
@@ -70,7 +70,7 @@ def get_titles(root):
 		episode += 1
 
 def quick_brake():
-	name = infer_name()
+	name = dvd.infer_name()
 	title = raw_input(lf("Movie title ({name})> ")) or name
 	dest = os.path.join(os.path.expanduser('//drake/videos/Movies'), title+'.mp4')
 	quality = 22 if source_is_high_def() else 20
