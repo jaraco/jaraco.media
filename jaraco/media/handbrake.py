@@ -13,6 +13,7 @@ from jaraco.util.string import local_format as lf
 from jaraco.windows import filesystem
 
 from . import dvd
+from . import config
 
 def get_source():
 	return os.environ.get('DVD', 'D:\\')
@@ -73,7 +74,7 @@ def get_titles(root):
 def quick_brake():
 	name = dvd.infer_name()
 	title = raw_input(lf("Movie title ({name})> ")) or name
-	dest = path('//drake/videos/Movies').expanduser() / title + '.mp4'
+	dest = config.movies_root / title + '.mp4'
 	quality = 22 if source_is_high_def() else 20
 	cmd = get_handbrake_cmd() + [
 		'--main-feature',
@@ -84,7 +85,7 @@ def quick_brake():
 	subprocess.Popen(cmd).wait()
 
 def find_root():
-	root = path('//drake/videos/TV').expanduser()
+	root = config.tv_root
 	choices = [showdir.basename() for showdir in root.dirs()]
 	show = ui.Menu(choices).get_choice('Choose show (blank for new)> ')
 	if not show:
