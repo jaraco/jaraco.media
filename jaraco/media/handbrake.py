@@ -1,4 +1,5 @@
 from __future__ import print_function
+
 import os
 import subprocess
 import optparse
@@ -40,7 +41,7 @@ class TitleInfo(object):
 
 	def __iter__(self):
 		"Return the parameters to handbrake to rip for this title"
-		return iter(['-t', str(self.title_no), '-o', self.root/self.filename])
+		return iter(['-t', str(self.title_no), '-o', self.root / self.filename])
 
 	@property
 	def filename(self):
@@ -56,7 +57,7 @@ def get_titles(root):
 	if visible_files:
 		last_file = visible_files[-1].basename()
 		print('last file is', last_file)
-		last_episode = int(re.match('\d+', last_file).group(0))+1
+		last_episode = int(re.match('\d+', last_file).group(0)) + 1
 	else:
 		last_episode = 1
 	prompt = lf('enter starting episode [{last_episode}]> ')
@@ -72,7 +73,7 @@ def get_titles(root):
 def quick_brake():
 	name = dvd.infer_name()
 	title = raw_input(lf("Movie title ({name})> ")) or name
-	dest = os.path.join(os.path.expanduser('//drake/videos/Movies'), title+'.mp4')
+	dest = path('//drake/videos/Movies').expanduser() / title + '.mp4'
 	quality = 22 if source_is_high_def() else 20
 	cmd = get_handbrake_cmd() + [
 		'--main-feature',
@@ -88,13 +89,13 @@ def find_root():
 	show = ui.Menu(choices).get_choice('Choose show (blank for new)> ')
 	if not show:
 		show = raw_input('Show name> ')
-	show_dir = root/show
+	show_dir = root / show
 	show_dir.makedirs_p()
 	choices = [seasondir.basename() for seasondir in show_dir.dirs()]
 	season = ui.Menu(choices).get_choice('Choose season (blank for new)> ')
 	if not season:
 		season = 'Season %d' % eval(raw_input('Season Number> '))
-	season_dir = show_dir/season
+	season_dir = show_dir / season
 	season_dir.makedirs_p()
 	return season_dir
 
