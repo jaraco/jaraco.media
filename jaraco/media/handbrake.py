@@ -23,8 +23,13 @@ def source_is_high_def():
 	return os.path.isdir(blueray_dir)
 
 def get_handbrake_cmd():
-	return ['HandbrakeCLI', '-i', get_source(), '--subtitle', 'scan',
-		'--subtitle-forced', '--native-language', 'eng']
+	quality = 22 if source_is_high_def() else 20
+	return [
+		'HandbrakeCLI', '-i', get_source(), '--subtitle', 'scan',
+		'--subtitle-forced', '--native-language', 'eng',
+		'--encoder', 'x264',
+		'--quality', str(quality),
+	]
 
 def is_hidden(filepath):
 	filepath = os.path.abspath(filepath)
@@ -75,11 +80,8 @@ def quick_brake():
 	name = dvd.infer_name()
 	title = raw_input(lf("Movie title ({name})> ")) or name
 	dest = config.movies_root / title + '.mp4'
-	quality = 22 if source_is_high_def() else 20
 	cmd = get_handbrake_cmd() + [
 		'--main-feature',
-		'--encoder', 'x264',
-		'--quality', str(quality),
 		'-o', dest,
 	]
 	subprocess.Popen(cmd).wait()
@@ -137,6 +139,15 @@ def multibrake():
 		threads.append(two_stage_encode(args))
 	[t.join() for t in threads if t]
 
+def _link_to_title(lines):
+	res = []
+	for line in lines:
+		if '+ title' in line:
+			res.append(dict(title=line[7:]))
+		d = re.match('+ (?P<key>.*):(<P<value>.*)', line).groupdict()
+		res[-1].update({d['key']: d['value']})
+	return res
+
 def title_durations():
 	cmd = get_handbrake_cmd() + ['-t', '0']
 	print('scanning...')
@@ -144,4 +155,5 @@ def title_durations():
 	lines = [
 		line for line in output.splitlines()
 		if '+ title' in line or '+ duration:' in line]
-	for line in lines: print(line)
+	lines = _link_to_title(lines)
+	map(print, lines)
