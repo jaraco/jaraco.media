@@ -142,9 +142,14 @@ def multibrake():
 def _link_to_title(lines):
 	res = []
 	for line in lines:
-		if '+ title' in line:
-			res.append(dict(title=line[7:]))
-		d = re.match('+ (?P<key>.*):(<P<value>.*)', line).groupdict()
+		title = re.match(r'\+ title (?P<title>\d+):', line)
+		if title:
+			res.append(dict(title=title.group('title')))
+			continue
+		m = re.match(r'  \+ (?P<key>.*): (?P<value>.*)', line)
+		if not m:
+			import pdb; pdb.set_trace()
+		d = m.groupdict()
 		res[-1].update({d['key']: d['value']})
 	return res
 
