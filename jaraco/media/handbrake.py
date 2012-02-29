@@ -147,8 +147,6 @@ def _link_to_title(lines):
 			res.append(dict(title=title.group('title')))
 			continue
 		m = re.match(r'  \+ (?P<key>.*): (?P<value>.*)', line)
-		if not m:
-			import pdb; pdb.set_trace()
 		d = m.groupdict()
 		res[-1].update({d['key']: d['value']})
 	return res
