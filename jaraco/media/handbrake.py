@@ -4,6 +4,7 @@ import os
 import subprocess
 import optparse
 import re
+import datetime
 from threading import Thread
 
 from jaraco.util import ui
@@ -139,6 +140,10 @@ def multibrake():
 		threads.append(two_stage_encode(args))
 	[t.join() for t in threads if t]
 
+def parse_duration(str):
+	hours, minutes, seconds = map(int, str.split(':'))
+	return datetime.timedelta(hours=hours, minutes=minutes, seconds=seconds)
+
 def _link_to_title(lines):
 	res = []
 	for line in lines:
@@ -149,6 +154,8 @@ def _link_to_title(lines):
 		m = re.match(r'  \+ (?P<key>.*): (?P<value>.*)', line)
 		d = m.groupdict()
 		res[-1].update({d['key']: d['value']})
+	if 'duration' in res:
+		res['duration'] = parse_duration(res['duration'])
 	return res
 
 def title_durations():
