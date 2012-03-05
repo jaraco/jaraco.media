@@ -158,6 +158,9 @@ def _link_to_title(lines):
 		res['duration'] = parse_duration(res['duration'])
 	return res
 
+def more_than_ten_min(title):
+	return 'duration' in title and title.duration > datetime.timedelta(minutes=10)
+
 def title_durations():
 	cmd = get_handbrake_cmd() + ['-t', '0']
 	print('scanning...')
@@ -166,4 +169,5 @@ def title_durations():
 		line for line in output.splitlines()
 		if '+ title' in line or '+ duration:' in line]
 	lines = _link_to_title(lines)
+	lines = filter(more_than_ten_min(lines))
 	map(print, lines)
