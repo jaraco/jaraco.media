@@ -5,7 +5,7 @@ import subprocess
 import optparse
 import re
 import datetime
-from threading import Thread
+import threading
 
 from jaraco.util import ui
 from path import path
@@ -126,7 +126,7 @@ def two_stage_encode(args):
 		if 'Muxing' in start:
 			# start a thread to finish the process
 			print('Muxing...')
-			t = Thread(target=proc.communicate)
+			t = threading.Thread(target=proc.communicate)
 			t.start()
 			return t
 
