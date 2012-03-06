@@ -153,9 +153,10 @@ def _link_to_title(lines):
 			continue
 		m = re.match(r'  \+ (?P<key>.*): (?P<value>.*)', line)
 		d = m.groupdict()
-		res[-1].update({d['key']: d['value']})
-	if 'duration' in res:
-		res['duration'] = parse_duration(res['duration'])
+		key, value = d['key'], d['value']
+		if key == 'duration':
+			value = parse_duration(value)
+		res[-1].update({key: value})
 	return res
 
 def more_than_ten_min(title):
@@ -170,4 +171,5 @@ def title_durations():
 		if '+ title' in line or '+ duration:' in line]
 	lines = _link_to_title(lines)
 	lines = filter(more_than_ten_min, lines)
-	map(print, lines)
+	print("Title durations:")
+	[print(line['title'], line['duration']) for line in lines]
