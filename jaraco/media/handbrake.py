@@ -159,15 +159,17 @@ def _link_to_title(lines):
 	return res
 
 def more_than_ten_min(title):
-	return 'duration' in title and title.duration > datetime.timedelta(minutes=10)
+	return 'duration' in title and title['duration'] > datetime.timedelta(minutes=10)
 
 def title_durations():
 	cmd = get_handbrake_cmd() + ['-t', '0']
 	print('scanning...')
 	output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+	with open('output.txt', 'wb') as f:
+		f.write(output)
 	lines = [
 		line for line in output.splitlines()
 		if '+ title' in line or '+ duration:' in line]
 	lines = _link_to_title(lines)
-	lines = filter(more_than_ten_min(lines))
+	lines = filter(more_than_ten_min, lines)
 	map(print, lines)

@@ -1,0 +1,1770 @@
+[18:56:36] hb_init: checking cpu count
+[18:56:36] hb_init: starting libhb thread
+HandBrake 0.9.5 (2011010300) - MinGW i386 - http://handbrake.fr
+4 CPUs detected
+Opening D:\...
+[18:56:36] hb_scan: path=D:\, title_index=0
+[18:56:36] scan: BD has 119 title(s)
+[18:56:36] bd: scanning title 1
+[18:56:36] bd: duration is 00:00:23 (23273 ms)
+[18:56:36] bd: video id=1011, stream type=H264, format 1080p
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (DTS), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 23023 ms
+[18:56:36] bd: chap 2 packet=104740800, 250 ms
+[18:56:36] bd: title 1 has 2 chapters
+[18:56:36] bd: scanning title 2
+[18:56:36] bd: duration is 00:00:07 (7173 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 3
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 4
+[18:56:36] bd: duration is 00:00:11 (11052 ms)
+[18:56:36] bd: video id=1011, stream type=H264, format 1080p
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (AC3), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 10802 ms
+[18:56:36] bd: chap 2 packet=6451008, 250 ms
+[18:56:36] bd: title 4 has 2 chapters
+[18:56:36] bd: scanning title 5
+[18:56:36] bd: duration is 00:00:11 (11636 ms)
+[18:56:36] bd: video id=1011, stream type=H264, format 1080p
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (AC3), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 11386 ms
+[18:56:36] bd: chap 2 packet=6537024, 250 ms
+[18:56:36] bd: title 5 has 2 chapters
+[18:56:36] bd: scanning title 6
+[18:56:36] bd: duration is 00:00:11 (11052 ms)
+[18:56:36] bd: video id=1011, stream type=H264, format 1080p
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (AC3), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 10802 ms
+[18:56:36] bd: chap 2 packet=6411456, 250 ms
+[18:56:36] bd: title 6 has 2 chapters
+[18:56:36] bd: scanning title 7
+[18:56:36] bd: duration is 00:00:11 (11052 ms)
+[18:56:36] bd: video id=1011, stream type=H264, format 1080p
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (AC3), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 10802 ms
+[18:56:36] bd: chap 2 packet=6316608, 250 ms
+[18:56:36] bd: title 7 has 2 chapters
+[18:56:36] bd: scanning title 8
+[18:56:36] bd: duration is 00:00:11 (11052 ms)
+[18:56:36] bd: video id=1011, stream type=H264, format 1080p
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (AC3), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 10802 ms
+[18:56:36] bd: chap 2 packet=6450240, 250 ms
+[18:56:36] bd: title 8 has 2 chapters
+[18:56:36] bd: scanning title 9
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 10
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 11
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 12
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 13
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 14
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 15
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 16
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 17
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 18
+[18:56:36] bd: duration is 00:00:15 (15223 ms)
+[18:56:36] bd: video id=1011, stream type=MPEG2, format 1080p
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: chap 1 packet=768, 15223 ms
+[18:56:36] bd: title 18 has 1 chapters
+[18:56:36] bd: scanning title 19
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 20
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 21
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 22
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 23
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 24
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 25
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 26
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 27
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 28
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 29
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 30
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 31
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 32
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 33
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 34
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 35
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 36
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 37
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 38
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 39
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 40
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 41
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 42
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 43
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 44
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 45
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 46
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 47
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 48
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 49
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 50
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 51
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 52
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 53
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 54
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 55
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 56
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 57
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 58
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 59
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 60
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 61
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 62
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 63
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 64
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 65
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 66
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 67
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 68
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 69
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 70
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 71
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 72
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 73
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 74
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 75
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 76
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 77
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 78
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 79
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 80
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 81
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 82
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 83
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 84
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 85
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 86
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 87
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 88
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 89
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 90
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 91
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 92
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 93
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 94
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 95
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 96
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 97
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 98
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 99
+[18:56:36] bd: duration is 00:00:05 (5046 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 100
+[18:56:36] bd: duration is 00:00:50 (50550 ms)
+[18:56:36] bd: video id=1011, stream type=MPEG2, format 1080p
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (AC3), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 50550 ms
+[18:56:36] bd: title 100 has 1 chapters
+[18:56:36] bd: scanning title 101
+[18:56:36] bd: duration is 00:00:46 (46087 ms)
+[18:56:36] bd: video id=1011, stream type=MPEG2, format 1080p
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (AC3), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 46087 ms
+[18:56:36] bd: title 101 has 1 chapters
+[18:56:36] bd: scanning title 102
+[18:56:36] bd: duration is 00:21:41 (1301133 ms)
+[18:56:36] bd: video id=1011, stream type=H264, format 1080p
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (DTS), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 384467 ms
+[18:56:36] bd: chap 2 packet=1368911616, 314063 ms
+[18:56:36] bd: chap 3 packet=2581441728, 280571 ms
+[18:56:36] bd: chap 4 packet=3572849088, 280488 ms
+[18:56:36] bd: chap 5 packet=4568366016, 41291 ms
+[18:56:36] bd: chap 6 packet=4717700544, 250 ms
+[18:56:36] bd: title 102 has 6 chapters
+[18:56:36] bd: scanning title 103
+[18:56:36] bd: duration is 00:21:29 (1289329 ms)
+[18:56:36] bd: video id=1011, stream type=H264, format 1080p
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (DTS), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 333958 ms
+[18:56:36] bd: chap 2 packet=1275153408, 198364 ms
+[18:56:36] bd: chap 3 packet=1964769024, 324949 ms
+[18:56:36] bd: chap 4 packet=3097739328, 392975 ms
+[18:56:36] bd: chap 5 packet=4531756224, 38830 ms
+[18:56:36] bd: chap 6 packet=4659587520, 250 ms
+[18:56:36] bd: title 103 has 6 chapters
+[18:56:36] bd: scanning title 104
+[18:56:36] bd: duration is 00:21:28 (1288328 ms)
+[18:56:36] bd: video id=1011, stream type=H264, format 1080p
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (DTS), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 268434 ms
+[18:56:36] bd: chap 2 packet=985309056, 336377 ms
+[18:56:36] bd: chap 3 packet=2175235392, 352101 ms
+[18:56:36] bd: chap 4 packet=3461312448, 296337 ms
+[18:56:36] bd: chap 5 packet=4539376704, 34826 ms
+[18:56:36] bd: chap 6 packet=4668622464, 250 ms
+[18:56:36] bd: title 104 has 6 chapters
+[18:56:36] bd: scanning title 105
+[18:56:36] bd: duration is 00:21:40 (1300340 ms)
+[18:56:36] bd: video id=1011, stream type=H264, format 1080p
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (DTS), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 432306 ms
+[18:56:36] bd: chap 2 packet=1565624448, 309976 ms
+[18:56:36] bd: chap 3 packet=2722400448, 209334 ms
+[18:56:36] bd: chap 4 packet=3506971584, 310435 ms
+[18:56:36] bd: chap 5 packet=4571253504, 38038 ms
+[18:56:36] bd: chap 6 packet=4717793856, 250 ms
+[18:56:36] bd: title 105 has 6 chapters
+[18:56:36] bd: scanning title 106
+[18:56:36] bd: duration is 00:21:38 (1298338 ms)
+[18:56:36] bd: video id=1011, stream type=H264, format 1080p
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (DTS), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 372372 ms
+[18:56:36] bd: chap 2 packet=1520093184, 316607 ms
+[18:56:36] bd: chap 3 packet=2659766976, 265431 ms
+[18:56:36] bd: chap 4 packet=3582650112, 300842 ms
+[18:56:36] bd: chap 5 packet=4557727872, 42834 ms
+[18:56:36] bd: chap 6 packet=4685506752, 250 ms
+[18:56:36] bd: title 106 has 6 chapters
+[18:56:36] bd: scanning title 107
+[18:56:36] bd: duration is 00:21:39 (1299339 ms)
+[18:56:36] bd: video id=1011, stream type=H264, format 1080p
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (DTS), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 392475 ms
+[18:56:36] bd: chap 2 packet=1464820032, 341215 ms
+[18:56:36] bd: chap 3 packet=2591326080, 238738 ms
+[18:56:36] bd: chap 4 packet=3468435456, 283533 ms
+[18:56:36] bd: chap 5 packet=4539296448, 43126 ms
+[18:56:36] bd: chap 6 packet=4685805312, 250 ms
+[18:56:36] bd: title 107 has 6 chapters
+[18:56:36] bd: scanning title 108
+[18:56:36] bd: duration is 00:21:39 (1299339 ms)
+[18:56:36] bd: video id=1011, stream type=H264, format 1080p
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (DTS), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 347972 ms
+[18:56:36] bd: chap 2 packet=1260603648, 321612 ms
+[18:56:36] bd: chap 3 packet=2481685824, 306097 ms
+[18:56:36] bd: chap 4 packet=3519400320, 285868 ms
+[18:56:36] bd: chap 5 packet=4567005696, 37537 ms
+[18:56:36] bd: chap 6 packet=4705117632, 250 ms
+[18:56:36] bd: title 108 has 6 chapters
+[18:56:36] bd: scanning title 109
+[18:56:36] bd: duration is 00:20:22 (1222262 ms)
+[18:56:36] bd: video id=1011, stream type=H264, format 1080p
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (DTS), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 380546 ms
+[18:56:36] bd: chap 2 packet=1459605120, 354812 ms
+[18:56:36] bd: chap 3 packet=2726348544, 250583 ms
+[18:56:36] bd: chap 4 packet=3646996800, 196779 ms
+[18:56:36] bd: chap 5 packet=4312718208, 39289 ms
+[18:56:36] bd: chap 6 packet=4470214272, 250 ms
+[18:56:36] bd: title 109 has 6 chapters
+[18:56:36] bd: scanning title 110
+[18:56:36] bd: duration is 00:09:55 (595428 ms)
+[18:56:36] bd: video id=1011, stream type=H264, format 1080p
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (AC3), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 33074 ms
+[18:56:36] bd: chap 2 packet=79129344, 43376 ms
+[18:56:36] bd: chap 3 packet=182980992, 333374 ms
+[18:56:36] bd: chap 4 packet=981133440, 185351 ms
+[18:56:36] bd: chap 5 packet=1424872512, 250 ms
+[18:56:36] bd: title 110 has 5 chapters
+[18:56:36] bd: scanning title 111
+[18:56:36] bd: duration is 00:03:55 (235652 ms)
+[18:56:36] bd: video id=1011, stream type=H264, format 1080p
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (AC3), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 22230 ms
+[18:56:36] bd: chap 2 packet=53182848, 24733 ms
+[18:56:36] bd: chap 3 packet=112374528, 49174 ms
+[18:56:36] bd: chap 4 packet=230080512, 12262 ms
+[18:56:36] bd: chap 5 packet=259425408, 94594 ms
+[18:56:36] bd: chap 6 packet=485856000, 32407 ms
+[18:56:36] bd: chap 7 packet=563499264, 250 ms
+[18:56:36] bd: title 111 has 7 chapters
+[18:56:36] bd: scanning title 112
+[18:56:36] bd: duration is 00:37:36 (2256295 ms)
+[18:56:36] bd: video id=1011, stream type=H264, format 1080p
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (AC3), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 596596 ms
+[18:56:36] bd: chap 2 packet=1406827200, 592466 ms
+[18:56:36] bd: chap 3 packet=2843964096, 600766 ms
+[18:56:36] bd: chap 4 packet=4292777472, 466215 ms
+[18:56:36] bd: chap 5 packet=5401357632, 250 ms
+[18:56:36] bd: title 112 has 5 chapters
+[18:56:36] bd: scanning title 113
+[18:56:36] bd: duration is 00:02:43 (163204 ms)
+[18:56:36] bd: video id=1011, stream type=H264, format 1080p
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (AC3), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 162954 ms
+[18:56:36] bd: chap 2 packet=390382656, 250 ms
+[18:56:36] bd: title 113 has 2 chapters
+[18:56:36] bd: scanning title 114
+[18:56:36] bd: duration is 00:01:27 (87670 ms)
+[18:56:36] bd: video id=1011, stream type=H264, format 1080p
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (AC3), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 87420 ms
+[18:56:36] bd: chap 2 packet=209670720, 250 ms
+[18:56:36] bd: title 114 has 2 chapters
+[18:56:36] bd: scanning title 115
+[18:56:36] bd: duration is 00:01:02 (62103 ms)
+[18:56:36] bd: video id=1011, stream type=H264, format 1080p
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (AC3), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 61853 ms
+[18:56:36] bd: chap 2 packet=152136192, 250 ms
+[18:56:36] bd: title 115 has 2 chapters
+[18:56:36] bd: scanning title 116
+[18:56:36] bd: duration is 00:00:32 (32699 ms)
+[18:56:36] bd: video id=1011, stream type=MPEG2, format 480i
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (AC3), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 32499 ms
+[18:56:36] bd: chap 2 packet=22912128, 200 ms
+[18:56:36] bd: title 116 has 2 chapters
+[18:56:36] bd: scanning title 117
+[18:56:36] bd: duration is 00:00:47 (47714 ms)
+[18:56:36] bd: video id=1011, stream type=MPEG2, format 480i
+[18:56:36] bd: aspect = 1.77778
+[18:56:36] bd: checking audio 1
+[18:56:36] bd: audio id=1100, lang=English (AC3), 3cc=eng
+[18:56:36] bd: chap 1 packet=768, 47514 ms
+[18:56:36] bd: chap 2 packet=33431808, 200 ms
+[18:56:36] bd: title 117 has 2 chapters
+[18:56:36] bd: scanning title 118
+[18:56:36] bd: duration is 00:00:07 (7048 ms)
+[18:56:36] bd: ignoring title (too short)
+[18:56:36] bd: scanning title 119
+[18:56:37] bd: duration is 02:51:38 (10298412 ms)
+[18:56:37] bd: video id=1011, stream type=H264, format 1080p
+[18:56:37] bd: aspect = 1.77778
+[18:56:37] bd: checking audio 1
+[18:56:37] bd: audio id=1100, lang=English (DTS), 3cc=eng
+[18:56:37] bd: chap 1 packet=768, 384467 ms
+[18:56:37] bd: chap 2 packet=1368911616, 314063 ms
+[18:56:37] bd: chap 3 packet=2581441728, 280571 ms
+[18:56:37] bd: chap 4 packet=3572849088, 280488 ms
+[18:56:37] bd: chap 5 packet=4568366016, 41541 ms
+[18:56:37] bd: chap 6 packet=4718444544, 333958 ms
+[18:56:37] bd: chap 7 packet=5993597184, 198364 ms
+[18:56:37] bd: chap 8 packet=6683212800, 324949 ms
+[18:56:37] bd: chap 9 packet=7816183104, 392975 ms
+[18:56:37] bd: chap 10 packet=9250200000, 39080 ms
+[18:56:37] bd: chap 11 packet=9378839808, 268434 ms
+[18:56:37] bd: chap 12 packet=10364148096, 336377 ms
+[18:56:37] bd: chap 13 packet=11554074432, 352101 ms
+[18:56:37] bd: chap 14 packet=12840151488, 296337 ms
+[18:56:37] bd: chap 15 packet=13918215744, 35076 ms
+[18:56:37] bd: chap 16 packet=14048205312, 432306 ms
+[18:56:37] bd: chap 17 packet=15613828992, 309976 ms
+[18:56:37] bd: chap 18 packet=16770604992, 209334 ms
+[18:56:37] bd: chap 19 packet=17555176128, 310435 ms
+[18:56:37] bd: chap 20 packet=18619458048, 38288 ms
+[18:56:37] bd: chap 21 packet=18766741248, 372372 ms
+[18:56:37] bd: chap 22 packet=20286833664, 316607 ms
+[18:56:37] bd: chap 23 packet=21426507456, 265431 ms
+[18:56:37] bd: chap 24 packet=22349390592, 300842 ms
+[18:56:37] bd: chap 25 packet=23324468352, 43084 ms
+[18:56:37] bd: chap 26 packet=23452922880, 392475 ms
+[18:56:37] bd: chap 27 packet=24917742144, 341215 ms
+[18:56:37] bd: chap 28 packet=26044248192, 238738 ms
+[18:56:37] bd: chap 29 packet=26921357568, 283533 ms
+[18:56:37] bd: chap 30 packet=27992218560, 43376 ms
+[18:56:37] bd: chap 31 packet=28139639040, 347972 ms
+[18:56:37] bd: chap 32 packet=29400241920, 321612 ms
+[18:56:37] bd: chap 33 packet=30621324096, 306097 ms
+[18:56:37] bd: chap 34 packet=31659038592, 285868 ms
+[18:56:37] bd: chap 35 packet=32706643968, 37787 ms
+[18:56:37] bd: chap 36 packet=32845567488, 380546 ms
+[18:56:37] bd: chap 37 packet=34305171840, 354812 ms
+[18:56:37] bd: chap 38 packet=35571915264, 250583 ms
+[18:56:37] bd: chap 39 packet=36492563520, 196779 ms
+[18:56:37] bd: chap 40 packet=37158284928, 39289 ms
+[18:56:37] bd: chap 41 packet=37315780992, 250 ms
+[18:56:37] bd: title 119 has 41 chapters
+[18:56:37] scan: decoding previews for title 1
+[18:56:37] scan: title angle(s) 1
+[18:56:37] scan: audio 0x1100: DCA, rate=48000Hz, bitrate=1536000 English (DTS) (5.1 ch)
+Scanning title 1 of 119...
+Scanning title 1 of 119...
+[h264 @ 0x240c7b0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x240c7b0] non-existing PPS referenced
+Scanning title 1 of 119...
+Scanning title 1 of 119...
+[h264 @ 0x2391c80] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x2391c80] non-existing PPS referenced
+Scanning title 1 of 119...
+Scanning title 1 of 119...
+[h264 @ 0x26d2010] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x26d2010] non-existing PPS referenced
+Scanning title 1 of 119...
+Scanning title 1 of 119...
+Scanning title 1 of 119...
+[h264 @ 0x244d7d0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x244d7d0] non-existing PPS referenced
+Scanning title 1 of 119...
+Scanning title 1 of 119...
+Scanning title 1 of 119...
+[h264 @ 0x244dba0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x244dba0] non-existing PPS referenced
+Scanning title 1 of 119...
+Scanning title 1 of 119...
+Scanning title 1 of 119...
+[h264 @ 0x26d23e0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x26d23e0] non-existing PPS referenced
+Scanning title 1 of 119...
+Scanning title 1 of 119...
+Scanning title 1 of 119...
+Scanning title 1 of 119...
+[h264 @ 0x26d27b0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x26d27b0] non-existing PPS referenced
+Scanning title 1 of 119...
+Scanning title 1 of 119...
+Scanning title 1 of 119...
+[h264 @ 0x26d2b80] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x26d2b80] non-existing PPS referenced
+Scanning title 1 of 119...
+Scanning title 1 of 119...
+Scanning title 1 of 119...
+Scanning title 1 of 119...
+[h264 @ 0x2520050] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x2520050] non-existing PPS referenced
+Scanning title 1 of 119...
+Scanning title 1 of 119...
+Scanning title 1 of 119...
+Scanning title 1 of 119...
+[18:56:43] scan: 10 previews, 1920x1080, 23.976 fps, autocrop = 0/0/6/6, aspect 16:9, PAR 1:1
+[18:56:43] stream: 90 good frames, 7 errors (8%)
+[18:56:43] scan: decoding previews for title 4
+[18:56:43] scan: title angle(s) 1
+[18:56:43] scan: audio 0x1100: AC-3, rate=48000Hz, bitrate=192000 English (AC3) (2.0 ch)
+Scanning title 4 of 119...
+Scanning title 4 of 119...
+Scanning title 4 of 119...
+Scanning title 4 of 119...
+Scanning title 4 of 119...
+Scanning title 4 of 119...
+Scanning title 4 of 119...
+Scanning title 4 of 119...
+Scanning title 4 of 119...
+Scanning title 4 of 119...
+Scanning title 4 of 119...
+[18:56:45] scan: 10 previews, 1920x1080, 23.976 fps, autocrop = 2/0/0/0, aspect 16:9, PAR 1:1
+[18:56:45] stream: 80 good frames, 9 errors (11%)
+[18:56:45] scan: decoding previews for title 5
+[18:56:45] scan: title angle(s) 1
+[18:56:45] scan: audio 0x1100: AC-3, rate=48000Hz, bitrate=192000 English (AC3) (2.0 ch)
+Scanning title 5 of 119...
+Scanning title 5 of 119...
+Scanning title 5 of 119...
+Scanning title 5 of 119...
+Scanning title 5 of 119...
+Scanning title 5 of 119...
+Scanning title 5 of 119...
+Scanning title 5 of 119...
+Scanning title 5 of 119...
+Scanning title 5 of 119...
+Scanning title 5 of 119...
+[18:56:47] scan: 10 previews, 1920x1080, 23.976 fps, autocrop = 2/0/0/0, aspect 16:9, PAR 1:1
+[18:56:47] stream: 80 good frames, 9 errors (11%)
+[18:56:47] scan: decoding previews for title 6
+[18:56:47] scan: title angle(s) 1
+Scanning title 6 of 119...
+[18:56:47] scan: audio 0x1100: AC-3, rate=48000Hz, bitrate=192000 English (AC3) (2.0 ch)
+Scanning title 6 of 119...
+Scanning title 6 of 119...
+Scanning title 6 of 119...
+Scanning title 6 of 119...
+Scanning title 6 of 119...
+Scanning title 6 of 119...
+Scanning title 6 of 119...
+Scanning title 6 of 119...
+Scanning title 6 of 119...
+Scanning title 6 of 119...
+[18:56:49] scan: 10 previews, 1920x1080, 23.976 fps, autocrop = 2/0/0/0, aspect 16:9, PAR 1:1
+[18:56:49] stream: 80 good frames, 9 errors (11%)
+[18:56:49] scan: decoding previews for title 7
+[18:56:49] scan: title angle(s) 1
+Scanning title 7 of 119...
+[18:56:49] scan: audio 0x1100: AC-3, rate=48000Hz, bitrate=192000 English (AC3) (2.0 ch)
+Scanning title 7 of 119...
+Scanning title 7 of 119...
+Scanning title 7 of 119...
+Scanning title 7 of 119...
+Scanning title 7 of 119...
+Scanning title 7 of 119...
+Scanning title 7 of 119...
+Scanning title 7 of 119...
+Scanning title 7 of 119...
+Scanning title 7 of 119...
+Scanning title 7 of 119...
+[18:56:52] scan: 10 previews, 1920x1080, 23.976 fps, autocrop = 2/0/0/0, aspect 16:9, PAR 1:1
+[18:56:52] stream: 80 good frames, 7 errors (9%)
+[18:56:52] scan: decoding previews for title 8
+[18:56:52] scan: title angle(s) 1
+[18:56:52] scan: audio 0x1100: AC-3, rate=48000Hz, bitrate=192000 English (AC3) (2.0 ch)
+Scanning title 8 of 119...
+Scanning title 8 of 119...
+Scanning title 8 of 119...
+Scanning title 8 of 119...
+Scanning title 8 of 119...
+Scanning title 8 of 119...
+Scanning title 8 of 119...
+Scanning title 8 of 119...
+Scanning title 8 of 119...
+Scanning title 8 of 119...
+Scanning title 8 of 119...
+[18:56:54] scan: 10 previews, 1920x1080, 23.976 fps, autocrop = 2/0/0/0, aspect 16:9, PAR 1:1
+[18:56:54] stream: 80 good frames, 9 errors (11%)
+[18:56:54] scan: decoding previews for title 18
+[18:56:54] scan: title angle(s) 1
+Scanning title 18 of 119...
+Scanning title 18 of 119...
+Scanning title 18 of 119...
+Scanning title 18 of 119...
+[18:56:55] scan: content PAR gives wrong aspect 1.76; using container aspect 1.78
+[18:56:55] scan: 10 previews, 1920x1088, 23.976 fps, autocrop = 142/150/0/0, aspect 16:9, PAR 967:960
+[18:56:55] stream: 54 good frames, 0 errors (0%)
+[18:56:55] scan: decoding previews for title 100
+[18:56:55] scan: title angle(s) 1
+[18:56:55] scan: audio 0x1100: AC-3, rate=48000Hz, bitrate=640000 English (AC3) (5.1 ch)
+Scanning title 100 of 119...
+Scanning title 100 of 119...
+Scanning title 100 of 119...
+[18:56:55] scan: content PAR gives wrong aspect 1.76; using container aspect 1.78
+[18:56:55] scan: 10 previews, 1920x1088, 23.976 fps, autocrop = 0/0/0/0, aspect 16:9, PAR 967:960
+[18:56:55] stream: 36 good frames, 8 errors (22%)
+[18:56:55] scan: decoding previews for title 101
+[18:56:55] scan: title angle(s) 1
+[18:56:55] scan: audio 0x1100: AC-3, rate=48000Hz, bitrate=640000 English (AC3) (5.1 ch)
+Scanning title 101 of 119...
+Scanning title 101 of 119...
+Scanning title 101 of 119...
+Scanning title 101 of 119...
+[18:56:56] scan: content PAR gives wrong aspect 1.76; using container aspect 1.78
+[18:56:56] scan: 10 previews, 1920x1088, 23.976 fps, autocrop = 0/0/0/0, aspect 16:9, PAR 967:960
+[18:56:56] stream: 34 good frames, 9 errors (26%)
+[18:56:56] scan: decoding previews for title 102
+[18:56:56] scan: title angle(s) 1
+[18:56:56] scan: audio 0x1100: DCA, rate=48000Hz, bitrate=1536000 English (DTS) (5.1 ch)
+Scanning title 102 of 119...
+Scanning title 102 of 119...
+Scanning title 102 of 119...
+[h264 @ 0x26ccf20] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x26ccf20] non-existing PPS referenced
+Scanning title 102 of 119...
+Scanning title 102 of 119...
+[h264 @ 0x26cd310] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x26cd310] non-existing PPS referenced
+Scanning title 102 of 119...
+Scanning title 102 of 119...
+[h264 @ 0x26cd6f0] non-existing SPS 31 referenced in buffering period
+[h264 @ 0x26cd6f0] non-existing PPS referenced
+Scanning title 102 of 119...
+Scanning title 102 of 119...
+[h264 @ 0x26cdae0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x26cdae0] non-existing PPS referenced
+Scanning title 102 of 119...
+Scanning title 102 of 119...
+[h264 @ 0x24059e0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x24059e0] non-existing PPS referenced
+Scanning title 102 of 119...
+[h264 @ 0x2405dc0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x2405dc0] non-existing PPS referenced
+Scanning title 102 of 119...
+Scanning title 102 of 119...
+[h264 @ 0x24061b0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x24061b0] non-existing PPS referenced
+Scanning title 102 of 119...
+Scanning title 102 of 119...
+[h264 @ 0x2406590] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x2406590] non-existing PPS referenced
+Scanning title 102 of 119...
+Scanning title 102 of 119...
+[h264 @ 0x2406980] non-existing SPS 31 referenced in buffering period
+[h264 @ 0x2406980] non-existing PPS referenced
+Scanning title 102 of 119...
+Scanning title 102 of 119...
+Scanning title 102 of 119...
+[18:57:00] scan: 10 previews, 1920x1080, 23.976 fps, autocrop = 0/0/0/0, aspect 16:9, PAR 1:1
+[18:57:00] stream: 90 good frames, 7 errors (8%)
+[18:57:00] scan: decoding previews for title 103
+[18:57:00] scan: title angle(s) 1
+[18:57:00] scan: audio 0x1100: DCA, rate=48000Hz, bitrate=1536000 English (DTS) (5.1 ch)
+Scanning title 103 of 119...
+Scanning title 103 of 119...
+[h264 @ 0x2407150] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x2407150] non-existing PPS referenced
+Scanning title 103 of 119...
+[h264 @ 0x2407530] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x2407530] non-existing PPS referenced
+Scanning title 103 of 119...
+Scanning title 103 of 119...
+Scanning title 103 of 119...
+[h264 @ 0x2407920] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x2407920] non-existing PPS referenced
+Scanning title 103 of 119...
+[h264 @ 0x2407d00] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x2407d00] non-existing PPS referenced
+Scanning title 103 of 119...
+Scanning title 103 of 119...
+[h264 @ 0x24080f0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x24080f0] non-existing PPS referenced
+Scanning title 103 of 119...
+Scanning title 103 of 119...
+[h264 @ 0x24084d0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x24084d0] non-existing PPS referenced
+Scanning title 103 of 119...
+[h264 @ 0x24088c0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x24088c0] non-existing PPS referenced
+Scanning title 103 of 119...
+Scanning title 103 of 119...
+[h264 @ 0x2408ca0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x2408ca0] non-existing PPS referenced
+Scanning title 103 of 119...
+[h264 @ 0x2409090] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x2409090] non-existing PPS referenced
+Scanning title 103 of 119...
+Scanning title 103 of 119...
+[18:57:04] scan: 10 previews, 1920x1080, 23.976 fps, autocrop = 0/0/0/0, aspect 16:9, PAR 1:1
+[18:57:04] stream: 90 good frames, 9 errors (10%)
+[18:57:04] scan: decoding previews for title 104
+[18:57:04] scan: title angle(s) 1
+[18:57:04] scan: audio 0x1100: DCA, rate=48000Hz, bitrate=1536000 English (DTS) (5.1 ch)
+Scanning title 104 of 119...
+Scanning title 104 of 119...
+[h264 @ 0x5002650] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5002650] non-existing PPS referenced
+Scanning title 104 of 119...
+[h264 @ 0x5002a40] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5002a40] non-existing PPS referenced
+Scanning title 104 of 119...
+Scanning title 104 of 119...
+[h264 @ 0x5002e20] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5002e20] non-existing PPS referenced
+Scanning title 104 of 119...
+[h264 @ 0x5003210] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5003210] non-existing PPS referenced
+Scanning title 104 of 119...
+Scanning title 104 of 119...
+[h264 @ 0x50035f0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x50035f0] non-existing PPS referenced
+Scanning title 104 of 119...
+Scanning title 104 of 119...
+Scanning title 104 of 119...
+Scanning title 104 of 119...
+Scanning title 104 of 119...
+[h264 @ 0x50039e0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x50039e0] non-existing PPS referenced
+Scanning title 104 of 119...
+Scanning title 104 of 119...
+[h264 @ 0x5003dc0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5003dc0] non-existing PPS referenced
+Scanning title 104 of 119...
+[h264 @ 0x50041b0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x50041b0] non-existing PPS referenced
+Scanning title 104 of 119...
+Scanning title 104 of 119...
+[h264 @ 0x5004590] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5004590] non-existing PPS referenced
+Scanning title 104 of 119...
+Scanning title 104 of 119...
+[18:57:08] scan: 10 previews, 1920x1080, 23.976 fps, autocrop = 0/0/0/0, aspect 16:9, PAR 1:1
+[18:57:08] stream: 90 good frames, 8 errors (9%)
+[18:57:08] scan: decoding previews for title 105
+[18:57:08] scan: title angle(s) 1
+[18:57:08] scan: audio 0x1100: DCA, rate=48000Hz, bitrate=1536000 English (DTS) (5.1 ch)
+Scanning title 105 of 119...
+Scanning title 105 of 119...
+[h264 @ 0x5004d60] non-existing SPS 31 referenced in buffering period
+[h264 @ 0x5004d60] non-existing PPS referenced
+Scanning title 105 of 119...
+[h264 @ 0x5005150] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5005150] non-existing PPS referenced
+Scanning title 105 of 119...
+Scanning title 105 of 119...
+[h264 @ 0x5005530] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5005530] non-existing PPS referenced
+Scanning title 105 of 119...
+[h264 @ 0x5005920] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5005920] non-existing PPS referenced
+Scanning title 105 of 119...
+Scanning title 105 of 119...
+[h264 @ 0x5005d00] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5005d00] non-existing PPS referenced
+Scanning title 105 of 119...
+Scanning title 105 of 119...
+[h264 @ 0x50060f0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x50060f0] non-existing PPS referenced
+Scanning title 105 of 119...
+Scanning title 105 of 119...
+[h264 @ 0x5006650] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5006650] non-existing PPS referenced
+Scanning title 105 of 119...
+Scanning title 105 of 119...
+[h264 @ 0x5006a40] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5006a40] non-existing PPS referenced
+Scanning title 105 of 119...
+Scanning title 105 of 119...
+[h264 @ 0x5006e20] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5006e20] non-existing PPS referenced
+Scanning title 105 of 119...
+[18:57:11] scan: 10 previews, 1920x1080, 23.976 fps, autocrop = 0/0/0/0, aspect 16:9, PAR 1:1
+[18:57:11] stream: 90 good frames, 8 errors (9%)
+[18:57:11] scan: decoding previews for title 106
+[18:57:11] scan: title angle(s) 1
+[18:57:11] scan: audio 0x1100: DCA, rate=48000Hz, bitrate=1536000 English (DTS) (5.1 ch)
+Scanning title 106 of 119...
+Scanning title 106 of 119...
+[h264 @ 0x50075f0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x50075f0] non-existing PPS referenced
+Scanning title 106 of 119...
+Scanning title 106 of 119...
+[h264 @ 0x50079e0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x50079e0] non-existing PPS referenced
+Scanning title 106 of 119...
+Scanning title 106 of 119...
+[h264 @ 0x5007dc0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5007dc0] non-existing PPS referenced
+Scanning title 106 of 119...
+[h264 @ 0x50081b0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x50081b0] non-existing PPS referenced
+Scanning title 106 of 119...
+Scanning title 106 of 119...
+[h264 @ 0x5008590] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5008590] non-existing PPS referenced
+Scanning title 106 of 119...
+Scanning title 106 of 119...
+[h264 @ 0x5008980] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5008980] non-existing PPS referenced
+Scanning title 106 of 119...
+Scanning title 106 of 119...
+[h264 @ 0x5008d60] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5008d60] non-existing PPS referenced
+Scanning title 106 of 119...
+[h264 @ 0x5009150] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5009150] non-existing PPS referenced
+Scanning title 106 of 119...
+Scanning title 106 of 119...
+[h264 @ 0x5009530] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5009530] non-existing PPS referenced
+Scanning title 106 of 119...
+Scanning title 106 of 119...
+[18:57:15] scan: 10 previews, 1920x1080, 23.976 fps, autocrop = 0/0/0/0, aspect 16:9, PAR 1:1
+[18:57:15] stream: 90 good frames, 8 errors (9%)
+[18:57:15] scan: decoding previews for title 107
+[18:57:15] scan: title angle(s) 1
+[18:57:15] scan: audio 0x1100: DCA, rate=48000Hz, bitrate=1536000 English (DTS) (5.1 ch)
+Scanning title 107 of 119...
+Scanning title 107 of 119...
+[h264 @ 0x5009d00] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5009d00] non-existing PPS referenced
+Scanning title 107 of 119...
+Scanning title 107 of 119...
+[h264 @ 0x500a0f0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x500a0f0] non-existing PPS referenced
+Scanning title 107 of 119...
+Scanning title 107 of 119...
+[h264 @ 0x500a650] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x500a650] non-existing PPS referenced
+Scanning title 107 of 119...
+Scanning title 107 of 119...
+[h264 @ 0x500aa40] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x500aa40] non-existing PPS referenced
+Scanning title 107 of 119...
+[h264 @ 0x500ae20] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x500ae20] non-existing PPS referenced
+Scanning title 107 of 119...
+Scanning title 107 of 119...
+[h264 @ 0x500b210] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x500b210] non-existing PPS referenced
+Scanning title 107 of 119...
+Scanning title 107 of 119...
+[h264 @ 0x500b5f0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x500b5f0] non-existing PPS referenced
+Scanning title 107 of 119...
+Scanning title 107 of 119...
+[h264 @ 0x500b9e0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x500b9e0] non-existing PPS referenced
+Scanning title 107 of 119...
+Scanning title 107 of 119...
+[h264 @ 0x500bdc0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x500bdc0] non-existing PPS referenced
+Scanning title 107 of 119...
+Scanning title 107 of 119...
+[18:57:19] scan: 10 previews, 1920x1080, 23.976 fps, autocrop = 0/0/0/0, aspect 16:9, PAR 1:1
+[18:57:19] stream: 90 good frames, 9 errors (10%)
+[18:57:19] scan: decoding previews for title 108
+[18:57:19] scan: title angle(s) 1
+[18:57:19] scan: audio 0x1100: DCA, rate=48000Hz, bitrate=1536000 English (DTS) (5.1 ch)
+Scanning title 108 of 119...
+Scanning title 108 of 119...
+Scanning title 108 of 119...
+[h264 @ 0x500c590] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x500c590] non-existing PPS referenced
+Scanning title 108 of 119...
+Scanning title 108 of 119...
+Scanning title 108 of 119...
+[h264 @ 0x500c980] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x500c980] non-existing PPS referenced
+Scanning title 108 of 119...
+Scanning title 108 of 119...
+[h264 @ 0x500cd60] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x500cd60] non-existing PPS referenced
+Scanning title 108 of 119...
+[h264 @ 0x500d150] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x500d150] non-existing PPS referenced
+Scanning title 108 of 119...
+Scanning title 108 of 119...
+[h264 @ 0x500d530] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x500d530] non-existing PPS referenced
+Scanning title 108 of 119...
+Scanning title 108 of 119...
+[h264 @ 0x500d920] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x500d920] non-existing PPS referenced
+Scanning title 108 of 119...
+Scanning title 108 of 119...
+Scanning title 108 of 119...
+[h264 @ 0x500dd00] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x500dd00] non-existing PPS referenced
+Scanning title 108 of 119...
+Scanning title 108 of 119...
+Scanning title 108 of 119...
+[h264 @ 0x51da170] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x51da170] non-existing PPS referenced
+Scanning title 108 of 119...
+Scanning title 108 of 119...
+Scanning title 108 of 119...
+[18:57:23] scan: 10 previews, 1920x1080, 23.976 fps, autocrop = 0/0/0/0, aspect 16:9, PAR 1:1
+[18:57:23] stream: 89 good frames, 9 errors (10%)
+[18:57:23] scan: decoding previews for title 109
+[18:57:23] scan: title angle(s) 1
+[18:57:23] scan: audio 0x1100: DCA, rate=48000Hz, bitrate=1536000 English (DTS) (5.1 ch)
+Scanning title 109 of 119...
+Scanning title 109 of 119...
+Scanning title 109 of 119...
+[h264 @ 0x51da940] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x51da940] non-existing PPS referenced
+Scanning title 109 of 119...
+Scanning title 109 of 119...
+[h264 @ 0x51dad30] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x51dad30] non-existing PPS referenced
+Scanning title 109 of 119...
+Scanning title 109 of 119...
+Scanning title 109 of 119...
+Scanning title 109 of 119...
+[h264 @ 0x51db110] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x51db110] non-existing PPS referenced
+Scanning title 109 of 119...
+[h264 @ 0x51db500] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x51db500] non-existing PPS referenced
+Scanning title 109 of 119...
+Scanning title 109 of 119...
+Scanning title 109 of 119...
+[h264 @ 0x51db8e0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x51db8e0] non-existing PPS referenced
+Scanning title 109 of 119...
+Scanning title 109 of 119...
+Scanning title 109 of 119...
+Scanning title 109 of 119...
+Scanning title 109 of 119...
+Scanning title 109 of 119...
+[h264 @ 0x51dbcd0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x51dbcd0] non-existing PPS referenced
+Scanning title 109 of 119...
+Scanning title 109 of 119...
+[h264 @ 0x51dc0b0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x51dc0b0] non-existing PPS referenced
+Scanning title 109 of 119...
+Scanning title 109 of 119...
+[h264 @ 0x51dc4a0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x51dc4a0] non-existing PPS referenced
+Scanning title 109 of 119...
+[h264 @ 0x51dc880] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x51dc880] non-existing PPS referenced
+Scanning title 109 of 119...
+Scanning title 109 of 119...
+[18:57:28] scan: 10 previews, 1920x1080, 23.976 fps, autocrop = 0/0/0/0, aspect 16:9, PAR 1:1
+[18:57:28] stream: 90 good frames, 9 errors (10%)
+[18:57:28] scan: decoding previews for title 110
+[18:57:28] scan: title angle(s) 1
+Scanning title 110 of 119...
+[18:57:28] scan: audio 0x1100: AC-3, rate=48000Hz, bitrate=224000 English (AC3) (2.0 ch)
+Scanning title 110 of 119...
+[h264 @ 0x51dd050] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x51dd050] non-existing PPS referenced
+Scanning title 110 of 119...
+Scanning title 110 of 119...
+[h264 @ 0x51dd440] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x51dd440] non-existing PPS referenced
+Scanning title 110 of 119...
+Scanning title 110 of 119...
+[h264 @ 0x51dd820] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x51dd820] non-existing PPS referenced
+Scanning title 110 of 119...
+Scanning title 110 of 119...
+[h264 @ 0x51ddc10] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x51ddc10] non-existing PPS referenced
+Scanning title 110 of 119...
+Scanning title 110 of 119...
+[h264 @ 0x5054650] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5054650] non-existing PPS referenced
+Scanning title 110 of 119...
+Scanning title 110 of 119...
+[h264 @ 0x5054a30] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5054a30] non-existing PPS referenced
+Scanning title 110 of 119...
+Scanning title 110 of 119...
+[h264 @ 0x5055200] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5055200] non-existing PPS referenced
+Scanning title 110 of 119...
+Scanning title 110 of 119...
+Scanning title 110 of 119...
+Scanning title 110 of 119...
+Scanning title 110 of 119...
+Scanning title 110 of 119...
+[18:57:32] scan: 10 previews, 1920x1080, 23.976 fps, autocrop = 0/0/0/0, aspect 16:9, PAR 1:1
+[18:57:32] stream: 88 good frames, 9 errors (10%)
+[18:57:32] scan: decoding previews for title 111
+[18:57:32] scan: title angle(s) 1
+Scanning title 111 of 119...
+Scanning title 111 of 119...
+Scanning title 111 of 119...
+[18:57:33] scan: audio 0x1100: AC-3, rate=48000Hz, bitrate=224000 English (AC3) (2.0 ch)
+Scanning title 111 of 119...
+[h264 @ 0x5055dc0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5055dc0] non-existing PPS referenced
+Scanning title 111 of 119...
+Scanning title 111 of 119...
+[h264 @ 0x50561a0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x50561a0] non-existing PPS referenced
+Scanning title 111 of 119...
+Scanning title 111 of 119...
+Scanning title 111 of 119...
+Scanning title 111 of 119...
+[h264 @ 0x5056590] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5056590] non-existing PPS referenced
+Scanning title 111 of 119...
+Scanning title 111 of 119...
+[h264 @ 0x5056970] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5056970] non-existing PPS referenced
+Scanning title 111 of 119...
+Scanning title 111 of 119...
+Scanning title 111 of 119...
+[h264 @ 0x5056d60] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5056d60] non-existing PPS referenced
+Scanning title 111 of 119...
+Scanning title 111 of 119...
+Scanning title 111 of 119...
+Scanning title 111 of 119...
+[h264 @ 0x5057140] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5057140] non-existing PPS referenced
+Scanning title 111 of 119...
+Scanning title 111 of 119...
+Scanning title 111 of 119...
+[h264 @ 0x5057530] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5057530] non-existing PPS referenced
+Scanning title 111 of 119...
+Scanning title 111 of 119...
+Scanning title 111 of 119...
+Scanning title 111 of 119...
+Scanning title 111 of 119...
+Scanning title 111 of 119...
+[h264 @ 0x5057910] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5057910] non-existing PPS referenced
+Scanning title 111 of 119...
+Scanning title 111 of 119...
+Scanning title 111 of 119...
+[h264 @ 0x5057d00] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x5057d00] non-existing PPS referenced
+Scanning title 111 of 119...
+Scanning title 111 of 119...
+Scanning title 111 of 119...
+[18:57:39] scan: 10 previews, 1920x1080, 23.976 fps, autocrop = 0/0/0/0, aspect 16:9, PAR 1:1
+[18:57:39] stream: 90 good frames, 9 errors (10%)
+[18:57:39] scan: decoding previews for title 112
+Scanning title 112 of 119...
+[18:57:39] scan: title angle(s) 1
+[18:57:39] scan: audio 0x1100: AC-3, rate=48000Hz, bitrate=224000 English (AC3) (2.0 ch)
+Scanning title 112 of 119...
+[h264 @ 0x523a650] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x523a650] non-existing PPS referenced
+Scanning title 112 of 119...
+Scanning title 112 of 119...
+[h264 @ 0x523aa30] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x523aa30] non-existing PPS referenced
+Scanning title 112 of 119...
+[h264 @ 0x523ae20] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x523ae20] non-existing PPS referenced
+Scanning title 112 of 119...
+Scanning title 112 of 119...
+[h264 @ 0x523b200] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x523b200] non-existing PPS referenced
+Scanning title 112 of 119...
+[h264 @ 0x523b5f0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x523b5f0] non-existing PPS referenced
+Scanning title 112 of 119...
+Scanning title 112 of 119...
+[h264 @ 0x523b9d0] non-existing SPS 31 referenced in buffering period
+[h264 @ 0x523b9d0] non-existing PPS referenced
+Scanning title 112 of 119...
+Scanning title 112 of 119...
+Scanning title 112 of 119...
+[h264 @ 0x523c1a0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x523c1a0] non-existing PPS referenced
+Scanning title 112 of 119...
+Scanning title 112 of 119...
+[h264 @ 0x523c590] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x523c590] non-existing PPS referenced
+Scanning title 112 of 119...
+[18:57:42] scan: 10 previews, 1920x1080, 23.976 fps, autocrop = 46/0/0/0, aspect 16:9, PAR 1:1
+[18:57:42] stream: 89 good frames, 8 errors (9%)
+[18:57:42] scan: decoding previews for title 113
+[18:57:42] scan: title angle(s) 1
+Scanning title 113 of 119...
+[18:57:42] scan: audio 0x1100: AC-3, rate=48000Hz, bitrate=224000 English (AC3) (2.0 ch)
+Scanning title 113 of 119...
+Scanning title 113 of 119...
+[h264 @ 0x523d140] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x523d140] non-existing PPS referenced
+Scanning title 113 of 119...
+Scanning title 113 of 119...
+Scanning title 113 of 119...
+[h264 @ 0x523d530] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x523d530] non-existing PPS referenced
+Scanning title 113 of 119...
+Scanning title 113 of 119...
+[h264 @ 0x523d910] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x523d910] non-existing PPS referenced
+Scanning title 113 of 119...
+Scanning title 113 of 119...
+[h264 @ 0x523dd00] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x523dd00] non-existing PPS referenced
+Scanning title 113 of 119...
+Scanning title 113 of 119...
+[h264 @ 0x523e0e0] non-existing SPS 31 referenced in buffering period
+[h264 @ 0x523e0e0] non-existing PPS referenced
+Scanning title 113 of 119...
+Scanning title 113 of 119...
+[h264 @ 0x2783760] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x2783760] non-existing PPS referenced
+Scanning title 113 of 119...
+Scanning title 113 of 119...
+[h264 @ 0x2783b50] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x2783b50] non-existing PPS referenced
+Scanning title 113 of 119...
+Scanning title 113 of 119...
+[h264 @ 0x2783f30] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x2783f30] non-existing PPS referenced
+Scanning title 113 of 119...
+[18:57:46] scan: 10 previews, 1920x1080, 23.976 fps, autocrop = 0/0/0/0, aspect 16:9, PAR 1:1
+[18:57:46] stream: 89 good frames, 8 errors (9%)
+[18:57:46] scan: decoding previews for title 114
+Scanning title 114 of 119...
+[18:57:46] scan: title angle(s) 1
+Scanning title 114 of 119...
+[18:57:46] scan: audio 0x1100: AC-3, rate=48000Hz, bitrate=192000 English (AC3) (2.0 ch)
+[h264 @ 0x2784700] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x2784700] non-existing PPS referenced
+Scanning title 114 of 119...
+Scanning title 114 of 119...
+[h264 @ 0x2784af0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x2784af0] non-existing PPS referenced
+Scanning title 114 of 119...
+Scanning title 114 of 119...
+[h264 @ 0x2784ed0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x2784ed0] non-existing PPS referenced
+Scanning title 114 of 119...
+Scanning title 114 of 119...
+[h264 @ 0x27852c0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x27852c0] non-existing PPS referenced
+Scanning title 114 of 119...
+Scanning title 114 of 119...
+[h264 @ 0x27856a0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x27856a0] non-existing PPS referenced
+Scanning title 114 of 119...
+Scanning title 114 of 119...
+[h264 @ 0x2785a90] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x2785a90] non-existing PPS referenced
+Scanning title 114 of 119...
+Scanning title 114 of 119...
+[h264 @ 0x2785e70] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x2785e70] non-existing PPS referenced
+Scanning title 114 of 119...
+Scanning title 114 of 119...
+Scanning title 114 of 119...
+[h264 @ 0x2786640] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x2786640] non-existing PPS referenced
+Scanning title 114 of 119...
+[18:57:49] scan: 10 previews, 1920x1080, 23.976 fps, autocrop = 0/0/0/0, aspect 16:9, PAR 1:1
+[18:57:49] stream: 88 good frames, 8 errors (9%)
+[18:57:49] scan: decoding previews for title 115
+[18:57:49] scan: title angle(s) 1
+[18:57:50] scan: audio 0x1100: AC-3, rate=48000Hz, bitrate=640000 English (AC3) (5.1 ch)
+Scanning title 115 of 119...
+Scanning title 115 of 119...
+[h264 @ 0x2786e10] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x2786e10] non-existing PPS referenced
+Scanning title 115 of 119...
+[h264 @ 0x2787200] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x2787200] non-existing PPS referenced
+Scanning title 115 of 119...
+Scanning title 115 of 119...
+[h264 @ 0x260c3a0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x260c3a0] non-existing PPS referenced
+Scanning title 115 of 119...
+Scanning title 115 of 119...
+[h264 @ 0x260c780] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x260c780] non-existing PPS referenced
+Scanning title 115 of 119...
+[h264 @ 0x260cb70] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x260cb70] non-existing PPS referenced
+Scanning title 115 of 119...
+[h264 @ 0x260cf50] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x260cf50] non-existing PPS referenced
+Scanning title 115 of 119...
+Scanning title 115 of 119...
+[h264 @ 0x260d340] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x260d340] non-existing PPS referenced
+Scanning title 115 of 119...
+Scanning title 115 of 119...
+Scanning title 115 of 119...
+[h264 @ 0x260db10] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x260db10] non-existing PPS referenced
+Scanning title 115 of 119...
+[18:57:52] scan: 10 previews, 1920x1080, 23.976 fps, autocrop = 0/0/0/0, aspect 16:9, PAR 1:1
+[18:57:52] stream: 89 good frames, 9 errors (10%)
+[18:57:52] scan: decoding previews for title 116
+[18:57:52] scan: title angle(s) 1
+[18:57:52] scan: audio 0x1100: AC-3, rate=48000Hz, bitrate=192000 English (AC3) (2.0 ch)
+Scanning title 116 of 119...
+[18:57:53] scan: 10 previews, 720x480, 29.970 fps, autocrop = 4/0/0/0, aspect 16:9, PAR 32:27
+[18:57:53] stream: 43 good frames, 9 errors (21%)
+[18:57:53] scan: decoding previews for title 117
+[18:57:53] scan: title angle(s) 1
+[18:57:53] scan: audio 0x1100: AC-3, rate=48000Hz, bitrate=192000 English (AC3) (2.0 ch)
+[18:57:53] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/0/0/0, aspect 16:9, PAR 32:27
+[18:57:53] stream: 40 good frames, 9 errors (22%)
+[18:57:53] scan: decoding previews for title 119
+[18:57:53] scan: title angle(s) 1
+[18:57:53] scan: audio 0x1100: DCA, rate=48000Hz, bitrate=1536000 English (DTS) (5.1 ch)
+Scanning title 119 of 119...
+Scanning title 119 of 119...
+[h264 @ 0x260e2e0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x260e2e0] non-existing PPS referenced
+Scanning title 119 of 119...
+Scanning title 119 of 119...
+[h264 @ 0x260e6c0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x260e6c0] non-existing PPS referenced
+Scanning title 119 of 119...
+[h264 @ 0x260eab0] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x260eab0] non-existing PPS referenced
+Scanning title 119 of 119...
+Scanning title 119 of 119...
+Scanning title 119 of 119...
+[h264 @ 0x260ee90] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x260ee90] non-existing PPS referenced
+Scanning title 119 of 119...
+Scanning title 119 of 119...
+[h264 @ 0x260f280] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x260f280] non-existing PPS referenced
+Scanning title 119 of 119...
+Scanning title 119 of 119...
+[h264 @ 0x260f660] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x260f660] non-existing PPS referenced
+Scanning title 119 of 119...
+[h264 @ 0x260fa50] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x260fa50] non-existing PPS referenced
+Scanning title 119 of 119...
+Scanning title 119 of 119...
+[h264 @ 0x260fe30] non-existing SPS 32 referenced in buffering period
+[h264 @ 0x260fe30] non-existing PPS referenced
+Scanning title 119 of 119...
+Scanning title 119 of 119...
+[h264 @ 0x2549f50] non-existing SPS 31 referenced in buffering period
+[h264 @ 0x2549f50] non-existing PPS referenced
+Scanning title 119 of 119...
+Scanning title 119 of 119...
+Scanning title 119 of 119...
+[18:57:57] scan: 10 previews, 1920x1080, 23.976 fps, autocrop = 0/0/0/0, aspect 16:9, PAR 1:1
+[18:57:57] stream: 90 good frames, 8 errors (9%)
+[18:57:57] scan: title (0) job->width:1904, job->height:1072
+[18:57:57] scan: title (1) job->width:1920, job->height:1072
+[18:57:57] scan: title (2) job->width:1920, job->height:1072
+[18:57:57] scan: title (3) job->width:1920, job->height:1072
+[18:57:57] scan: title (4) job->width:1920, job->height:1072
+[18:57:57] scan: title (5) job->width:1920, job->height:1072
+[18:57:57] scan: title (6) job->width:1920, job->height:784
+[18:57:57] scan: title (7) job->width:1920, job->height:1072
+[18:57:57] scan: title (8) job->width:1920, job->height:1072
+[18:57:57] scan: title (9) job->width:1920, job->height:1072
+[18:57:57] scan: title (10) job->width:1920, job->height:1072
+[18:57:57] scan: title (11) job->width:1920, job->height:1072
+[18:57:57] scan: title (12) job->width:1920, job->height:1072
+[18:57:57] scan: title (13) job->width:1920, job->height:1072
+[18:57:57] scan: title (14) job->width:1920, job->height:1072
+[18:57:57] scan: title (15) job->width:1920, job->height:1072
+[18:57:57] scan: title (16) job->width:1920, job->height:1072
+[18:57:57] scan: title (17) job->width:1920, job->height:1072
+[18:57:57] scan: title (18) job->width:1920, job->height:1072
+[18:57:57] scan: title (19) job->width:1936, job->height:1040
+[18:57:57] scan: title (20) job->width:1920, job->height:1072
+[18:57:57] scan: title (21) job->width:1920, job->height:1072
+[18:57:57] scan: title (22) job->width:1920, job->height:1072
+[18:57:57] scan: title (23) job->width:720, job->height:400
+[18:57:57] scan: title (24) job->width:720, job->height:400
+[18:57:57] scan: title (25) job->width:1920, job->height:1072
+[18:57:57] libhb: scan thread found 26 valid title(s)
++ title 1:
+  + duration: 00:00:23
+  + size: 1920x1080, pixel aspect: 1/1, display aspect: 1.78, 23.976 fps
+  + autocrop: 0/0/6/6
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:00:23
+    + 2: cells 0->0, 0 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, English (DTS) (5.1 ch) (iso639-2: eng), 48000Hz, 1536000bps
+  + subtitle tracks:
++ title 4:
+  + duration: 00:00:11
+  + size: 1920x1080, pixel aspect: 1/1, display aspect: 1.78, 23.976 fps
+  + autocrop: 2/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:00:11
+    + 2: cells 0->0, 0 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, English (AC3) (2.0 ch) (iso639-2: eng), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 5:
+  + duration: 00:00:11
+  + size: 1920x1080, pixel aspect: 1/1, display aspect: 1.78, 23.976 fps
+  + autocrop: 2/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:00:11
+    + 2: cells 0->0, 0 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, English (AC3) (2.0 ch) (iso639-2: eng), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 6:
+  + duration: 00:00:11
+  + size: 1920x1080, pixel aspect: 1/1, display aspect: 1.78, 23.976 fps
+  + autocrop: 2/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:00:11
+    + 2: cells 0->0, 0 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, English (AC3) (2.0 ch) (iso639-2: eng), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 7:
+  + duration: 00:00:11
+  + size: 1920x1080, pixel aspect: 1/1, display aspect: 1.78, 23.976 fps
+  + autocrop: 2/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:00:11
+    + 2: cells 0->0, 0 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, English (AC3) (2.0 ch) (iso639-2: eng), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 8:
+  + duration: 00:00:11
+  + size: 1920x1080, pixel aspect: 1/1, display aspect: 1.78, 23.976 fps
+  + autocrop: 2/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:00:11
+    + 2: cells 0->0, 0 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, English (AC3) (2.0 ch) (iso639-2: eng), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 18:
+  + duration: 00:00:15
+  + size: 1920x1088, pixel aspect: 967/960, display aspect: 1.78, 23.976 fps
+  + autocrop: 142/150/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:00:15
+  + audio tracks:
+  + subtitle tracks:
++ title 100:
+  + duration: 00:00:50
+  + size: 1920x1088, pixel aspect: 967/960, display aspect: 1.78, 23.976 fps
+  + autocrop: 0/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:00:51
+  + audio tracks:
+    + 1, English (AC3) (5.1 ch) (iso639-2: eng), 48000Hz, 640000bps
+  + subtitle tracks:
++ title 101:
+  + duration: 00:00:46
+  + size: 1920x1088, pixel aspect: 967/960, display aspect: 1.78, 23.976 fps
+  + autocrop: 0/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:00:46
+  + audio tracks:
+    + 1, English (AC3) (5.1 ch) (iso639-2: eng), 48000Hz, 640000bps
+  + subtitle tracks:
++ title 102:
+  + duration: 00:21:41
+  + size: 1920x1080, pixel aspect: 1/1, display aspect: 1.78, 23.976 fps
+  + autocrop: 0/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:06:24
+    + 2: cells 0->0, 0 blocks, duration 00:05:14
+    + 3: cells 0->0, 0 blocks, duration 00:04:41
+    + 4: cells 0->0, 0 blocks, duration 00:04:40
+    + 5: cells 0->0, 0 blocks, duration 00:00:41
+    + 6: cells 0->0, 0 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, English (DTS) (5.1 ch) (iso639-2: eng), 48000Hz, 1536000bps
+  + subtitle tracks:
++ title 103:
+  + duration: 00:21:29
+  + size: 1920x1080, pixel aspect: 1/1, display aspect: 1.78, 23.976 fps
+  + autocrop: 0/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:05:34
+    + 2: cells 0->0, 0 blocks, duration 00:03:18
+    + 3: cells 0->0, 0 blocks, duration 00:05:25
+    + 4: cells 0->0, 0 blocks, duration 00:06:33
+    + 5: cells 0->0, 0 blocks, duration 00:00:39
+    + 6: cells 0->0, 0 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, English (DTS) (5.1 ch) (iso639-2: eng), 48000Hz, 1536000bps
+  + subtitle tracks:
++ title 104:
+  + duration: 00:21:28
+  + size: 1920x1080, pixel aspect: 1/1, display aspect: 1.78, 23.976 fps
+  + autocrop: 0/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:04:28
+    + 2: cells 0->0, 0 blocks, duration 00:05:36
+    + 3: cells 0->0, 0 blocks, duration 00:05:52
+    + 4: cells 0->0, 0 blocks, duration 00:04:56
+    + 5: cells 0->0, 0 blocks, duration 00:00:35
+    + 6: cells 0->0, 0 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, English (DTS) (5.1 ch) (iso639-2: eng), 48000Hz, 1536000bps
+  + subtitle tracks:
++ title 105:
+  + duration: 00:21:40
+  + size: 1920x1080, pixel aspect: 1/1, display aspect: 1.78, 23.976 fps
+  + autocrop: 0/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:07:12
+    + 2: cells 0->0, 0 blocks, duration 00:05:10
+    + 3: cells 0->0, 0 blocks, duration 00:03:29
+    + 4: cells 0->0, 0 blocks, duration 00:05:10
+    + 5: cells 0->0, 0 blocks, duration 00:00:38
+    + 6: cells 0->0, 0 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, English (DTS) (5.1 ch) (iso639-2: eng), 48000Hz, 1536000bps
+  + subtitle tracks:
++ title 106:
+  + duration: 00:21:38
+  + size: 1920x1080, pixel aspect: 1/1, display aspect: 1.78, 23.976 fps
+  + autocrop: 0/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:06:12
+    + 2: cells 0->0, 0 blocks, duration 00:05:17
+    + 3: cells 0->0, 0 blocks, duration 00:04:25
+    + 4: cells 0->0, 0 blocks, duration 00:05:01
+    + 5: cells 0->0, 0 blocks, duration 00:00:43
+    + 6: cells 0->0, 0 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, English (DTS) (5.1 ch) (iso639-2: eng), 48000Hz, 1536000bps
+  + subtitle tracks:
++ title 107:
+  + duration: 00:21:39
+  + size: 1920x1080, pixel aspect: 1/1, display aspect: 1.78, 23.976 fps
+  + autocrop: 0/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:06:32
+    + 2: cells 0->0, 0 blocks, duration 00:05:41
+    + 3: cells 0->0, 0 blocks, duration 00:03:59
+    + 4: cells 0->0, 0 blocks, duration 00:04:44
+    + 5: cells 0->0, 0 blocks, duration 00:00:43
+    + 6: cells 0->0, 0 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, English (DTS) (5.1 ch) (iso639-2: eng), 48000Hz, 1536000bps
+  + subtitle tracks:
++ title 108:
+  + duration: 00:21:39
+  + size: 1920x1080, pixel aspect: 1/1, display aspect: 1.78, 23.976 fps
+  + autocrop: 0/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:05:48
+    + 2: cells 0->0, 0 blocks, duration 00:05:22
+    + 3: cells 0->0, 0 blocks, duration 00:05:06
+    + 4: cells 0->0, 0 blocks, duration 00:04:46
+    + 5: cells 0->0, 0 blocks, duration 00:00:38
+    + 6: cells 0->0, 0 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, English (DTS) (5.1 ch) (iso639-2: eng), 48000Hz, 1536000bps
+  + subtitle tracks:
++ title 109:
+  + duration: 00:20:22
+  + size: 1920x1080, pixel aspect: 1/1, display aspect: 1.78, 23.976 fps
+  + autocrop: 0/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:06:21
+    + 2: cells 0->0, 0 blocks, duration 00:05:55
+    + 3: cells 0->0, 0 blocks, duration 00:04:11
+    + 4: cells 0->0, 0 blocks, duration 00:03:17
+    + 5: cells 0->0, 0 blocks, duration 00:00:39
+    + 6: cells 0->0, 0 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, English (DTS) (5.1 ch) (iso639-2: eng), 48000Hz, 1536000bps
+  + subtitle tracks:
++ title 110:
+  + duration: 00:09:55
+  + size: 1920x1080, pixel aspect: 1/1, display aspect: 1.78, 23.976 fps
+  + autocrop: 0/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:00:33
+    + 2: cells 0->0, 0 blocks, duration 00:00:43
+    + 3: cells 0->0, 0 blocks, duration 00:05:33
+    + 4: cells 0->0, 0 blocks, duration 00:03:05
+    + 5: cells 0->0, 0 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, English (AC3) (2.0 ch) (iso639-2: eng), 48000Hz, 224000bps
+  + subtitle tracks:
++ title 111:
+  + duration: 00:03:55
+  + size: 1920x1080, pixel aspect: 1/1, display aspect: 1.78, 23.976 fps
+  + autocrop: 0/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:00:22
+    + 2: cells 0->0, 0 blocks, duration 00:00:25
+    + 3: cells 0->0, 0 blocks, duration 00:00:49
+    + 4: cells 0->0, 0 blocks, duration 00:00:12
+    + 5: cells 0->0, 0 blocks, duration 00:01:35
+    + 6: cells 0->0, 0 blocks, duration 00:00:32
+    + 7: cells 0->0, 0 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, English (AC3) (2.0 ch) (iso639-2: eng), 48000Hz, 224000bps
+  + subtitle tracks:
++ title 112:
+  + duration: 00:37:36
+  + size: 1920x1080, pixel aspect: 1/1, display aspect: 1.78, 23.976 fps
+  + autocrop: 46/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:09:57
+    + 2: cells 0->0, 0 blocks, duration 00:09:52
+    + 3: cells 0->0, 0 blocks, duration 00:10:01
+    + 4: cells 0->0, 0 blocks, duration 00:07:46
+    + 5: cells 0->0, 0 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, English (AC3) (2.0 ch) (iso639-2: eng), 48000Hz, 224000bps
+  + subtitle tracks:
++ title 113:
+  + duration: 00:02:43
+  + size: 1920x1080, pixel aspect: 1/1, display aspect: 1.78, 23.976 fps
+  + autocrop: 0/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:02:43
+    + 2: cells 0->0, 0 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, English (AC3) (2.0 ch) (iso639-2: eng), 48000Hz, 224000bps
+  + subtitle tracks:
++ title 114:
+  + duration: 00:01:27
+  + size: 1920x1080, pixel aspect: 1/1, display aspect: 1.78, 23.976 fps
+  + autocrop: 0/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:01:27
+    + 2: cells 0->0, 0 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, English (AC3) (2.0 ch) (iso639-2: eng), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 115:
+  + duration: 00:01:02
+  + size: 1920x1080, pixel aspect: 1/1, display aspect: 1.78, 23.976 fps
+  + autocrop: 0/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:01:02
+    + 2: cells 0->0, 0 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, English (AC3) (5.1 ch) (iso639-2: eng), 48000Hz, 640000bps
+  + subtitle tracks:
++ title 116:
+  + duration: 00:00:32
+  + size: 720x480, pixel aspect: 32/27, display aspect: 1.78, 29.970 fps
+  + autocrop: 4/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:00:32
+    + 2: cells 0->0, 0 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, English (AC3) (2.0 ch) (iso639-2: eng), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 117:
+  + duration: 00:00:47
+  + size: 720x480, pixel aspect: 32/27, display aspect: 1.78, 29.970 fps
+  + autocrop: 2/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:00:48
+    + 2: cells 0->0, 0 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, English (AC3) (2.0 ch) (iso639-2: eng), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 119:
+  + Main Feature
+  + duration: 02:51:38
+  + size: 1920x1080, pixel aspect: 1/1, display aspect: 1.78, 23.976 fps
+  + autocrop: 0/0/0/0
+  + chapters:
+    + 1: cells 0->0, 0 blocks, duration 00:06:24
+    + 2: cells 0->0, 0 blocks, duration 00:05:14
+    + 3: cells 0->0, 0 blocks, duration 00:04:41
+    + 4: cells 0->0, 0 blocks, duration 00:04:40
+    + 5: cells 0->0, 0 blocks, duration 00:00:42
+    + 6: cells 0->0, 0 blocks, duration 00:05:34
+    + 7: cells 0->0, 0 blocks, duration 00:03:18
+    + 8: cells 0->0, 0 blocks, duration 00:05:25
+    + 9: cells 0->0, 0 blocks, duration 00:06:33
+    + 10: cells 0->0, 0 blocks, duration 00:00:39
+    + 11: cells 0->0, 0 blocks, duration 00:04:28
+    + 12: cells 0->0, 0 blocks, duration 00:05:36
+    + 13: cells 0->0, 0 blocks, duration 00:05:52
+    + 14: cells 0->0, 0 blocks, duration 00:04:56
+    + 15: cells 0->0, 0 blocks, duration 00:00:35
+    + 16: cells 0->0, 0 blocks, duration 00:07:12
+    + 17: cells 0->0, 0 blocks, duration 00:05:10
+    + 18: cells 0->0, 0 blocks, duration 00:03:29
+    + 19: cells 0->0, 0 blocks, duration 00:05:10
+    + 20: cells 0->0, 0 blocks, duration 00:00:38
+    + 21: cells 0->0, 0 blocks, duration 00:06:12
+    + 22: cells 0->0, 0 blocks, duration 00:05:17
+    + 23: cells 0->0, 0 blocks, duration 00:04:25
+    + 24: cells 0->0, 0 blocks, duration 00:05:01
+    + 25: cells 0->0, 0 blocks, duration 00:00:43
+    + 26: cells 0->0, 0 blocks, duration 00:06:32
+    + 27: cells 0->0, 0 blocks, duration 00:05:41
+    + 28: cells 0->0, 0 blocks, duration 00:03:59
+    + 29: cells 0->0, 0 blocks, duration 00:04:44
+    + 30: cells 0->0, 0 blocks, duration 00:00:43
+    + 31: cells 0->0, 0 blocks, duration 00:05:48
+    + 32: cells 0->0, 0 blocks, duration 00:05:22
+    + 33: cells 0->0, 0 blocks, duration 00:05:06
+    + 34: cells 0->0, 0 blocks, duration 00:04:46
+    + 35: cells 0->0, 0 blocks, duration 00:00:38
+    + 36: cells 0->0, 0 blocks, duration 00:06:21
+    + 37: cells 0->0, 0 blocks, duration 00:05:55
+    + 38: cells 0->0, 0 blocks, duration 00:04:11
+    + 39: cells 0->0, 0 blocks, duration 00:03:17
+    + 40: cells 0->0, 0 blocks, duration 00:00:39
+    + 41: cells 0->0, 0 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, English (DTS) (5.1 ch) (iso639-2: eng), 48000Hz, 1536000bps
+  + subtitle tracks:
+HandBrake has exited.
