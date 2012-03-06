@@ -165,8 +165,6 @@ def title_durations():
 	cmd = get_handbrake_cmd() + ['-t', '0']
 	print('scanning...')
 	output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
-	with open('output.txt', 'wb') as f:
-		f.write(output)
 	lines = [
 		line for line in output.splitlines()
 		if '+ title' in line or '+ duration:' in line]
