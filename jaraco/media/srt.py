@@ -1,12 +1,7 @@
-#!python
-#-*- coding: utf-8 -*-
-
-from datetime import timedelta
 import datetime
-from itertools import izip_longest, takewhile
-from jaraco.util.itertools import grouper
+import itertools
 
-_sample_srt_entries = """\
+_sample_srt_entries = """
 1
 00:00:25,080 --> 00:00:29,580
 jaraco.media.srt presents
@@ -20,7 +15,7 @@ An SRT Subtitle Parser
 Copyright ©2009-2010 Jason R. Coombs
 Licensed for redistribution under the MIT license.
 
-"""
+""".lstrip()
 
 class SubEntry(object):
 	r"""
@@ -72,7 +67,7 @@ class SubEntry(object):
 		index = int(next(items))
 		start, stop = SubEntry.parse_span(next(items))
 		is_not_blank = lambda s: bool(s.strip())
-		text = list(takewhile(is_not_blank, items))
+		text = list(itertools.takewhile(is_not_blank, items))
 		return SubEntry(index, start, stop, text)
 
 	@staticmethod
@@ -84,7 +79,7 @@ class SubEntry(object):
 	def parse_time(time_string):
 		hr, min, sec = time_string.split(':')
 		sec, msec = sec.split(',')
-		return timedelta(
+		return datetime.timedelta(
 			hours = int(hr),
 			minutes = int(min),
 			seconds = int(sec),
@@ -115,7 +110,7 @@ class SubEntry(object):
 		#  time object in order to use strftime
 
 		# pick some abitrary date
-		dt = datetime.datetime(2000,1,1)
+		dt = datetime.datetime(2000, 1, 1)
 		# add our timedelta
 		dt += time
 		# extract the time
