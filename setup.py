@@ -14,7 +14,7 @@ __author__ = 'Jason R. Coombs <jaraco@jaraco.com>'
 
 name = 'jaraco.media'
 
-py26reqs = ['jaraco.compat'] if sys.version_info < (2,7) else []
+py26reqs = ['jaraco.compat'] if sys.version_info < (2, 7) else []
 
 setup_params = dict(
 	name = name,
@@ -22,9 +22,9 @@ setup_params = dict(
 	description = 'DVD and other multimedia tools',
 	author = 'Jason R. Coombs',
 	author_email = 'jaraco@jaraco.com',
-	url = 'http://bitbucket.org/'+name,
+	url = 'http://bitbucket.org/' + name,
 	packages = setuptools.find_packages(),
-	namespace_packages = ['jaraco',],
+	namespace_packages = ['jaraco'],
 	license = 'MIT',
 	classifiers = [
 		"Development Status :: 4 - Beta",
