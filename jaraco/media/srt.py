@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import datetime
 import itertools
 
@@ -23,8 +25,8 @@ class SubEntry(object):
 	To get the SubEntry entries from an SRT file, just call get_entries
 	on a filename or file-like object.
 
-	>>> from StringIO import StringIO
-	>>> sample = StringIO(_sample_srt_entries)
+	>>> import io
+	>>> sample = io.StringIO(_sample_srt_entries)
 	>>> entries = SubEntry.get_entries(sample)
 
 	Entries is now a generator which will parse the entries as they're
