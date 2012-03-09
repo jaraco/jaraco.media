@@ -1,22 +1,33 @@
 import datetime
-import os
-import shutil
+import sys
+import argparse
+import itertools
 
-import path
 from jaraco.media.srt import SubEntry
-from jaraco.util.string import local_format as lf
+
+def get_args():
+	parser = argparse.ArgumentParser()
+	parser.add_argument('delta',
+		type=lambda s: datetime.timedelta(seconds=float(s)))
+	parser.add_argument('-s', '--start-entry', default=0, type=int)
+	parser.add_argument('-e', '--end-entry', type=int)
+	return parser.parse_args()
 
 def main():
-	root = path.path(r'\\drake\videos\Movies')
-	name = 'House of Flying Daggers'
-	orig = root / lf('{name}.srt.orig')
-	upd = root / lf('{name}.srt')
-	if not os.path.exists(orig):
-		shutil.copy(upd, orig)
-	entries = SubEntry.get_entries(orig)
-	diff = datetime.timedelta(seconds=-4.5)
-	entries = SubEntry.adjust_entries(entries, diff)
-	SubEntry.write_entries(upd, entries)
+	args = get_args()
+	entries = SubEntry.get_entries(sys.stdin)
+	start_entries = itertools.islice(entries, args.start_entry)
+	if args.end_entry:
+		# since start_entries may already have been consumed, adjust the
+		#  end to account for those items.
+		args.end_entry = args.end_entry - args.start_entry
+	adjust_entries = itertools.islice(entries, args.end_entry)
+	adjust_entries = (entry + args.delta for entry in adjust_entries)
+	rest = entries
+
+	adjusted_entries = itertools.chain(start_entries, adjust_entries, rest)
+
+	SubEntry.write_entries(sys.stdout, adjusted_entries)
 
 if __name__ == '__main__':
 	main()
