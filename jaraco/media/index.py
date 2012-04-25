@@ -140,6 +140,10 @@ def serve():
 	cherrypy.config.update({
 		'server.socket_host': '::0',
 		})
+	if hasattr(cherrypy.engine, "signal_handler"):
+		cherrypy.engine.signal_handler.subscribe()
+	if hasattr(cherrypy.engine, "console_control_handler"):
+		cherrypy.engine.console_control_handler.subscribe()
 	cherrypy.engine.start()
 	cherrypy.engine.block()
 
