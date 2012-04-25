@@ -1,10 +1,11 @@
 import itertools
 import os
-from glob import glob
 import urllib
-import cherrypy
 import traceback
+
+import cherrypy
 import genshi.template
+import httpagentparser
 
 class Movie(object):
 	def __init__(self, filename, class_):
@@ -75,9 +76,9 @@ class Site:
 		iPhone user agent is
 		Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_1_2 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7D11 Safari/528.16
 		"""
-		def is_iphone():
-			return 'iPhone' in cherrypy.request.headers['User-Agent']
-		template_type = 'iweb' if is_iphone() else ''
+		agent = httpagentparser.detect(cherrypy.request.headers['User-Agent'])
+		is_ios = agent.get('dist', {}).get('name', None) in ['iPhone', 'IPad']
+		template_type = 'iweb' if is_ios else ''
 		template_text = globals().get(template_type+'_template', default_template)
 		template = genshi.template.MarkupTemplate(template_text)
 		return template

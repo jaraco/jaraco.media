@@ -48,6 +48,7 @@ setup_params = dict(
 	},
 	install_requires=[
 		'jaraco.util',
+		'httpagentparser',
 	] + py26reqs,
 	extras_require = {
 	},
