@@ -1,22 +1,19 @@
-#! python
-
-import sys
 import optparse
 import re
 import os
-import shutil
 import subprocess
+from os.path import join
+from copy import deepcopy
+import logging
+
 try:
 	import win32api
 except:
 	pass
-from os.path import join
-from copy import deepcopy
-from cStringIO import StringIO
-import logging
 from jaraco.util.numbers import ordinalth
 from jaraco.util.string import trim
 from jaraco.util.itertools import flatten
+
 from jaraco.media import cropdetect
 from jaraco.media.arguments import *
 
@@ -65,6 +62,9 @@ class MEncoderCommand(object):
 	def __init__(self):
 		self.exe_path = [self.find_mencoder_exe()]
 
+	def __init__(self):
+		self.other_options = HyphenArgs()
+
 	@staticmethod
 	def find_mencoder_exe():
 		program_files = (
@@ -79,9 +79,6 @@ class MEncoderCommand(object):
 			return found.next()
 		except StopIteration:
 			raise RuntimeError("Cannot find mencoder; admittedly didn't try very hard.")
-
-	def __init__(self):
-		self.other_options = HyphenArgs()
 
 	def copy(self):
 		result = MEncoderCommand()
