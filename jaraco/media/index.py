@@ -7,6 +7,8 @@ import cherrypy
 import genshi.template
 import httpagentparser
 
+from . import config
+
 class Movie(object):
 	def __init__(self, filename, class_):
 		self.class_ = class_
@@ -27,20 +29,13 @@ class Movie(object):
 		return q
 
 class Index(object):
-	root = r'\\drake\videos\movies'
-
 	def __init__(self, filter=None):
 		self.filter = filter
 
 	def get_named_map(self):
-		items = (
-			os.path.join(self.root, item)
-			for item in os.listdir(self.root)
-			)
-		subdirs = filter(os.path.isdir, items)
-		names = [''] + map(os.path.basename, subdirs)
-		dirs = [self.root] + subdirs
-		return dict(zip(names, dirs))
+		result = {dir.name: dir for dir in config.movies_root.dirs()}
+		result[path.path('')] = config.movies_root
+		return result
 
 	def get_media(self, root):
 		items = (os.path.join(root, item) for item in os.listdir(root))
