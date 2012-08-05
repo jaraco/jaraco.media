@@ -61,8 +61,6 @@ class MEncoderCommand(object):
 
 	def __init__(self):
 		self.exe_path = [self.find_mencoder_exe()]
-
-	def __init__(self):
 		self.other_options = HyphenArgs()
 
 	@staticmethod
