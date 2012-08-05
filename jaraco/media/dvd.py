@@ -214,8 +214,6 @@ def encode_dvd():
 	logging.basicConfig(level=getattr(logging, options.log_level.upper()))
 
 	command = MEncoderCommand()
-	# todo, print "device" list
-	rips = join(os.environ['USERPROFILE'], 'videos', 'rips')
 
 	assert len(args) <= 1
 	if args:
@@ -260,7 +258,9 @@ def encode_dvd():
 		command['vobsubout'] = target
 		command['vobsuboutindex'] = '0'
 
-	assert not os.path.exists(command.other_options['o']), 'Output file %s already exists' % command.other_options['o']
+	assert not os.path.exists(command.other_options['o']), (
+		'Output file %s already exists' % command.other_options['o']
+	)
 
 	errors = open(os.devnull, 'w')
 	two_pass_handler = MultiPassHandler(command)
@@ -282,9 +282,6 @@ def re_encode(file, video_options, audio_options):
 	print 'executing with', tuple(command.get_args())
 	proc = subprocess.Popen(command.get_args(), stderr=errors)
 	if(proc.wait() == 0): print 'success'
-	#assert os.path.exists(dest)
-	#os.remove(file)
-	#shutil.move(dest, file)
 
 def transcode():
 	"""
@@ -332,8 +329,6 @@ def rip_subtitles():
 	options, args = parser.parse_args()
 
 	command = MEncoderCommand()
-	# todo, print "device" list
-	rips = join(os.environ['USERPROFILE'], 'videos', 'rips')
 
 	assert len(args) <= 1
 	if args:
@@ -351,8 +346,7 @@ def rip_subtitles():
 	user_title = raw_input(title_prompt) or default_title
 	target = os.path.join(videos_path, user_title)
 
-	dvd_title = options.title
-	command.source = ['dvd://%(dvd_title)s' % vars()]
+	command.source = ['dvd://%(title)s' % vars(options)]
 
 	command['o'] = os.devnull
 
