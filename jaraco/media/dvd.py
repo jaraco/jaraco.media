@@ -5,7 +5,9 @@ import subprocess
 from os.path import join
 from copy import deepcopy
 import logging
+import platform
 
+import path
 try:
 	import win32api
 except:
@@ -39,8 +41,15 @@ def guess_output_filename(name):
 		names = names[:-1]
 	return ' '.join(names)
 
+def get_source():
+	default_device = path.path('D:\\')
+	if platform.system() != 'Windows':
+		media = path.path('/media')
+		default_device = media.dirs()[0]
+	return os.environ.get('DVD', default_device)
+
 def infer_name(device=None):
-	device = device or os.environ.get('DVD', 'D:\\')
+	device = device or get_source()
 	try:
 		label = win32api.GetVolumeInformation(device)[0]
 	except Exception:

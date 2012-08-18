@@ -6,27 +6,23 @@ import optparse
 import re
 import datetime
 import threading
+import importlib
 
 from jaraco.util import ui
 from path import path
 from jaraco.util.string import local_format as lf
 
-from jaraco.windows import filesystem
-
 from . import dvd
 from . import config
 
-def get_source():
-	return os.environ.get('DVD', 'D:\\')
-
 def source_is_high_def():
-	blueray_dir = os.path.join(get_source(), 'BDMV')
+	blueray_dir = os.path.join(dvd.get_source(), 'BDMV')
 	return os.path.isdir(blueray_dir)
 
 def get_handbrake_cmd():
 	quality = 22 if source_is_high_def() else 20
 	return [
-		'HandbrakeCLI', '-i', get_source(), '--subtitle', 'scan',
+		'HandBrakeCLI', '-i', dvd.get_source(), '--subtitle', 'scan',
 		'--subtitle-forced', '--native-language', 'eng',
 		'--encoder', 'x264',
 		'--quality', str(quality),
@@ -37,6 +33,10 @@ def is_hidden(filepath):
 	return filepath.startswith('.') or has_hidden_attribute(filepath)
 
 def has_hidden_attribute(filepath):
+	try:
+		filesystem = importlib.import_module('jaraco.windows.filesystem')
+	except ImportError:
+		return False
 	return filesystem.GetFileAttributes(filepath).hidden
 
 path.is_hidden = is_hidden
