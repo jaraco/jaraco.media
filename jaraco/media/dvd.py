@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 import optparse
 import re
 import os
@@ -27,16 +29,16 @@ delimiterPattern = re.compile('\s*[, ;]\s*')
 def guess_output_filename(name):
 	"""
 	>>> guess_output_filename('JEAN_DE_FLORETTE')
-	'Jean De Florette'
+	u'Jean De Florette'
 
 	>>> guess_output_filename('')
-	''
+	u''
 
 	>>> guess_output_filename('COWBOYS_ALIENS_RENTAL')
-	'Cowboys Aliens'
+	u'Cowboys Aliens'
 	"""
 	names = name.split('_')
-	names = map(str.capitalize, names)
+	names = map(unicode.capitalize, names)
 	if names and names[-1] == 'Rental':
 		names = names[:-1]
 	return ' '.join(names)
