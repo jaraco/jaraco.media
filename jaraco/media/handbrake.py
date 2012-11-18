@@ -7,6 +7,9 @@ import re
 import datetime
 import threading
 import importlib
+import platform
+import contextlib
+import ctypes
 
 from jaraco.util import ui
 from path import path
@@ -77,6 +80,25 @@ def get_titles(root):
 		title_no += 1
 		episode += 1
 
+@contextlib.contextmanager
+def no_sleep():
+	"""
+	Context that prevents the computer from going to sleep on Windows. On
+	other platforms, is a null context.
+	"""
+	if not platform.system() == 'Windows':
+		yield
+		return
+	try:
+		ES_CONTINUOUS = 0x80000000
+		ES_AWAYMODE_REQUIRED = 0x40
+		ES_SYSTEM_REQUIRED = 0x2
+		ctypes.windll.kernel32.SetThreadExecutionState(ES_CONTINUOUS |
+			ES_SYSTEM_REQUIRED | ES_AWAYMODE_REQUIRED)
+		yield
+	finally:
+		ctypes.windll.kernel32.SetThreadExecutionState(ES_CONTINUOUS)
+
 def quick_brake():
 	name = dvd.infer_name()
 	title = raw_input(lf("Movie title ({name})> ")) or name
@@ -86,7 +108,8 @@ def quick_brake():
 		'--main-feature',
 		'-o', dest,
 	]
-	subprocess.Popen(cmd).wait()
+	with no_sleep():
+		subprocess.Popen(cmd).wait()
 
 def find_root():
 	root = config.tv_root
