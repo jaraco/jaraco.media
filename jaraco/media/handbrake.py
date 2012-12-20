@@ -7,13 +7,14 @@ import re
 import datetime
 import threading
 import importlib
-import platform
-import contextlib
-import ctypes
 
 from jaraco.util import ui
 from path import path
 from jaraco.util.string import local_format as lf
+try:
+	from jaraco.windows.power import no_sleep
+except ImportError:
+	from jaraco.util.context import null_context as no_sleep
 
 from . import dvd
 from . import config
@@ -79,25 +80,6 @@ def get_titles(root):
 		yield TitleInfo(title_no, title, episode, root, ext)
 		title_no += 1
 		episode += 1
-
-@contextlib.contextmanager
-def no_sleep():
-	"""
-	Context that prevents the computer from going to sleep on Windows. On
-	other platforms, is a null context.
-	"""
-	if not platform.system() == 'Windows':
-		yield
-		return
-	try:
-		ES_CONTINUOUS = 0x80000000
-		ES_AWAYMODE_REQUIRED = 0x40
-		ES_SYSTEM_REQUIRED = 0x2
-		ctypes.windll.kernel32.SetThreadExecutionState(ES_CONTINUOUS |
-			ES_SYSTEM_REQUIRED | ES_AWAYMODE_REQUIRED)
-		yield
-	finally:
-		ctypes.windll.kernel32.SetThreadExecutionState(ES_CONTINUOUS)
 
 def quick_brake():
 	name = dvd.infer_name()

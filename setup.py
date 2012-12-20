@@ -7,6 +7,8 @@ Copyright © 2009-2011 Jason R. Coombs
 """
 
 import sys
+import platform
+import collections
 
 import setuptools
 
@@ -15,6 +17,9 @@ __author__ = 'Jason R. Coombs <jaraco@jaraco.com>'
 name = 'jaraco.media'
 
 py26reqs = ['jaraco.compat'] if sys.version_info < (2, 7) else []
+platform_reqs = collections.defaultdict(list,
+	Windows = ['jaraco.windows>=2.13']
+)[platform.system()]
 
 setup_params = dict(
 	name = name,
@@ -22,7 +27,7 @@ setup_params = dict(
 	description = 'DVD and other multimedia tools',
 	author = 'Jason R. Coombs',
 	author_email = 'jaraco@jaraco.com',
-	url = 'http://bitbucket.org/' + name,
+	url = 'http://bitbucket.org/jaraco/' + name,
 	packages = setuptools.find_packages(),
 	namespace_packages = ['jaraco'],
 	license = 'MIT',
@@ -47,9 +52,9 @@ setup_params = dict(
 			],
 	},
 	install_requires=[
-		'jaraco.util',
+		'jaraco.util>=6.1',
 		'httpagentparser',
-	] + py26reqs,
+	] + py26reqs + platform_reqs,
 	extras_require = {
 	},
 	dependency_links = [
