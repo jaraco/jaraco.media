@@ -13,11 +13,6 @@ from itertools import count
 from optparse import OptionParser
 from subprocess import Popen, PIPE, STDOUT
 
-__author__ = '$Author$'[9:-2]
-__email__ = 'jaraco@jaraco.com'
-__revision__ = '$Rev$'[6:-2]
-__url__ = 'http://www.jaraco.com'
-
 def banner():
 	'''Display the banner'''
 
@@ -32,9 +27,9 @@ class MetaTitleParser(type):
 	"""
 	A metaclass for title parsers that keeps track of all of them.
 	"""
-	
+
 	_all_parsers = set()
-	
+
 	def __init__(cls, name, bases, attrs):
 		cls._all_parsers.add(cls)
 		# remove any base classes
@@ -42,19 +37,19 @@ class MetaTitleParser(type):
 
 class TitleParser(object):
 	__metaclass__ = MetaTitleParser
-	
+
 	def __init__(self, info):
 		# info is the object that stores title info
 		self.info = info
 		self.pattern = re.compile(self.pattern)
-	
+
 	def __call__(self, line):
 		self.parse(line)
 
 	def parse(self, line):
 		match = self.pattern.search(line)
 		match and self.handle(match)
-	
+
 	@classmethod
 	def create_all(cls, info):
 		"Create all of the title parsers associated with this info"
@@ -119,15 +114,15 @@ class TitleInfo(dict):
 		fmt_sub_info = lambda i: sub_fmt % i
 		buffer.extend(map(fmt_sub_info, self['subtitles']))
 		return '\n'.join(buffer)
-	
+
 	def has_audio(self):
 		return self['audiotracks']
 
 def title_info(device, title):
 	'''Get title information about a single title.
-	
+
 	expects device to be available globally.
-	
+
 	Returns a TitleInfo object
 	'''
 
@@ -145,7 +140,7 @@ def title_info(device, title):
 		for parser in parsers:
 			parser(line)
 		if info['navi_count'] > 100: break
-	
+
 	return info
 
 def main():
@@ -157,7 +152,7 @@ def main():
 	parser.add_option('-t', '--title', help='only search a specific title', type=int, default=0)
 	parser.add_option('-d', '--device', help='the device (default d:)', default='d:')
 	options, args = parser.parse_args()
-	
+
 	if not len(args) == 0: parser.error('This program takes no arguments')
 
 	if not options.title:
@@ -185,7 +180,7 @@ def main():
 
 		if not titles_with_audio:
 			raise SystemExit("Unable to find any titles with audio on %s" % options.device)
-		
+
 		for title in titles_with_audio:
 			print
 			print title
