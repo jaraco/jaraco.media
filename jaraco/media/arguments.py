@@ -61,6 +61,6 @@ class HyphenArgs(DelimitedArgs):
 class ColonDelimitedArgs(DelimitedArgs):
 	"""
 	>>> print(ColonDelimitedArgs(x='3', y='4'))
-	y=4:x=3
+	x=3:y=4
 	"""
 	delimiter = ':'

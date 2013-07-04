@@ -54,6 +54,7 @@ setup_params = dict(
 	install_requires=[
 		'jaraco.util>=6.1',
 		'httpagentparser',
+		'six',
 	] + py26reqs + platform_reqs,
 	extras_require = {
 	},
@@ -68,7 +69,6 @@ setup_params = dict(
 		'cherrypy',
 		'mock',
 	],
-	use_2to3=True,
 )
 
 if __name__ == '__main__':

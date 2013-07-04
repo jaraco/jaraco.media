@@ -1,7 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-u'''
+from __future__ import unicode_literals, print_function
+
+'''
 routines for acquiring dvd details, based on dvdinfo.py (many thanks
 to Sybren Stüvel, http://stuvel.eu/dvdinfo).
 '''
@@ -13,15 +15,18 @@ from itertools import count
 from optparse import OptionParser
 from subprocess import Popen, PIPE, STDOUT
 
+import pkg_resources
+
 def banner():
 	'''Display the banner'''
 
-	print 50*'='
-	print '%s version %s' % (__name__, __revision__)
-	print '%s <%s>' % (__author__, __email__)
-	print __url__
-	print 50*'='
-	print
+	print(50*'=')
+	version = pkg_resources.require('jaraco.media')[0].version
+	print('jaraco.media version', version)
+	print('Jason R. Coombs <jaraco@jaraco.com>')
+	print('http://bitbucket.org/jaraco/jaraco.media')
+	print(50*'=')
+	print()
 
 class MetaTitleParser(type):
 	"""
@@ -173,7 +178,7 @@ def main():
 
 			max_title = info['max_titles']
 
-		print 'Done reading.            '
+		print('Done reading.            ')
 
 		titles_with_audio = filter(TitleInfo.has_audio, titles)
 		titles_with_audio.sort(key=lambda t: -t['chapters'])
@@ -182,14 +187,14 @@ def main():
 			raise SystemExit("Unable to find any titles with audio on %s" % options.device)
 
 		for title in titles_with_audio:
-			print
-			print title
+			print()
+			print(title)
 	else:
-		print 'Reading title: %i' % options.title
+		print('Reading title:', options.title)
 		# Get info about given title
 		info = title_info(options.device, options.title)
 
-		print info
+		print(info)
 
 if __name__ == '__main__':
 	main()

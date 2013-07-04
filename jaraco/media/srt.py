@@ -7,6 +7,8 @@ import itertools
 import argparse
 import sys
 
+import six
+
 _sample_srt_entries = """
 1
 00:00:25,080 --> 00:00:29,580
@@ -62,7 +64,7 @@ class SubEntry(object):
 
 	@staticmethod
 	def get_entries(file):
-		if isinstance(file, basestring):
+		if isinstance(file, six.string_types):
 			file = open(file)
 		while True:
 			yield SubEntry.get_entry(file)
@@ -136,7 +138,7 @@ class SubEntry(object):
 
 	@staticmethod
 	def write_entries(file, entries):
-		if isinstance(file, basestring):
+		if isinstance(file, six.string_types):
 			file = open(file, 'w')
 		for entry in entries:
 			file.write(str(entry))

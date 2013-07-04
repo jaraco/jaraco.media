@@ -1,4 +1,4 @@
-from __future__ import unicode_literals
+from __future__ import unicode_literals, print_function
 
 import optparse
 import re
@@ -85,7 +85,7 @@ class MEncoderCommand(object):
 			]
 		found = (path for path in search_path if os.path.exists(path))
 		try:
-			return found.next()
+			return next(found)
 		except StopIteration:
 			raise RuntimeError("Cannot find mencoder; admittedly didn't try very hard.")
 
@@ -232,7 +232,7 @@ def encode_dvd():
 	else:
 		device = raw_input('enter device> ')
 
-	print 'device is', device
+	print('device is', device)
 	command.set_device(device)
 
 	videos_path = join(os.environ['PUBLIC'], 'Videos', 'Movies')
@@ -290,9 +290,9 @@ def re_encode(file, video_options, audio_options):
 	command.audio_options = audio_options
 	command.video_options = video_options
 	errors = open(os.devnull, 'w')
-	print 'executing with', tuple(command.get_args())
+	print('executing with', tuple(command.get_args()))
 	proc = subprocess.Popen(command.get_args(), stderr=errors)
-	if(proc.wait() == 0): print 'success'
+	if(proc.wait() == 0): print('success')
 
 def transcode():
 	"""
@@ -347,7 +347,7 @@ def rip_subtitles():
 	else:
 		device = raw_input('enter device> ')
 
-	print 'device is', device
+	print('device is', device)
 	command.set_device(device)
 
 	videos_path = join(os.environ['PUBLIC'], 'Videos', 'Movies')
