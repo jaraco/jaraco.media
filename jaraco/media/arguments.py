@@ -60,7 +60,8 @@ class HyphenArgs(DelimitedArgs):
 
 class ColonDelimitedArgs(DelimitedArgs):
 	"""
-	>>> print(ColonDelimitedArgs(x='3', y='4'))
+	>>> args = ColonDelimitedArgs((('x', '3'), ('y', '4')))
+	>>> print(args)
 	x=3:y=4
 	"""
 	delimiter = ':'
