@@ -3,7 +3,7 @@
 """
 Setup script for building jaraco.media distribution
 
-Copyright © 2009-2011 Jason R. Coombs
+Copyright © 2009-2013 Jason R. Coombs
 """
 
 import sys
@@ -61,6 +61,10 @@ setup_params = dict(
 	],
 	setup_requires = [
 		'hgtools',
+		'pytest-runner',
+	],
+	tests_require = [
+		'pytest',
 	],
 	use_2to3=True,
 )
