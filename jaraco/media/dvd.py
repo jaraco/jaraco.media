@@ -9,6 +9,7 @@ from copy import deepcopy
 import logging
 import platform
 
+import six
 import path
 try:
 	import win32api
@@ -28,17 +29,17 @@ delimiterPattern = re.compile('\s*[, ;]\s*')
 
 def guess_output_filename(name):
 	"""
-	>>> guess_output_filename('JEAN_DE_FLORETTE')
-	u'Jean De Florette'
+	>>> print(guess_output_filename('JEAN_DE_FLORETTE'))
+	Jean De Florette
 
-	>>> guess_output_filename('')
-	u''
+	>>> str(guess_output_filename(''))
+	''
 
-	>>> guess_output_filename('COWBOYS_ALIENS_RENTAL')
-	u'Cowboys Aliens'
+	>>> str(guess_output_filename('COWBOYS_ALIENS_RENTAL'))
+	'Cowboys Aliens'
 	"""
 	names = name.split('_')
-	names = map(unicode.capitalize, names)
+	names = list(map(six.text_type.capitalize, names))
 	if names and names[-1] == 'Rental':
 		names = names[:-1]
 	return ' '.join(names)
