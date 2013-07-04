@@ -66,7 +66,7 @@ setup_params = dict(
 	tests_require = [
 		'pytest',
 		'cherrypy',
-		'dingus',
+		'mock',
 	],
 	use_2to3=True,
 )
