@@ -60,11 +60,16 @@ def infer_name(device=None):
 
 class MEncoderCommand(object):
 	"""
-	>>> cmd = MEncoderCommand()
+	>>> import mock
+	>>> patched_finder = mock.patch.object(MEncoderCommand,
+	...     'find_mencoder_exe', return_value='mencoder')
+	>>> with patched_finder:
+	...     cmd = MEncoderCommand()
 	>>> cmd.source = ['dvd://']
 	>>> lavcopts = ColonDelimitedArgs(vcodec='libx264',threads='2',vbitrate='1200',autoaspect=None,)
 	>>> cmd.video_options = HyphenArgs(lavcopts=lavcopts)
-	>>> cmd2 = cmd.copy()
+	>>> with patched_finder:
+	...     cmd2 = cmd.copy()
 	>>> cmd_args = tuple(cmd.get_args())
 	>>> cmd2_args = tuple(cmd2.get_args())
 	>>> assert cmd_args == cmd2_args, '%s != %s' % (cmd_args, cmd2_args)
