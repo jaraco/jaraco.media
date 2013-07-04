@@ -11,8 +11,8 @@ to Sybren Stüvel, http://stuvel.eu/dvdinfo).
 import re
 import sys
 import datetime
+import argparse
 from itertools import count
-from optparse import OptionParser
 from subprocess import Popen, PIPE, STDOUT
 
 import pkg_resources
@@ -153,14 +153,12 @@ def main():
 
 	banner()
 
-	parser = OptionParser(usage=__doc__)
-	parser.add_option('-t', '--title', help='only search a specific title', type=int, default=0)
-	parser.add_option('-d', '--device', help='the device (default d:)', default='d:')
-	options, args = parser.parse_args()
+	parser = argparse.ArgumentParser(usage=__doc__)
+	parser.add_argument('-t', '--title', help='only search a specific title', type=int, default=0)
+	parser.add_argument('-d', '--device', help='the device (default d:)', default='d:')
+	args = parser.parse_args()
 
-	if not len(args) == 0: parser.error('This program takes no arguments')
-
-	if not options.title:
+	if not args.title:
 		titles = []
 		max_title = '?'
 		# Walk through all titles
@@ -169,7 +167,7 @@ def main():
 			sys.stdout.write('Reading title %i/%s   \r' % (title, max_title))
 			sys.stdout.flush()
 
-			info = title_info(options.device, title)
+			info = title_info(args.device, title)
 			titles.append(info)
 			# Remember info about the title with the most chapters,
 			# but only if it has audio tracks.
@@ -184,18 +182,17 @@ def main():
 		titles_with_audio.sort(key=lambda t: -t['chapters'])
 
 		if not titles_with_audio:
-			raise SystemExit("Unable to find any titles with audio on %s" % options.device)
+			raise SystemExit("Unable to find any titles with audio on %s" % args.device)
 
 		for title in titles_with_audio:
 			print()
 			print(title)
 	else:
-		print('Reading title:', options.title)
+		print('Reading title:', args.title)
 		# Get info about given title
-		info = title_info(options.device, options.title)
+		info = title_info(args.device, args.title)
 
 		print(info)
 
 if __name__ == '__main__':
 	main()
-

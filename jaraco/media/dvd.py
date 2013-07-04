@@ -1,6 +1,6 @@
 from __future__ import unicode_literals, print_function
 
-import optparse
+import argparse
 import re
 import os
 import subprocess
@@ -213,24 +213,21 @@ def encode_dvd():
 
 	Encode a DVD where the source is a DVD drive or RIP directory of a DVD.
 	"""
-	parser = optparse.OptionParser(usage=trim(encode_dvd.__doc__))
-	#parser.add_option('-t', '--titles', 'enter the title or titles to process (i.e. 1 or 1,5 or 1-5)' default='')
-	parser.add_option('-t', '--title', help='enter the dvd title number to process', default='')
-	parser.add_option('-s', '--subtitle', help='enter the subtitle ID')
-	parser.add_option('--test', help='just encode one chapter', default=False, action='store_true')
-	parser.add_option('-l', '--log-level', help='log level (debug, info, warning, error)',
+	parser = argparse.ArgumentParser(usage=trim(encode_dvd.__doc__))
+	#parser.add_argument('-t', '--titles', 'enter the title or titles to process (i.e. 1 or 1,5 or 1-5)' default='')
+	parser.add_argument('-t', '--title', help='enter the dvd title number to process', default='')
+	parser.add_argument('-s', '--subtitle', help='enter the subtitle ID')
+	parser.add_argument('--test', help='just encode one chapter', default=False, action='store_true')
+	parser.add_argument('-l', '--log-level', help='log level (debug, info, warning, error)',
 		default='info')
-	options, args = parser.parse_args()
+	parser.add_argument('device', nargs='?')
+	args = parser.parse_args()
 
-	logging.basicConfig(level=getattr(logging, options.log_level.upper()))
+	logging.basicConfig(level=getattr(logging, args.log_level.upper()))
 
 	command = MEncoderCommand()
 
-	assert len(args) <= 1
-	if args:
-		device = args[0]
-	else:
-		device = raw_input('enter device> ')
+	device = args.device or raw_input('enter device> ')
 
 	print('device is', device)
 	command.set_device(device)
@@ -247,13 +244,13 @@ def encode_dvd():
 
 	command['o'] = output_filename
 
-	dvd_title = options.title
+	dvd_title = args.title
 	command.source = ['dvd://%(dvd_title)s' % vars()]
-	if options.test:
+	if args.test:
 		command['chapter'] = '2-2'
 
 	command.audio_options = get_audio_copy_options()
-	command.audio_options.update(aid='128')
+	command.audio_args.update(aid='128')
 
 	crop = cropdetect.get_crop(device, dvd_title)
 	log.info('crop is %s', crop)
@@ -264,8 +261,8 @@ def encode_dvd():
 
 	command.video_options = get_mpeg4_options()
 
-	if options.subtitle:
-		command['sid'] = options.subtitle
+	if args.subtitle:
+		command['sid'] = args.subtitle
 		command['vobsubout'] = target
 		command['vobsuboutindex'] = '0'
 
@@ -301,15 +298,11 @@ def transcode():
 	Transcode a video by copying the video, but encoding the audio
 	into mp3 format.
 	"""
-	parser = optparse.OptionParser(usage=trim(fix_fourcc.__doc__))
-	options, args = parser.parse_args()
-	try:
-		assert len(args) == 1
-		source = args.pop()
-	except AssertionError:
-		parser.error("Invalid number of arguments")
+	parser = argparse.ArgumentParser(usage=trim(fix_fourcc.__doc__))
+	parser.add_argument('source')
+	args = parser.parse_args()
 
-	re_encode(source, get_video_copy_options(), get_mp3_options())
+	re_encode(args.source, get_video_copy_options(), get_mp3_options())
 
 def fix_fourcc():
 	"""
@@ -317,15 +310,11 @@ def fix_fourcc():
 
 	Re-encode the video, but change the ffourcc to XVID
 	"""
-	parser = optparse.OptionParser(usage=trim(fix_fourcc.__doc__))
+	parser = argparse.ArgumentParser(usage=trim(fix_fourcc.__doc__))
+	parser.add_argument('source')
 	options, args = parser.parse_args()
-	try:
-		assert len(args) == 1
-		source = args.pop()
-	except AssertionError:
-		parser.error("Invalid number of arguments")
 
-	re_encode(source, get_video_copy_options(), get_audio_copy_options())
+	re_encode(args.source, get_video_copy_options(), get_audio_copy_options())
 
 def rip_subtitles():
 	"""
@@ -333,19 +322,16 @@ def rip_subtitles():
 	"""
 	logging.basicConfig(level=logging.INFO)
 
-	parser = optparse.OptionParser(usage=trim(encode_dvd.__doc__))
-	#parser.add_option('-t', '--titles', 'enter the title or titles to process (i.e. 1 or 1,5 or 1-5)' default='')
-	parser.add_option('-t', '--title', help='enter the dvd title number to process', default='')
-	parser.add_option('-s', '--subtitle', help='enter the subtitle ID')
-	options, args = parser.parse_args()
+	parser = argparse.ArgumentParser(usage=trim(encode_dvd.__doc__))
+	#parser.add_argument('-t', '--titles', 'enter the title or titles to process (i.e. 1 or 1,5 or 1-5)' default='')
+	parser.add_argument('-t', '--title', help='enter the dvd title number to process', default='')
+	parser.add_argument('-s', '--subtitle', help='enter the subtitle ID')
+	parser.add_argument('device', nargs='?')
+	args = parser.parse_args()
 
 	command = MEncoderCommand()
 
-	assert len(args) <= 1
-	if args:
-		device = args[0]
-	else:
-		device = raw_input('enter device> ')
+	device = args.device or raw_input('enter device> ')
 
 	print('device is', device)
 	command.set_device(device)
@@ -364,7 +350,7 @@ def rip_subtitles():
 	command.audio_options = HyphenArgs(nosound=None)
 	command.video_options = HyphenArgs(ovc='frameno')
 
-	command['sid'] = options.subtitle or '0'
+	command['sid'] = args.subtitle or '0'
 
 	command['vobsubout'] = target
 	command['vobsuboutindex'] = command['sid']

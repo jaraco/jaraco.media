@@ -2,6 +2,7 @@ import re
 import os
 import itertools
 import logging
+import argparse
 
 import six
 
@@ -46,15 +47,15 @@ def within_consecutive_limit(limit):
 	return within_limit
 
 def parse_args():
-	from optparse import OptionParser
-	parser = OptionParser()
-	parser.add_option('-t', '--title', help="The title to use", default="")
-	options, args = parser.parse_args()
-	dvd_device = (args or None) and args.pop()
-	title = options.title
-	log.info(['using default device', 'using device %s' % dvd_device][bool(dvd_device)])
+	parser = argparse.ArgumentParser()
+	parser.add_argument('-t', '--title', help="The title to use", default="")
+	parser.add_argument('device', nargs='?')
+	args = parser.parse_args()
+	title = args.title
+	device = args.device
+	log.info(['using default device', 'using device %s' % device][bool(device)])
 	log.info(['using default title', 'using title %s' % title][bool(title)])
-	return dvd_device, title
+	return device, title
 
 def build_command(dvd_device=None, title=""):
 	from jaraco.media.dvd import MEncoderCommand, HyphenArgs

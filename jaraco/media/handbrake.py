@@ -2,7 +2,7 @@ from __future__ import print_function
 
 import os
 import subprocess
-import optparse
+import argparse
 import re
 import datetime
 import threading
@@ -139,10 +139,12 @@ def two_stage_encode(args):
 
 def multibrake():
 	root = find_root()
-	options, cmd_args = optparse.OptionParser().parse_args()
+	parser = argparse.ArgumentParser()
+	parser.add_arguments('rest', nargs=argparse.REMAINDER)
+	rest = parser.parse_args().rest
 	threads = []
 	for title in list(get_titles(root)):
-		args = get_handbrake_cmd() + cmd_args + list(title)
+		args = get_handbrake_cmd() + rest + list(title)
 		print('ripping', title)
 		threads.append(two_stage_encode(args))
 	[t.join() for t in threads if t]
