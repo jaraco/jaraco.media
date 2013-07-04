@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import unicode_literals
+
 import datetime
 import itertools
 import argparse
@@ -16,7 +18,7 @@ An SRT Subtitle Parser
 
 3
 00:00:38,370 --> 00:00:47,870
-Copyright ©2009-2010 Jason R. Coombs
+Copyright Â©2009-2010 Jason R. Coombs
 Licensed for redistribution under the MIT license.
 
 """.lstrip()
