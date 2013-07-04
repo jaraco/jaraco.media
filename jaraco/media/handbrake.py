@@ -8,6 +8,7 @@ import datetime
 import threading
 import importlib
 
+import six
 from jaraco.util import ui
 from path import path
 from jaraco.util.string import local_format as lf
@@ -64,7 +65,7 @@ class TitleInfo(object):
 
 def get_titles(root):
 	title_durations()
-	title_no = eval(raw_input('enter starting DVD title number> '))
+	title_no = eval(six.moves.input('enter starting DVD title number> '))
 	visible_files = sorted(file for file in root.files() if not file.is_hidden())
 	if visible_files:
 		last_file = visible_files[-1].basename()
@@ -73,10 +74,10 @@ def get_titles(root):
 	else:
 		last_episode = 1
 	prompt = lf('enter starting episode [{last_episode}]> ')
-	episode = eval(raw_input(prompt) or 'None') or last_episode
+	episode = eval(six.moves.input(prompt) or 'None') or last_episode
 	ext = '.mp4'
 	while True:
-		title = raw_input('enter title> ')
+		title = six.moves.input('enter title> ')
 		if not title: return
 		yield TitleInfo(title_no, title, episode, root, ext)
 		title_no += 1
@@ -84,7 +85,7 @@ def get_titles(root):
 
 def quick_brake():
 	name = dvd.infer_name()
-	title = raw_input(lf("Movie title ({name})> ")) or name
+	title = six.moves.input(lf("Movie title ({name})> ")) or name
 	config.movies_root.isdir() or config.movies_root.makedirs()
 	dest = config.movies_root / title + '.mp4'
 	cmd = get_handbrake_cmd() + [
@@ -99,13 +100,13 @@ def find_root():
 	choices = [showdir.basename() for showdir in root.dirs()]
 	show = ui.Menu(choices).get_choice('Choose show (blank for new)> ')
 	if not show:
-		show = raw_input('Show name> ')
+		show = six.moves.input('Show name> ')
 	show_dir = root / show
 	show_dir.makedirs_p()
 	choices = [seasondir.basename() for seasondir in show_dir.dirs()]
 	season = ui.Menu(choices).get_choice('Choose season (blank for new)> ')
 	if not season:
-		season = 'Season %d' % eval(raw_input('Season Number> '))
+		season = 'Season %d' % eval(six.moves.input('Season Number> '))
 	season_dir = show_dir / season
 	season_dir.makedirs_p()
 	return season_dir
