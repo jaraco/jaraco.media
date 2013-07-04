@@ -1,5 +1,4 @@
 import re
-import sys
 import os
 import itertools
 import logging
@@ -9,15 +8,6 @@ import six
 log = logging.getLogger(__name__)
 
 def terminate(process):
-	"Pre python 2.6 shim for terminating a Popen process"
-	if sys.version_info < (2,6):
-		import win32api
-		from pywintypes import error
-		try:
-			win32api.TerminateProcess(int(process._handle), -1)
-		except error:
-			pass # process has probably already terminated on its own
-		return
 	try:
 		process.terminate()
 	except WindowsError:
