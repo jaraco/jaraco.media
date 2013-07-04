@@ -2,7 +2,8 @@
 # Little script to depack Matroska file, and repack them
 # in an MP4 format.
 
-import sys
+from __future__ import print_function
+
 import os
 import argparse
 import subprocess
@@ -10,9 +11,9 @@ import subprocess
 from jaraco.util.string import local_format as lf
 
 def message(msg):
-    print "=" * 78
-    print "= %s" % msg
-    print "=" * 78
+	print("=" * 78)
+	print("=", msg)
+	print("=" * 78)
 
 def get_args():
 	parser = argparse.ArgumentParser()
@@ -30,14 +31,16 @@ def handle_command_line():
 		'tracks', filename,
 		'2:temp_video.mp4',
 		'1:temp_audio.ogg',
-		#lf('3:{name}.srt'),
+		# lf('3:{name}.srt'),
 		]).wait()
 
 	message(lf("Repacking file: {name}.mp4"))
 	subprocess.Popen([
-		r'C:\Program Files\ffmpeg-git-9251942-win64-shared\bin\ffmpeg.exe', #'ffmpeg',
+		r'C:\Program Files\ffmpeg-git-9251942-win64-shared\bin\ffmpeg.exe',
+		# 'ffmpeg',
 		'-i', 'temp_audio.ogg', '-i', 'temp_video.mp4',
-		'-vcodec', 'copy', #'libx264',
+		'-vcodec', 'copy',
+		# 'libx264',
 		'-r', '47.95',
 		name+'.mp4',]).wait()
 
@@ -46,4 +49,3 @@ def handle_command_line():
 
 if __name__ == "__main__":
 	handle_command_line()
-
