@@ -30,7 +30,7 @@ def get_handbrake_cmd():
 		'--subtitle-forced', '--native-language', 'eng',
 		'--encoder', 'x264',
 		'--quality', str(quality),
-		'--large-file',
+		# '--large-file',
 	]
 
 def is_hidden(filepath):
