@@ -3,8 +3,7 @@
 from __future__ import print_function
 
 import abc
-
-from py26compat.collections import OrderedDict
+from collections import OrderedDict
 
 __all__ = ['DelimitedArgs', 'HyphenArgs', 'ColonDelimitedArgs']
 
