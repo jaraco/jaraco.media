@@ -141,7 +141,7 @@ def two_stage_encode(args):
 def multibrake():
 	root = find_root()
 	parser = argparse.ArgumentParser()
-	parser.add_arguments('rest', nargs=argparse.REMAINDER)
+	parser.add_argument('rest', nargs=argparse.REMAINDER)
 	rest = parser.parse_args().rest
 	threads = []
 	for title in list(get_titles(root)):
