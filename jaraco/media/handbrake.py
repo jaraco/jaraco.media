@@ -119,7 +119,7 @@ def get_starts(stream, limit):
 	while True:
 		res = stream.read(limit)
 		if not res: return
-		yield res
+		yield res.decode('utf-8')
 		stream.readline()
 
 def two_stage_encode(args):
