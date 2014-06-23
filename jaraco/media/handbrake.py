@@ -144,11 +144,12 @@ def multibrake():
 	parser.add_argument('rest', nargs=argparse.REMAINDER)
 	rest = parser.parse_args().rest
 	threads = []
-	for title in list(get_titles(root)):
-		args = get_handbrake_cmd() + rest + list(title)
-		print('ripping', title)
-		threads.append(two_stage_encode(args))
-	[t.join() for t in threads if t]
+	with no_sleep():
+		for title in list(get_titles(root)):
+			args = get_handbrake_cmd() + rest + list(title)
+			print('ripping', title)
+			threads.append(two_stage_encode(args))
+		[t.join() for t in threads if t]
 
 def parse_duration(str):
 	hours, minutes, seconds = map(int, str.split(':'))
