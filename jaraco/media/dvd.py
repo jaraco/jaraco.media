@@ -369,7 +369,8 @@ def rip_subtitles():
 
 def update_anydvd():
 	import jaraco.net.http
-	file = jaraco.net.http.get_url('http://static.slysoft.com/SetupAnyDVD.exe')
+	url = 'http://static.slysoft.com/SetupAnyDVD.exe'
+	file = jaraco.net.http.get_url(url)
 	subprocess.check_call([file, '-S'])
 	os.remove(file)
 	os.remove(r'C:\Users\Public\Desktop\AnyDVD.lnk')
