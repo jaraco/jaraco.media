@@ -51,6 +51,7 @@ setup_params = dict(
 			'quick-brake = jaraco.media.handbrake:quick_brake',
 			'mkv-to-mp4 = jaraco.media.matroska:handle_command_line',
 			'adjust-sub = jaraco.media.srt:AdjustCommand.run',
+			'update-anydvd = jaraco.media.dvd:update_anydvd',
 			],
 	},
 	install_requires=[
