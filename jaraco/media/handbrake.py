@@ -9,13 +9,13 @@ import threading
 import importlib
 
 import six
-from jaraco.util import ui
+from jaraco.ui import menu
 from path import path
-from jaraco.util.string import local_format as lf
+from jaraco.text import local_format as lf
 try:
 	from jaraco.windows.power import no_sleep
 except ImportError:
-	from jaraco.util.context import null_context as no_sleep
+	from jaraco.context import null_context as no_sleep
 
 from . import dvd
 from . import config
@@ -98,13 +98,13 @@ def quick_brake():
 def find_root():
 	root = config.tv_root
 	choices = [showdir.basename() for showdir in root.dirs()]
-	show = ui.Menu(choices).get_choice('Choose show (blank for new)> ')
+	show = menu.Menu(choices).get_choice('Choose show (blank for new)> ')
 	if not show:
 		show = six.moves.input('Show name> ')
 	show_dir = root / show
 	show_dir.makedirs_p()
 	choices = [seasondir.basename() for seasondir in show_dir.dirs()]
-	season = ui.Menu(choices).get_choice('Choose season (blank for new)> ')
+	season = menu.Menu(choices).get_choice('Choose season (blank for new)> ')
 	if not season:
 		season = 'Season %d' % eval(six.moves.input('Season Number> '))
 	season_dir = show_dir / season

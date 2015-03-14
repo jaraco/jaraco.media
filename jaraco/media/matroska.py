@@ -8,7 +8,7 @@ import os
 import argparse
 import subprocess
 
-from jaraco.util.string import local_format as lf
+from jaraco.text import local_format as lf
 
 def message(msg):
 	print("=" * 78)

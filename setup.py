@@ -55,7 +55,10 @@ setup_params = dict(
 			],
 	},
 	install_requires=[
-		'jaraco.util>=6.1',
+		'jaraco.itertools',
+		'jaraco.text',
+		'jaraco.ui',
+		'jaraco.context',
 		'httpagentparser',
 		'six',
 	] + py26reqs + platform_reqs,

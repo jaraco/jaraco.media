@@ -11,13 +11,13 @@ import platform
 
 import six
 import path
+import inflect
 try:
 	import win32api
 except:
 	pass
-from jaraco.util.numbers import ordinalth
-from jaraco.util.string import trim
-from jaraco.util.itertools import flatten
+from jaraco.text import trim
+from jaraco.itertools import flatten
 
 from jaraco.media import cropdetect
 from jaraco.media.arguments import *
@@ -141,8 +141,9 @@ class MultiPassHandler(object):
 		self.command['passlogfile'] = multi_pass_temp_file
 
 	def __iter__(self):
+		inflect_eng = inflect.engine()
 		for current_pass in range(1, self.passes+1):
-			current_pass_th = ordinalth(current_pass)
+			current_pass_th = inflect_eng.ordinal(current_pass)
 			log.info('Modifying command for %s pass.' % current_pass_th)
 			method = [self.early_pass, self.last_pass][current_pass == self.passes]
 			yield method(current_pass)
