@@ -46,6 +46,7 @@ setup_params = dict(
 		'pytest',
 		'cherrypy',
 		'mock',
+		'genshi',
 	],
 	license='MIT',
 	classifiers=[
