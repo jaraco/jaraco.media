@@ -53,7 +53,7 @@ def get_source():
 		volumes = path.path('/Volumes')
 		default_device = next(
 			subdir for subdir in volumes.dirs()
-			if (subdir/'BDMV').isdir()
+			if (subdir/'BDMV').isdir() or (subdir/'VIDEO_TS').isdir()
 		)
 	return os.environ.get('DVD', default_device)
 
