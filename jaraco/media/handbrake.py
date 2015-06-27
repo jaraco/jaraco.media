@@ -15,7 +15,7 @@ from jaraco.text import local_format as lf
 try:
 	from jaraco.windows.power import no_sleep
 except ImportError:
-	from jaraco.context import null_context as no_sleep
+	from jaraco.context import null as no_sleep
 
 from . import dvd
 from . import config
