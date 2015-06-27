@@ -46,7 +46,7 @@ def guess_output_filename(name):
 
 def get_source():
 	default_device = path.path('D:\\')
-	if platform.system() != 'Windows':
+	if platform.system() == 'Linux':
 		media = path.path('/media')
 		default_device = media.dirs()[0]
 	if platform.system() == 'Darwin':
