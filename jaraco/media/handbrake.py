@@ -9,6 +9,7 @@ import threading
 import importlib
 import platform
 import sys
+import ctypes
 
 import six
 from jaraco.ui import menu
@@ -196,6 +197,7 @@ def init_environment():
 	lib = path('/Applications/MakeMKV.app/Contents/lib/libmmbd.dylib')
 	if not lib.isfile():
 		print("Need to install MakeMKV", file=sys.stderr)
+		raise SystemExit(1)
 	root = path('~/lib').expanduser()
 	root.makedirs_p()
 	link_names = 'libaacs.dylib', 'libbdplus.dylib'
@@ -204,3 +206,10 @@ def init_environment():
 		for link in map(root.joinpath, link_names)
 		if not link.exists()
 	)
+
+	try:
+		ctypes.CDLL('/usr/lib/libdvdcss.2.dylib')
+	except Exception:
+		url = 'http://download.videolan.org/libdvdcss/1.2.12/macosx/'
+		print("Need libdvdcss", url, file=sys.stderr)
+		raise SystemExit(1)
