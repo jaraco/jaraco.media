@@ -38,6 +38,7 @@ setup_params = dict(
 		'jaraco.context',
 		'httpagentparser',
 		'six',
+		'more_itertools',
 	] + platform_reqs,
 	setup_requires=[
 		'setuptools_scm',

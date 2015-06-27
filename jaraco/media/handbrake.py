@@ -7,6 +7,8 @@ import re
 import datetime
 import threading
 import importlib
+import platform
+import sys
 
 import six
 from jaraco.ui import menu
@@ -16,6 +18,7 @@ try:
 	from jaraco.windows.power import no_sleep
 except ImportError:
 	from jaraco.context import null as no_sleep
+from more_itertools.recipes import consume
 
 from . import dvd
 from . import config
@@ -87,6 +90,7 @@ def quick_brake():
 	name = dvd.infer_name()
 	title = six.moves.input(lf("Movie title ({name})> ")) or name
 	config.movies_root.isdir() or config.movies_root.makedirs()
+	init_environment()
 	dest = config.movies_root / title + '.mp4'
 	cmd = get_handbrake_cmd() + [
 		'--main-feature',
@@ -185,3 +189,18 @@ def title_durations():
 	lines = filter(more_than_ten_min, lines)
 	print("Title durations:")
 	[print(line['title'], line['duration']) for line in lines]
+
+def init_environment():
+	if platform.system() != 'Darwin':
+		return
+	lib = path('/Applications/MakeMKV.app/Contents/lib/libmmbd.dylib')
+	if not lib.isfile():
+		print("Need to install MakeMKV", file=sys.stderr)
+	root = path('~/lib').expanduser()
+	root.makedirs_p()
+	link_names = 'libaacs.dylib', 'libbdplus.dylib'
+	consume(
+		lib.symlink(link)
+		for link in map(root.joinpath, link_names)
+		if not link.exists()
+	)
