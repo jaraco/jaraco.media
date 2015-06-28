@@ -51,10 +51,11 @@ def get_source():
 		default_device = media.dirs()[0]
 	if platform.system() == 'Darwin':
 		volumes = path.path('/Volumes')
-		default_device = next(
+		candidates = (
 			subdir for subdir in volumes.dirs()
 			if (subdir/'BDMV').isdir() or (subdir/'VIDEO_TS').isdir()
 		)
+		default_device = next(candidates, None)
 	return os.environ.get('DVD', default_device)
 
 def infer_name(device=None):
