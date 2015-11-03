@@ -208,8 +208,8 @@ def init_environment():
 	)
 
 	try:
-		ctypes.CDLL('/usr/lib/libdvdcss.2.dylib')
+		ctypes.CDLL('/usr/local/lib/libdvdcss.2.dylib')
 	except Exception:
-		url = 'http://download.videolan.org/libdvdcss/1.2.12/macosx/'
-		print("Need libdvdcss", url, file=sys.stderr)
+		msg = "Need libdvdcss (brew install libdvdcss)"
+		print(msg, file=sys.stderr)
 		raise SystemExit(1)
