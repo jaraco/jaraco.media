@@ -39,6 +39,7 @@ setup_params = dict(
 		'httpagentparser',
 		'six',
 		'more_itertools',
+		'path',
 	] + platform_reqs,
 	setup_requires=[
 		'setuptools_scm',
