@@ -42,7 +42,7 @@ setup_params = dict(
 		'httpagentparser',
 		'six',
 		'more_itertools',
-		'path',
+		'path.py',
 	],
 	extras_require={
 	},
