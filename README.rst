@@ -1,3 +1,13 @@
+.. image:: https://img.shields.io/pypi/v/jaraco.media.svg
+   :target: https://pypi.org/project/jaraco.media
+
+.. image:: https://img.shields.io/pypi/pyversions/jaraco.media.svg
+
+.. image:: https://img.shields.io/pypi/dm/jaraco.media.svg
+
+.. image:: https://img.shields.io/travis/jaraco/jaraco.media/master.svg
+   :target: http://travis-ci.org/jaraco/jaraco.media
+
 Troubleshooting
 ---------------
 
