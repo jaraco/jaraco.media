@@ -12,8 +12,8 @@ import sys
 import ctypes
 
 import six
+import path
 from jaraco.ui import menu
-from path import path
 from jaraco.text import local_format as lf
 try:
 	from jaraco.windows.power import no_sleep
@@ -194,11 +194,11 @@ def title_durations():
 def init_environment():
 	if platform.system() != 'Darwin':
 		return
-	lib = path('/Applications/MakeMKV.app/Contents/lib/libmmbd.dylib')
+	lib = path.Path('/Applications/MakeMKV.app/Contents/lib/libmmbd.dylib')
 	if not lib.isfile():
 		print("Need to install MakeMKV", file=sys.stderr)
 		raise SystemExit(1)
-	root = path('~/lib').expanduser()
+	root = path.Path('~/lib').expanduser()
 	root.makedirs_p()
 	link_names = 'libaacs.dylib', 'libbdplus.dylib'
 	consume(

@@ -8,13 +8,13 @@ VIDEOS_ROOT environment variable.
 import os
 import platform
 
-from path import path
+import path
 
 def get_media_root():
 	default = dict(
 		Windows='~/Videos',
 	).get(platform.system(), '~')
-	root = path(os.environ.get('VIDEOS_ROOT', default))
+	root = path.Path(os.environ.get('VIDEOS_ROOT', default))
 	return root.expanduser()
 
 movies_root = get_media_root() / 'Movies'

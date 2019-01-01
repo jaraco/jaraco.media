@@ -45,12 +45,12 @@ def guess_output_filename(name):
 	return ' '.join(names)
 
 def get_source():
-	default_device = path.path('D:\\')
+	default_device = path.Path('D:\\')
 	if platform.system() == 'Linux':
-		media = path.path('/media')
+		media = path.Path('/media')
 		default_device = media.dirs()[0]
 	if platform.system() == 'Darwin':
-		volumes = path.path('/Volumes')
+		volumes = path.Path('/Volumes')
 		candidates = (
 			subdir for subdir in volumes.dirs()
 			if (subdir/'BDMV').isdir() or (subdir/'VIDEO_TS').isdir()
