@@ -10,15 +10,18 @@ import subprocess
 
 from jaraco.text import local_format as lf
 
+
 def message(msg):
 	print("=" * 78)
 	print("=", msg)
 	print("=" * 78)
 
+
 def get_args():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('filename')
 	return parser.parse_args()
+
 
 def handle_command_line():
 	args = get_args()
@@ -27,12 +30,12 @@ def handle_command_line():
 	name, ext = os.path.splitext(basename)
 	message("Unpacking file: %s" % filename)
 	subprocess.Popen([
-		r'C:\Program Files (x86)\mkvtoolnix\mkvextract', # 'mkvextract',
+		r'C:\Program Files (x86)\mkvtoolnix\mkvextract',  # 'mkvextract',
 		'tracks', filename,
 		'2:temp_video.mp4',
 		'1:temp_audio.ogg',
 		# lf('3:{name}.srt'),
-		]).wait()
+	]).wait()
 
 	message(lf("Repacking file: {name}.mp4"))
 	subprocess.Popen([
@@ -42,10 +45,12 @@ def handle_command_line():
 		'-vcodec', 'copy',
 		# 'libx264',
 		'-r', '47.95',
-		name+'.mp4',]).wait()
+		name + '.mp4',
+	]).wait()
 
 	message("Cleaning files")
 	map(os.remove, ['temp_video.mp4', 'temp_audio.ogg'])
+
 
 if __name__ == "__main__":
 	handle_command_line()

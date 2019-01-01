@@ -24,9 +24,11 @@ from more_itertools.recipes import consume
 from . import dvd
 from . import config
 
+
 def source_is_high_def():
 	blueray_dir = os.path.join(dvd.get_source(), 'BDMV')
 	return os.path.isdir(blueray_dir)
+
 
 def get_handbrake_cmd():
 	quality = 22 if source_is_high_def() else 20
@@ -38,9 +40,11 @@ def get_handbrake_cmd():
 		# '--large-file',
 	]
 
+
 def is_hidden(filepath):
 	filepath = os.path.abspath(filepath)
 	return filepath.startswith('.') or has_hidden_attribute(filepath)
+
 
 def has_hidden_attribute(filepath):
 	try:
@@ -49,7 +53,9 @@ def has_hidden_attribute(filepath):
 		return False
 	return filesystem.GetFileAttributes(filepath).hidden
 
+
 path.is_hidden = is_hidden
+
 
 class TitleInfo(object):
 	def __init__(self, title_no, title, episode, root, ext):
@@ -67,6 +73,7 @@ class TitleInfo(object):
 	def __str__(self):
 		return self.title
 
+
 def get_titles(root):
 	title_durations()
 	title_no = eval(six.moves.input('enter starting DVD title number> '))
@@ -74,7 +81,7 @@ def get_titles(root):
 	if visible_files:
 		last_file = visible_files[-1].basename()
 		print('last file is', last_file)
-		last_episode = int(re.match('\d+', last_file).group(0)) + 1
+		last_episode = int(re.match(r'\d+', last_file).group(0)) + 1
 	else:
 		last_episode = 1
 	prompt = lf('enter starting episode [{last_episode}]> ')
@@ -82,10 +89,12 @@ def get_titles(root):
 	ext = '.mp4'
 	while True:
 		title = six.moves.input('enter title> ')
-		if not title: return
+		if not title:
+			return
 		yield TitleInfo(title_no, title, episode, root, ext)
 		title_no += 1
 		episode += 1
+
 
 def quick_brake():
 	name = dvd.infer_name()
@@ -99,6 +108,7 @@ def quick_brake():
 	]
 	with no_sleep():
 		subprocess.Popen(cmd).wait()
+
 
 def find_root():
 	root = config.tv_root
@@ -116,6 +126,7 @@ def find_root():
 	season_dir.makedirs_p()
 	return season_dir
 
+
 def get_starts(stream, limit):
 	"""
 	Read lines from a stream, but only read the first `limit` bytes of each
@@ -123,9 +134,11 @@ def get_starts(stream, limit):
 	"""
 	while True:
 		res = stream.read(limit)
-		if not res: return
+		if not res:
+			return
 		yield res.decode('utf-8')
 		stream.readline()
+
 
 def two_stage_encode(args):
 	"""
@@ -134,7 +147,8 @@ def two_stage_encode(args):
 	multiplexing begins and then returns a thread that will complete the
 	multiplexing so that another rip/encode job can proceed.
 	"""
-	proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+	proc = subprocess.Popen(
+		args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 	for start in get_starts(proc.stdout, 7):
 		if 'Muxing' in start:
 			# start a thread to finish the process
@@ -142,6 +156,7 @@ def two_stage_encode(args):
 			t = threading.Thread(target=proc.communicate)
 			t.start()
 			return t
+
 
 def multibrake():
 	root = find_root()
@@ -156,9 +171,11 @@ def multibrake():
 			threads.append(two_stage_encode(args))
 		[t.join() for t in threads if t]
 
+
 def parse_duration(str):
 	hours, minutes, seconds = map(int, str.split(':'))
 	return datetime.timedelta(hours=hours, minutes=minutes, seconds=seconds)
+
 
 def _link_to_title(lines):
 	res = []
@@ -175,8 +192,12 @@ def _link_to_title(lines):
 		res[-1].update({key: value})
 	return res
 
+
 def more_than_ten_min(title):
-	return 'duration' in title and title['duration'] > datetime.timedelta(minutes=10)
+	return (
+		'duration' in title and title['duration'] > datetime.timedelta(minutes=10)
+	)
+
 
 def title_durations():
 	cmd = get_handbrake_cmd() + ['-t', '0']
@@ -190,6 +211,7 @@ def title_durations():
 	lines = filter(more_than_ten_min, lines)
 	print("Title durations:")
 	[print(line['title'], line['duration']) for line in lines]
+
 
 def init_environment():
 	if platform.system() != 'Darwin':

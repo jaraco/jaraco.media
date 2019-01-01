@@ -25,6 +25,7 @@ Licensed for redistribution under the MIT license.
 
 """.lstrip()
 
+
 class SubEntry(object):
 	r"""
 	An SRT subtitle entry parser and manager.
@@ -53,7 +54,8 @@ class SubEntry(object):
 
 	Finally, you can easily re-serialize the entries.
 	>>> str(entries[2])
-	'3\n00:00:39,370 --> 00:00:48,870\nCopyright \xa92009-2010 Jason R. Coombs\nLicensed for redistribution under the MIT license.\n'
+	'3\n00:00:39,370 --> 00:00:48,870\nCopyright \xa92009-2010 Jason R. Coombs\n\
+	Licensed for redistribution under the MIT license.\n'
 	"""
 
 	time_sep = ' --> '
@@ -74,7 +76,9 @@ class SubEntry(object):
 		items = iter(items)
 		index = int(next(items))
 		start, stop = SubEntry.parse_span(next(items))
-		is_not_blank = lambda s: bool(s.strip())
+
+		def is_not_blank(s):
+			return bool(s.strip())
 		text = list(itertools.takewhile(is_not_blank, items))
 		return SubEntry(index, start, stop, text)
 
@@ -88,11 +92,11 @@ class SubEntry(object):
 		hr, min, sec = time_string.split(':')
 		sec, msec = sec.split(',')
 		return datetime.timedelta(
-			hours = int(hr),
-			minutes = int(min),
-			seconds = int(sec),
-			milliseconds = int(msec),
-			)
+			hours=int(hr),
+			minutes=int(min),
+			seconds=int(sec),
+			milliseconds=int(msec),
+		)
 
 	def __sub__(self, difference):
 		"Subtract a time difference from the start and stop values"
@@ -133,7 +137,7 @@ class SubEntry(object):
 			str(self.index),
 			self.format_span(),
 			''.join(self.text),
-			]
+		]
 		return '\n'.join(items)
 
 	@staticmethod
@@ -149,11 +153,13 @@ class SubEntry(object):
 		for entry in entries:
 			yield entry + adjustment
 
+
 class AdjustCommand(object):
 	@classmethod
 	def get_args(cls):
 		parser = argparse.ArgumentParser()
-		parser.add_argument('delta',
+		parser.add_argument(
+			'delta',
 			type=lambda s: datetime.timedelta(seconds=float(s)))
 		parser.add_argument('-s', '--start-entry', default=0, type=int)
 		parser.add_argument('-e', '--end-entry', type=int)

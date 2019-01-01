@@ -3,11 +3,13 @@ import os
 import urllib
 import traceback
 
+import path
 import cherrypy
 import genshi.template
 import httpagentparser
 
 from . import config
+
 
 class Movie(object):
 	def __init__(self, filename, class_):
@@ -21,12 +23,13 @@ class Movie(object):
 
 	@property
 	def link(self):
-		return 'http://www.imdb.com/find?s=all&'+self.search
+		return 'http://www.imdb.com/find?s=all&' + self.search
 
 	@property
 	def search(self):
 		q = urllib.urlencode(dict(q=self.title))
 		return q
+
 
 class Index(object):
 	def __init__(self, filter=None):
@@ -34,7 +37,7 @@ class Index(object):
 
 	def get_named_map(self):
 		result = {dir.name: dir for dir in config.movies_root.dirs()}
-		result[path.path('')] = config.movies_root
+		result[path.Path('')] = config.movies_root
 		return result
 
 	def get_media(self, root):
@@ -57,24 +60,29 @@ class Index(object):
 		name, ext = os.path.splitext(path)
 		return ext in media_extensions
 
+
 class Site:
 	@cherrypy.expose
 	def index(self):
 		cherrypy.response.headers['Content-Type'] = 'application/xhtml+xml'
 		template = self.get_template()
-		not_watched = lambda m: m.class_ != 'watched'
+
+		def not_watched(m):
+			return m.class_ != 'watched'
 		movies = Index(filter=not_watched)
-		return template.generate(movies=movies, title="Movies to Watch").render('xml')
+		res = template.generate(movies=movies, title="Movies to Watch")
+		return res.render('xml')
 
 	def get_template(self):
 		"""
 		iPhone user agent is
-		Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_1_2 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7D11 Safari/528.16
+		Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_1_2 like Mac OS X; en-us) \
+		AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7D11 Safari/528.16
 		"""
 		agent = httpagentparser.detect(cherrypy.request.headers['User-Agent'])
 		is_ios = agent.get('dist', {}).get('name', None) in ['iPhone', 'IPad']
 		template_type = 'iweb' if is_ios else ''
-		template_text = globals().get(template_type+'_template', default_template)
+		template_text = globals().get(template_type + '_template', default_template)
 		template = genshi.template.MarkupTemplate(template_text)
 		return template
 
@@ -85,16 +93,8 @@ class Site:
 				'tools.encode.on': True, 'tools.encode.encoding': 'utf-8',
 				'tools.decode.on': True,
 				'tools.trailing_slash.on': True,
-				},
-		}
-
-		static_dir = {
-			'/static': {
-				'tools.staticdir.on': True,
-				'tools.staticdir.dir': 'static',
-				'tools.staticdir.content_types': dict(svg='image/svg+xml'),
 			},
-			} # ignored for now
+		}
 
 		return cherrypy.tree.mount(cls(), root, config)
 
@@ -104,10 +104,12 @@ class Site:
 		try:
 			import isapi_wsgi
 			return isapi_wsgi.ISAPISimpleHandler(cls.setup_application('/media'))
-		except:
+		except Exception:
 			traceback.print_exc()
 
+
 __ExtensionFactory__ = Site.factory
+
 
 def handle_isapi():
 	"Install or remove the extension to the virtual directory"
@@ -123,18 +125,19 @@ def handle_isapi():
 	vd = isapi.install.VirtualDirParameters(
 		Server="Default Web Site",
 		Name="/media",
-		Description = "Media Index",
-		ScriptMaps = sm,
-		ScriptMapUpdate = "end",
-		)
+		Description="Media Index",
+		ScriptMaps=sm,
+		ScriptMapUpdate="end",
+	)
 	params.VirtualDirs = [vd]
 	isapi.install.HandleCommandLine(params)
+
 
 def serve():
 	Site.setup_application('/')
 	cherrypy.config.update({
 		'server.socket_host': '::0',
-		})
+	})
 	if hasattr(cherrypy.engine, "signal_handler"):
 		cherrypy.engine.signal_handler.subscribe()
 	if hasattr(cherrypy.engine, "console_control_handler"):
@@ -142,8 +145,10 @@ def serve():
 	cherrypy.engine.start()
 	cherrypy.engine.block()
 
+
 default_template = """\
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:py="http://genshi.edgewall.org/">
+<html xmlns="http://www.w3.org/1999/xhtml" \
+xmlns:py="http://genshi.edgewall.org/">
 	<body>
 		<h1 py:content="title">Title</h1>
 		<div py:for="movie in movies">
@@ -153,7 +158,9 @@ default_template = """\
 </html>
 """
 
-iweb_template = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+iweb_template = """<!DOCTYPE html PUBLIC \
+"-//W3C//DTD XHTML 1.0 Strict//EN" \
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:py="http://genshi.edgewall.org/">
@@ -161,8 +168,10 @@ iweb_template = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "htt
 <head>
 <meta content="yes" name="apple-mobile-web-app-capable" />
 <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" />
-<meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
-<link href="/iweb/css/style.css" rel="stylesheet" media="screen" type="text/css" />
+<meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, \
+user-scalable=no" name="viewport" />
+<link href="/iweb/css/style.css" rel="stylesheet" media="screen" \
+type="text/css" />
 <script src="/iweb/javascript/functions.js" type="text/javascript"></script>
 <title>Title of your page</title>
 <meta content="keyword1,keyword2,keyword3" name="keywords" />
@@ -181,7 +190,8 @@ iweb_template = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "htt
 			<img alt="Description" src="/iweb/thumbs/video.png" />
 			<span class="name">
 				<span py:replace="movie.title">Movie Title</span>
-				<span class="class" py:if="movie.class_">(<span py:replace="movie.class_" />)</span>
+				<span class="class" py:if="movie.class_">(<span py:replace="movie.class_" \
+/>)</span>
 			</span>
 			<span class="arrow"></span>
 		</a>
@@ -190,7 +200,8 @@ iweb_template = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "htt
 
 </div>
 <div id="footer">
-	<!-- Support iWebKit by sending us traffic; please keep this footer on your page, consider it a thank you for our work :-) -->
+	<!-- Support iWebKit by sending us traffic; please keep this footer on your \
+page, consider it a thank you for our work :-) -->
 	<a class="noeffect" href="http://iwebkit.net">Powered by iWebKit</a></div>
 
 </body>

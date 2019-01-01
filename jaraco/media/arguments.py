@@ -7,6 +7,7 @@ from collections import OrderedDict
 
 __all__ = ['DelimitedArgs', 'HyphenArgs', 'ColonDelimitedArgs']
 
+
 class DelimitedArgs(OrderedDict):
 	value_join = '='
 
@@ -24,6 +25,7 @@ class DelimitedArgs(OrderedDict):
 			self.value_join.join(item for item in arg if item)
 			for arg in self.arg_items()
 		]
+
 
 class HyphenArgs(DelimitedArgs):
 	"""
@@ -44,8 +46,8 @@ class HyphenArgs(DelimitedArgs):
 	>>> print(HyphenArgs([('a', '1'), ('b', None)]))
 	-a 1 -b
 	"""
-	value_join=' '
-	delimiter=' '
+	value_join = ' '
+	delimiter = ' '
 
 	@staticmethod
 	def add_hyphen(value):
@@ -56,6 +58,7 @@ class HyphenArgs(DelimitedArgs):
 
 	def hyphenated_keys(self):
 		return map(self.add_hyphen, super(self.__class__, self).keys())
+
 
 class ColonDelimitedArgs(DelimitedArgs):
 	"""

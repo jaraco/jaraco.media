@@ -17,16 +17,18 @@ from subprocess import Popen, PIPE, STDOUT
 
 import pkg_resources
 
+
 def banner():
 	'''Display the banner'''
 
-	print(50*'=')
+	print(50 * '=')
 	version = pkg_resources.require('jaraco.media')[0].version
 	print('jaraco.media version', version)
 	print('Jason R. Coombs <jaraco@jaraco.com>')
 	print('http://bitbucket.org/jaraco/jaraco.media')
-	print(50*'=')
+	print(50 * '=')
 	print()
+
 
 class MetaTitleParser(type):
 	"""
@@ -39,6 +41,7 @@ class MetaTitleParser(type):
 		cls._all_parsers.add(cls)
 		# remove any base classes
 		cls._all_parsers -= set(bases)
+
 
 class TitleParser(object):
 	__metaclass__ = MetaTitleParser
@@ -60,49 +63,66 @@ class TitleParser(object):
 		"Create all of the title parsers associated with this info"
 		return [parser(info) for parser in cls._all_parsers]
 
+
 class MaxTitlesParser(TitleParser):
-	pattern = '^There are (?P<max_titles>\d+) titles'
+	pattern = r'^There are (?P<max_titles>\d+) titles'
+
 	def handle(self, match):
 		self.info['max_titles'] = int(match.groupdict()['max_titles'])
 
+
 class ChaptersParser(TitleParser):
-	pattern = '^ID_DVD_TITLE_(?P<title>\d+)_CHAPTERS=(?P<chapters>\d+)'
+	pattern = r'^ID_DVD_TITLE_(?P<title>\d+)_CHAPTERS=(?P<chapters>\d+)'
+
 	def handle(self, match):
 		title, chapters = map(int, map(match.groupdict().get, ['title', 'chapters']))
 		if title == self.info['number']:
 			self.info['chapters'] = chapters
 
+
 class AudioParser(TitleParser):
-	pattern = '^audio stream: (?P<stream>\d+) format: (?P<format>.+) language: (?P<language>.+) aid: (?P<aid>\d+)'
+	pattern = (
+		r'^audio stream: (?P<stream>\d+) format: (?P<format>.+) '
+		r'language: (?P<language>.+) aid: (?P<aid>\d+)'
+	)
+
 	def handle(self, match):
 		'''Parse a single audio-channel line'''
 		d = match.groupdict()
 		d['aid'] = int(d['aid'])
 		self.info['audiotracks'][d['aid']] = d
 
+
 class SubtitleParser(TitleParser):
-	pattern = '^subtitle \(\s*sid\s*\): (?P<sid>\d+) language: (?P<language>.*)'
+	pattern = r'^subtitle \(\s*sid\s*\): (?P<sid>\d+) language: (?P<language>.*)'
+
 	def handle(self, match):
 		'''Parse a single subtitle-channel line'''
 		d = match.groupdict()
 		d['sid'] = int(d['sid'])
 		self.info['subtitles'].append(d)
 
+
 class NaviParser(TitleParser):
 	pattern = 'Found NAVI packet!'
+
 	def handle(self, match):
-		self.info['navi_count']+=1
+		self.info['navi_count'] += 1
+
 
 class LengthParser(TitleParser):
-	pattern = 'ID_LENGTH=(?P<length>[\d.]+)'
+	pattern = r'ID_LENGTH=(?P<length>[\d.]+)'
+
 	def handle(self, match):
 		length = float(match.groupdict()['length'])
 		length = datetime.timedelta(seconds=length)
 		self.info['length'] = length
 
+
 class TitleInfo(dict):
 	def __init__(self, *args, **kwargs):
-		self.update(max_titles=0, chapters=0, audiotracks={}, subtitles=[], navi_count=0)
+		self.update(
+			max_titles=0, chapters=0, audiotracks={}, subtitles=[], navi_count=0)
 		dict.__init__(self, *args, **kwargs)
 
 	def __str__(self):
@@ -112,16 +132,21 @@ class TitleInfo(dict):
 		buffer.append('Chapters: %(chapters)s' % self)
 		buffer.append('Audio tracks:')
 		aud_fmt = '\taid=%(aid)3i lang=%(language)s fmt=%(format)s'
-		fmt_aud_info = lambda i: aud_fmt % i
+
+		def fmt_aud_info(i):
+			return aud_fmt % i
 		buffer.extend(map(fmt_aud_info, self['audiotracks'].values()))
 		buffer.append('Subtitles:')
 		sub_fmt = '\tsid=%(sid)3i lang=%(language)s'
-		fmt_sub_info = lambda i: sub_fmt % i
+
+		def fmt_sub_info(i):
+			return sub_fmt % i
 		buffer.extend(map(fmt_sub_info, self['subtitles']))
 		return '\n'.join(buffer)
 
 	def has_audio(self):
 		return self['audiotracks']
+
 
 def title_info(device, title):
 	'''Get title information about a single title.
@@ -132,7 +157,10 @@ def title_info(device, title):
 	'''
 
 	# need at least two -v to get "Found NAVI packet"
-	mpcmd = 'mplayer -v -v -v -identify -nosound -frames 0 -dvd-device %s dvd://%i -vo null'
+	mpcmd = (
+		'mplayer -v -v -v -identify -nosound -frames 0 '
+		'-dvd-device %s dvd://%i -vo null'
+	)
 
 	cmd = mpcmd % (device, title)
 	mplayer = Popen(cmd, stdout=PIPE, stderr=STDOUT)
@@ -144,9 +172,11 @@ def title_info(device, title):
 	for line in mplayer.stdout:
 		for parser in parsers:
 			parser(line)
-		if info['navi_count'] > 100: break
+		if info['navi_count'] > 100:
+			break
 
 	return info
+
 
 def main():
 	longest_title_info = None
@@ -154,8 +184,10 @@ def main():
 	banner()
 
 	parser = argparse.ArgumentParser(usage=__doc__)
-	parser.add_argument('-t', '--title', help='only search a specific title', type=int, default=0)
-	parser.add_argument('-d', '--device', help='the device (default d:)', default='d:')
+	parser.add_argument(
+		'-t', '--title', help='only search a specific title', type=int, default=0)
+	parser.add_argument(
+		'-d', '--device', help='the device (default d:)', default='d:')
 	args = parser.parse_args()
 
 	if not args.title:
@@ -163,7 +195,8 @@ def main():
 		max_title = '?'
 		# Walk through all titles
 		for title in count(1):
-			if isinstance(max_title, int) and title > max_title: break
+			if isinstance(max_title, int) and title > max_title:
+				break
 			sys.stdout.write('Reading title %i/%s   \r' % (title, max_title))
 			sys.stdout.flush()
 
@@ -171,7 +204,13 @@ def main():
 			titles.append(info)
 			# Remember info about the title with the most chapters,
 			# but only if it has audio tracks.
-			if info['audiotracks'] and (longest_title_info is None or info['chapters'] > longest_title_info['chapters']):
+			if (
+				info['audiotracks']
+				and (
+					longest_title_info is None
+					or info['chapters'] > longest_title_info['chapters']
+				)
+			):
 				longest_title_info = info
 
 			max_title = info['max_titles']
@@ -193,6 +232,7 @@ def main():
 		info = title_info(args.device, args.title)
 
 		print(info)
+
 
 if __name__ == '__main__':
 	main()

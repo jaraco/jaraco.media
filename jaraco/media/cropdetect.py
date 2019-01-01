@@ -8,11 +8,13 @@ import six
 
 log = logging.getLogger(__name__)
 
+
 def terminate(process):
 	try:
 		process.terminate()
 	except WindowsError:
-		pass # process has probably already terminated on its own
+		pass  # process has probably already terminated on its own
+
 
 class consecutive_count(object):
 	def __init__(self):
@@ -26,6 +28,7 @@ class consecutive_count(object):
 			self.count = 0
 			self.last = item
 		return self.count
+
 
 def consecutive_same(items):
 	"""A generator that returns the count of consecutive
@@ -41,10 +44,14 @@ def consecutive_same(items):
 	counter = consecutive_count()
 	return six.moves.map(counter, items)
 
+
 def within_consecutive_limit(limit):
 	counter = consecutive_count()
-	within_limit = lambda item: counter(item) < limit
+
+	def within_limit(item):
+		return counter(item) < limit
 	return within_limit
+
 
 def parse_args():
 	parser = argparse.ArgumentParser()
@@ -57,6 +64,7 @@ def parse_args():
 	log.info(['using default title', 'using title %s' % title][bool(title)])
 	return device, title
 
+
 def build_command(dvd_device=None, title=""):
 	from jaraco.media.dvd import MEncoderCommand, HyphenArgs
 	command = MEncoderCommand()
@@ -64,16 +72,18 @@ def build_command(dvd_device=None, title=""):
 	command.audio_options = HyphenArgs(nosound=None)
 	limit = 24
 	round = 16
-	command.video_filter = HyphenArgs(vf='cropdetect=%(limit)s:%(round)s' % vars())
+	command.video_filter = HyphenArgs(
+		vf='cropdetect=%(limit)s:%(round)s' % locals())
 	command.video_options = HyphenArgs(ovc='lavc')
-	command['o']=os.path.devnull
-	#command['ss'] = '20' # skip the first 20 seconds
+	command['o'] = os.path.devnull
+	# command['ss'] = '20' # skip the first 20 seconds
 	# As a rule-of-thumb, use the 2nd or 3rd chapter to determine the crop;
 	#  The first chapter can tend to have a different format.
 	command['chapter'] = '2'
 
 	dvd_device and command.set_device(dvd_device)
 	return command
+
 
 def get_input(command=None):
 	from subprocess import Popen, PIPE, list2cmdline
@@ -84,11 +94,13 @@ def get_input(command=None):
 	mencoder = Popen(args, stdout=PIPE, stderr=null)
 	return mencoder
 
+
 class InsufficientFramesError(RuntimeError):
 	pass
 
+
 def process_input(process, n_frames=1000):
-	pattern = re.compile('.*crop=(\d+:\d+:\d+:\d+).*')
+	pattern = re.compile(r'.*crop=(\d+:\d+:\d+:\d+).*')
 
 	crop_matches = six.moves.filter(
 		None, six.moves.map(pattern.match, process.stdout))
@@ -100,18 +112,22 @@ def process_input(process, n_frames=1000):
 	try:
 		target = crop_values.next()
 	except StopIteration:
-		raise InsufficientFramesError("Not enough frames to detect %d consecutive same" % n_frames)
+		raise InsufficientFramesError(
+			"Not enough frames to detect %d consecutive same" % n_frames)
 	finally:
 		clean_up(process)
 	return target
+
 
 def clean_up(process):
 	terminate(process)
 	process.stdout.flush()
 
+
 def get_crop(dvd_device=None, title=''):
 	log.info('Detecting crop')
 	return process_input(get_input(build_command(dvd_device, title)))
+
 
 def execute(command=None):
 	logging.basicConfig(level=logging.INFO)
@@ -120,6 +136,7 @@ def execute(command=None):
 		log.info('crop is %s', process_input(mencoder))
 	except InsufficientFramesError as e:
 		log.warning(e)
+
 
 if __name__ == '__main__':
 	execute()

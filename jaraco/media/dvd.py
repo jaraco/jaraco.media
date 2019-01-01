@@ -14,18 +14,20 @@ import path
 import inflect
 try:
 	import win32api
-except:
+except Exception:
 	pass
 from jaraco.text import trim
 from jaraco.itertools import flatten
 
 from jaraco.media import cropdetect
-from jaraco.media.arguments import *
+from jaraco.media.arguments import HyphenArgs, ColonDelimitedArgs
 
 log = logging.getLogger(__name__)
 
-rangePattern = re.compile('(\d+)(?:-(\d+))?')
-delimiterPattern = re.compile('\s*[, ;]\s*')
+
+rangePattern = re.compile(r'(\d+)(?:-(\d+))?')
+delimiterPattern = re.compile(r'\s*[, ;]\s*')
+
 
 def guess_output_filename(name):
 	"""
@@ -44,6 +46,7 @@ def guess_output_filename(name):
 		names = names[:-1]
 	return ' '.join(names)
 
+
 def get_source():
 	default_device = path.Path('D:\\')
 	if platform.system() == 'Linux':
@@ -53,10 +56,11 @@ def get_source():
 		volumes = path.Path('/Volumes')
 		candidates = (
 			subdir for subdir in volumes.dirs()
-			if (subdir/'BDMV').isdir() or (subdir/'VIDEO_TS').isdir()
+			if (subdir / 'BDMV').isdir() or (subdir / 'VIDEO_TS').isdir()
 		)
 		default_device = next(candidates, None)
 	return os.environ.get('DVD', default_device)
+
 
 def infer_name(device=None):
 	device = device or get_source()
@@ -66,6 +70,7 @@ def infer_name(device=None):
 		label = os.path.basename(device)
 	return guess_output_filename(label)
 
+
 class MEncoderCommand(object):
 	"""
 	>>> import mock
@@ -74,7 +79,8 @@ class MEncoderCommand(object):
 	>>> with patched_finder:
 	...     cmd = MEncoderCommand()
 	>>> cmd.source = ['dvd://']
-	>>> lavcopts = ColonDelimitedArgs(vcodec='libx264',threads='2',vbitrate='1200',autoaspect=None,)
+	>>> lavcopts = ColonDelimitedArgs(
+	...     vcodec='libx264',threads='2',vbitrate='1200',autoaspect=None,)
 	>>> cmd.video_options = HyphenArgs(lavcopts=lavcopts)
 	>>> with patched_finder:
 	...     cmd2 = cmd.copy()
@@ -92,10 +98,10 @@ class MEncoderCommand(object):
 		program_files = (
 			os.environ.get('PROGRAMFILES(X86)') or
 			os.environ.get('PROGRAMFILES')
-			)
+		)
 		search_path = [
 			os.path.join(program_files, r'mencoder\mencoder.exe'),
-			]
+		]
 		found = (path for path in search_path if os.path.exists(path))
 		try:
 			return next(found)
@@ -109,11 +115,15 @@ class MEncoderCommand(object):
 		return result
 
 	def get_args(self):
-		arg_order = 'exe_path', 'source', 'device', 'video_filter', 'video_options', 'audio_options', 'other_options'
+		arg_order = (
+			'exe_path', 'source', 'device', 'video_filter', 'video_options',
+			'audio_options', 'other_options',
+		)
 		assert getattr(self, 'source', None) is not None
 		for arg in arg_order:
 			arg = getattr(self, arg, None)
-			if arg is None: continue
+			if arg is None:
+				continue
 			for value in arg:
 				yield str(value)
 
@@ -122,19 +132,22 @@ class MEncoderCommand(object):
 		self.device = HyphenArgs({'dvd-device': value})
 
 	def __setitem__(self, key, value):
-		self.other_options[key]=value
+		self.other_options[key] = value
 
 	def __getitem__(self, key):
 		return self.other_options[key]
+
 
 def expandRange(title_range):
 	start, stop = rangePattern.match(title_range)
 	stop = stop or start
 	return range(int(start), int(stop) + 1)
 
+
 def getTitles(title_spec_string):
 	title_specs = delimiterPattern.split(title_spec_string)
 	title_specs = flatten(map(expandRange, title_specs))
+
 
 class MultiPassHandler(object):
 	def __init__(self, command, passes=2):
@@ -149,7 +162,7 @@ class MultiPassHandler(object):
 
 	def __iter__(self):
 		inflect_eng = inflect.engine()
-		for current_pass in range(1, self.passes+1):
+		for current_pass in range(1, self.passes + 1):
 			current_pass_th = inflect_eng.ordinal(current_pass)
 			log.info('Modifying command for %s pass.' % current_pass_th)
 			method = [self.early_pass, self.last_pass][current_pass == self.passes]
@@ -157,7 +170,7 @@ class MultiPassHandler(object):
 
 	def early_pass(self, pass_number):
 		command = self.command.copy()
-		command.audio_options=HyphenArgs(nosound=None)
+		command.audio_options = HyphenArgs(nosound=None)
 		command.video_options['lavcopts'].update(turbo=None, vpass=str(pass_number))
 		command['o'] = os.path.devnull
 		return command
@@ -177,8 +190,9 @@ class MultiPassHandler(object):
 			return
 		try:
 			os.path.exists(filename) and os.remove(filename)
-		except:
+		except Exception:
 			log.error('Error removing logfile %s', filename)
+
 
 def get_x264_options():
 	lavcopts = ColonDelimitedArgs()
@@ -186,10 +200,11 @@ def get_x264_options():
 	lavcopts.update(threads='2')
 	lavcopts.update(vbitrate='1200')
 	lavcopts.update(autoaspect=None)
-	options=HyphenArgs()
+	options = HyphenArgs()
 	options.update(ovc='lavc')
 	options.update(lavcopts=lavcopts)
 	return options
+
 
 def get_mpeg4_options():
 	lavcopts = ColonDelimitedArgs()
@@ -197,19 +212,22 @@ def get_mpeg4_options():
 	lavcopts.update(vhq=None)
 	lavcopts.update(vbitrate='1200')
 	lavcopts.update(autoaspect=None)
-	options=HyphenArgs()
+	options = HyphenArgs()
 	options.update(ovc='lavc')
 	options.update(lavcopts=lavcopts)
 	options.update(ffourcc='XVID')
 	return options
 
+
 def get_video_copy_options():
 	return HyphenArgs(ovc='copy', ffourcc='XVID')
+
 
 def get_audio_copy_options():
 	return HyphenArgs(
 		oac='copy',
-		)
+	)
+
 
 def get_mp3_options():
 	return HyphenArgs(
@@ -218,8 +236,9 @@ def get_mp3_options():
 			abr=None,
 			br='96',
 			vol='6',
-			)
 		)
+	)
+
 
 def encode_dvd():
 	"""
@@ -228,11 +247,17 @@ def encode_dvd():
 	Encode a DVD where the source is a DVD drive or RIP directory of a DVD.
 	"""
 	parser = argparse.ArgumentParser(usage=trim(encode_dvd.__doc__))
-	#parser.add_argument('-t', '--titles', 'enter the title or titles to process (i.e. 1 or 1,5 or 1-5)' default='')
-	parser.add_argument('-t', '--title', help='enter the dvd title number to process', default='')
+	# parser.add_argument(
+	#     '-t', '--titles',
+	#     'enter the title or titles to process (i.e. 1 or 1,5 or 1-5)',
+	#     default='')
+	parser.add_argument(
+		'-t', '--title', help='enter the dvd title number to process', default='')
 	parser.add_argument('-s', '--subtitle', help='enter the subtitle ID')
-	parser.add_argument('--test', help='just encode one chapter', default=False, action='store_true')
-	parser.add_argument('-l', '--log-level', help='log level (debug, info, warning, error)',
+	parser.add_argument(
+		'--test', help='just encode one chapter', default=False, action='store_true')
+	parser.add_argument(
+		'-l', '--log-level', help='log level (debug, info, warning, error)',
 		default='info')
 	parser.add_argument('device', nargs='?')
 	args = parser.parse_args()
@@ -241,7 +266,7 @@ def encode_dvd():
 
 	command = MEncoderCommand()
 
-	device = args.device or raw_input('enter device> ')
+	device = args.device or six.input('enter device> ')
 
 	print('device is', device)
 	command.set_device(device)
@@ -250,7 +275,7 @@ def encode_dvd():
 
 	default_title = infer_name(device)
 	title_prompt = 'Enter output filename [%s]> ' % default_title
-	user_title = raw_input(title_prompt) or default_title
+	user_title = six.input(title_prompt) or default_title
 
 	filename = '%(user_title)s.avi' % vars()
 	target = os.path.join(videos_path, user_title)
@@ -271,7 +296,7 @@ def encode_dvd():
 	command.video_filter = HyphenArgs(
 		sws='2',
 		vf=ColonDelimitedArgs(crop=crop),
-		)
+	)
 
 	command.video_options = get_mpeg4_options()
 
@@ -292,6 +317,7 @@ def encode_dvd():
 		proc = subprocess.Popen(_pass_args, stderr=errors)
 		proc.wait()
 
+
 def re_encode(file, video_options, audio_options):
 	command = MEncoderCommand()
 	fn, ext = os.path.splitext(file)
@@ -303,7 +329,9 @@ def re_encode(file, video_options, audio_options):
 	errors = open(os.devnull, 'w')
 	print('executing with', tuple(command.get_args()))
 	proc = subprocess.Popen(command.get_args(), stderr=errors)
-	if(proc.wait() == 0): print('success')
+	if(proc.wait() == 0):
+		print('success')
+
 
 def transcode():
 	"""
@@ -318,6 +346,7 @@ def transcode():
 
 	re_encode(args.source, get_video_copy_options(), get_mp3_options())
 
+
 def fix_fourcc():
 	"""
 	%prog <source_file>
@@ -330,6 +359,7 @@ def fix_fourcc():
 
 	re_encode(args.source, get_video_copy_options(), get_audio_copy_options())
 
+
 def rip_subtitles():
 	"""
 	%prog <dvd_source>
@@ -337,15 +367,15 @@ def rip_subtitles():
 	logging.basicConfig(level=logging.INFO)
 
 	parser = argparse.ArgumentParser(usage=trim(encode_dvd.__doc__))
-	#parser.add_argument('-t', '--titles', 'enter the title or titles to process (i.e. 1 or 1,5 or 1-5)' default='')
-	parser.add_argument('-t', '--title', help='enter the dvd title number to process', default='')
+	parser.add_argument(
+		'-t', '--title', help='enter the dvd title number to process', default='')
 	parser.add_argument('-s', '--subtitle', help='enter the subtitle ID')
 	parser.add_argument('device', nargs='?')
 	args = parser.parse_args()
 
 	command = MEncoderCommand()
 
-	device = args.device or raw_input('enter device> ')
+	device = args.device or six.input('enter device> ')
 
 	print('device is', device)
 	command.set_device(device)
@@ -354,10 +384,10 @@ def rip_subtitles():
 
 	default_title = infer_name(device)
 	title_prompt = 'Enter output filename [%s]> ' % default_title
-	user_title = raw_input(title_prompt) or default_title
+	user_title = six.input(title_prompt) or default_title
 	target = os.path.join(videos_path, user_title)
 
-	command.source = ['dvd://%(title)s' % vars(options)]
+	command.source = ['dvd://%(title)s' % vars(args)]
 
 	command['o'] = os.devnull
 
@@ -368,12 +398,13 @@ def rip_subtitles():
 
 	command['vobsubout'] = target
 	command['vobsuboutindex'] = command['sid']
-	#command['vobsuboutid'] = 'en'
+	# command['vobsuboutid'] = 'en'
 
 	command = tuple(command.get_args())
 	errors = open(os.devnull, 'w')
 	proc = subprocess.Popen(command, stderr=errors)
 	proc.wait()
+
 
 def update_anydvd():
 	import jaraco.net.http
