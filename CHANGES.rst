@@ -1,3 +1,9 @@
+3.0
+===
+
+Moved ISAPI script to package. Invoke with
+``python -m jaraco.media.isapiapp``.
+
 2.7
 ===
 
