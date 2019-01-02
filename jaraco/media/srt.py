@@ -56,8 +56,7 @@ class SubEntry(object):
 
 	Finally, you can easily re-serialize the entries.
 	>>> str(entries[2])
-	'3\n00:00:39,370 --> 00:00:48,870\nCopyright \xa92009-2010 Jason R. Coombs\n\
-	Licensed for redistribution under the MIT license.\n'
+	'3\n00:00:39,370 --> 00:00:48,870\nCopyright... MIT license.\n'
 	"""
 
 	time_sep = ' --> '
