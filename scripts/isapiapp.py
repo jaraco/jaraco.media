@@ -1,2 +1,5 @@
-from jaraco.media.index import __ExtensionFactory__, handle_isapi
-if __name__ == '__main__': handle_isapi()
+from jaraco.media import index
+
+if __name__ == '__main__':
+	__ExtensionFactory__ = index.__ExtensionFactory__
+	index.handle_isapi()
