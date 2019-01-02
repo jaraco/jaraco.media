@@ -69,7 +69,10 @@ class SubEntry(object):
 		if isinstance(file, six.string_types):
 			file = open(file)
 		while True:
-			yield SubEntry.get_entry(file)
+			try:
+				yield SubEntry.get_entry(file)
+			except StopIteration:
+				return
 
 	@staticmethod
 	def get_entry(items):
