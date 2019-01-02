@@ -45,8 +45,10 @@ class SubEntry(object):
 	3
 	>>> entries[0].text
 	['jaraco.media.srt presents\n']
-	>>> entries[1].start
-	datetime.timedelta(0, 29, 590000)
+	>>> entries[1].start.seconds
+	29
+	>>> entries[1].start.microseconds
+	590000
 
 	Then, you can adjust when the entries occur. For example, this adds
 	one second to the start and end times for the last subtitle.
