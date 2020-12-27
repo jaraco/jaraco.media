@@ -14,7 +14,7 @@ try:
     import win32api
 except Exception:
     pass
-from jaraco.text import trim
+from jaraco.text import trim, WordSet, FoldedCase
 from jaraco.itertools import flatten
 
 from jaraco.media import cropdetect
@@ -38,11 +38,8 @@ def guess_output_filename(name):
     >>> str(guess_output_filename('COWBOYS_ALIENS_RENTAL'))
     'Cowboys Aliens'
     """
-    names = name.split('_')
-    names = list(map(str.capitalize, names))
-    if names and names[-1] == 'Rental':
-        names = names[:-1]
-    return ' '.join(names)
+    rental = FoldedCase('rental')
+    return WordSet.parse(name).trim_right(rental).capitalized().space_separated()
 
 
 def get_source():
