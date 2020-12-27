@@ -12,11 +12,11 @@ import path
 
 
 def get_media_root():
-	default = dict(
-		Windows='~/Videos',
-	).get(platform.system(), '~')
-	root = path.Path(os.environ.get('VIDEOS_ROOT', default))
-	return root.expanduser()
+    default = dict(
+        Windows='~/Videos',
+    ).get(platform.system(), '~')
+    root = path.Path(os.environ.get('VIDEOS_ROOT', default))
+    return root.expanduser()
 
 
 movies_root = get_media_root() / 'Movies'
