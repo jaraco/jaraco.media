@@ -1,3 +1,8 @@
+v3.1.0
+======
+
+Packaging refresh and cleanup.
+
 3.0
 ===
 
