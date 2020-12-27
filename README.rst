@@ -1,16 +1,21 @@
 .. image:: https://img.shields.io/pypi/v/jaraco.media.svg
-   :target: https://pypi.org/project/jaraco.media
+   :target: `PyPI link`_
 
 .. image:: https://img.shields.io/pypi/pyversions/jaraco.media.svg
+   :target: `PyPI link`_
 
-.. image:: https://img.shields.io/travis/jaraco/jaraco.media/master.svg
-   :target: https://travis-ci.org/jaraco/jaraco.media
+.. _PyPI link: https://pypi.org/project/jaraco.media
 
-.. .. image:: https://img.shields.io/appveyor/ci/jaraco/jaraco-media/master.svg
-..    :target: https://ci.appveyor.com/project/jaraco/jaraco-media/branch/master
+.. image:: https://github.com/jaraco/jaraco.media/workflows/Automated%20Tests/badge.svg
+   :target: https://github.com/jaraco/jaraco.media/actions?query=workflow%3A%22Automated+Tests%22
+   :alt: Automated Tests
 
-.. .. image:: https://readthedocs.org/projects/jaracomedia/badge/?version=latest
-..    :target: https://jaracomedia.readthedocs.io/en/latest/?badge=latest
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+   :target: https://github.com/psf/black
+   :alt: Code style: Black
+
+.. .. image:: https://readthedocs.org/projects/skeleton/badge/?version=latest
+..    :target: https://skeleton.readthedocs.io/en/latest/?badge=latest
 
 Troubleshooting
 ---------------
