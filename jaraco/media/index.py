@@ -76,10 +76,10 @@ class Site:
 
     def get_template(self):
         """
-		iPhone user agent is
-		Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_1_2 like Mac OS X; en-us) \
-		AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7D11 Safari/528.16
-		"""
+        iPhone user agent is
+        Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_1_2 like Mac OS X; en-us) \
+        AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7D11 Safari/528.16
+        """
         agent = httpagentparser.detect(cherrypy.request.headers['User-Agent'])
         is_ios = agent.get('dist', {}).get('name', None) in ['iPhone', 'IPad']
         template_type = 'iweb' if is_ios else ''
@@ -153,12 +153,12 @@ def serve():
 default_template = """\
 <html xmlns="http://www.w3.org/1999/xhtml" \
 xmlns:py="http://genshi.edgewall.org/">
-	<body>
-		<h1 py:content="title">Title</h1>
-		<div py:for="movie in movies">
-			<a href="${movie.link}" py:content="movie.title">Movie Title</a>
-		</div>
-	</body>
+    <body>
+        <h1 py:content="title">Title</h1>
+        <div py:for="movie in movies">
+            <a href="${movie.link}" py:content="movie.title">Movie Title</a>
+        </div>
+    </body>
 </html>
 """
 
@@ -166,8 +166,8 @@ iweb_template = """<!DOCTYPE html PUBLIC \
 "-//W3C//DTD XHTML 1.0 Strict//EN" \
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html
-	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:py="http://genshi.edgewall.org/">
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:py="http://genshi.edgewall.org/">
 
 <head>
 <meta content="yes" name="apple-mobile-web-app-capable" />
@@ -184,29 +184,29 @@ type="text/css" />
 
 <body>
 <div id="topbar">
-	<div id="title" py:content="title">Title</div>
+    <div id="title" py:content="title">Title</div>
 </div>
 <div id="content">
 
 <ul py:for="movie in movies" class="pageitem">
-	<li class="menu">
-		<a href="imdb:///find?${movie.search}">
-			<img alt="Description" src="/iweb/thumbs/video.png" />
-			<span class="name">
-				<span py:replace="movie.title">Movie Title</span>
-				<span class="class" py:if="movie.class_">(<span py:replace="movie.class_" \
-/>)</span>
-			</span>
-			<span class="arrow"></span>
-		</a>
-	</li>
+    <li class="menu">
+        <a href="imdb:///find?${movie.search}">
+            <img alt="Description" src="/iweb/thumbs/video.png" />
+            <span class="name">
+                <span py:replace="movie.title">Movie Title</span>
+                <span class="class" py:if="movie.class_">(\
+<span py:replace="movie.class_" />)</span>
+            </span>
+            <span class="arrow"></span>
+        </a>
+    </li>
 </ul>
 
 </div>
 <div id="footer">
-	<!-- Support iWebKit by sending us traffic; please keep this footer on your \
+    <!-- Support iWebKit by sending us traffic; please keep this footer on your \
 page, consider it a thank you for our work :-) -->
-	<a class="noeffect" href="http://iwebkit.net">Powered by iWebKit</a></div>
+    <a class="noeffect" href="http://iwebkit.net">Powered by iWebKit</a></div>
 
 </body>
 
