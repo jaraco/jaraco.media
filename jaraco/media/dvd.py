@@ -1,5 +1,3 @@
-from __future__ import unicode_literals, print_function
-
 import argparse
 import re
 import os
@@ -9,7 +7,6 @@ from copy import deepcopy
 import logging
 import platform
 
-import six
 import path
 import inflect
 
@@ -42,7 +39,7 @@ def guess_output_filename(name):
     'Cowboys Aliens'
     """
     names = name.split('_')
-    names = list(map(six.text_type.capitalize, names))
+    names = list(map(str.capitalize, names))
     if names and names[-1] == 'Rental':
         names = names[:-1]
     return ' '.join(names)
@@ -73,7 +70,7 @@ def infer_name(device=None):
     return guess_output_filename(label)
 
 
-class MEncoderCommand(object):
+class MEncoderCommand:
     """
     >>> import mock
     >>> patched_finder = mock.patch.object(MEncoderCommand,
@@ -155,7 +152,7 @@ def getTitles(title_spec_string):
     title_specs = flatten(map(expandRange, title_specs))
 
 
-class MultiPassHandler(object):
+class MultiPassHandler:
     def __init__(self, command, passes=2):
         self.command = command.copy()
         self.setup_log_file()
@@ -277,7 +274,7 @@ def encode_dvd():
 
     command = MEncoderCommand()
 
-    device = args.device or six.input('enter device> ')
+    device = args.device or input('enter device> ')
 
     print('device is', device)
     command.set_device(device)
@@ -286,7 +283,7 @@ def encode_dvd():
 
     default_title = infer_name(device)
     title_prompt = 'Enter output filename [%s]> ' % default_title
-    user_title = six.input(title_prompt) or default_title
+    user_title = input(title_prompt) or default_title
 
     filename = '%(user_title)s.avi' % vars()
     target = os.path.join(videos_path, user_title)
@@ -387,7 +384,7 @@ def rip_subtitles():
 
     command = MEncoderCommand()
 
-    device = args.device or six.input('enter device> ')
+    device = args.device or input('enter device> ')
 
     print('device is', device)
     command.set_device(device)
@@ -396,7 +393,7 @@ def rip_subtitles():
 
     default_title = infer_name(device)
     title_prompt = 'Enter output filename [%s]> ' % default_title
-    user_title = six.input(title_prompt) or default_title
+    user_title = input(title_prompt) or default_title
     target = os.path.join(videos_path, user_title)
 
     command.source = ['dvd://%(title)s' % vars(args)]

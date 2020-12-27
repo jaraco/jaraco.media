@@ -1,13 +1,7 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import unicode_literals
-
 import datetime
 import itertools
 import argparse
 import sys
-
-import six
 
 _sample_srt_entries = """
 1
@@ -26,7 +20,7 @@ Licensed for redistribution under the MIT license.
 """.lstrip()
 
 
-class SubEntry(object):
+class SubEntry:
     r"""
     An SRT subtitle entry parser and manager.
     To get the SubEntry entries from an SRT file, just call get_entries
@@ -67,7 +61,7 @@ class SubEntry(object):
 
     @staticmethod
     def get_entries(file):
-        if isinstance(file, six.string_types):
+        if isinstance(file, str):
             file = open(file)
         while True:
             try:
@@ -147,7 +141,7 @@ class SubEntry(object):
 
     @staticmethod
     def write_entries(file, entries):
-        if isinstance(file, six.string_types):
+        if isinstance(file, str):
             file = open(file, 'w')
         for entry in entries:
             file.write(str(entry))
@@ -159,7 +153,7 @@ class SubEntry(object):
             yield entry + adjustment
 
 
-class AdjustCommand(object):
+class AdjustCommand:
     @classmethod
     def get_args(cls):
         parser = argparse.ArgumentParser()

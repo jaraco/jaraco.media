@@ -4,8 +4,6 @@ import itertools
 import logging
 import argparse
 
-import six
-
 log = logging.getLogger(__name__)
 
 
@@ -16,7 +14,7 @@ def terminate(process):
         pass  # process has probably already terminated on its own
 
 
-class consecutive_count(object):
+class consecutive_count:
     def __init__(self):
         self.count = 0
         self.last = None
@@ -42,7 +40,7 @@ def consecutive_same(items):
     (0, 0, 0)
     """
     counter = consecutive_count()
-    return six.moves.map(counter, items)
+    return map(counter, items)
 
 
 def within_consecutive_limit(limit):
@@ -104,8 +102,8 @@ class InsufficientFramesError(RuntimeError):
 def process_input(process, n_frames=1000):
     pattern = re.compile(r'.*crop=(\d+:\d+:\d+:\d+).*')
 
-    crop_matches = six.moves.filter(None, six.moves.map(pattern.match, process.stdout))
-    crop_values = six.moves.map(lambda match: match.group(1), crop_matches)
+    crop_matches = filter(None, map(pattern.match, process.stdout))
+    crop_values = map(lambda match: match.group(1), crop_matches)
     preceeding_items = itertools.takewhile(
         within_consecutive_limit(n_frames), crop_values
     )

@@ -2,8 +2,6 @@
 # Little script to depack Matroska file, and repack them
 # in an MP4 format.
 
-from __future__ import print_function
-
 import os
 import argparse
 import subprocess

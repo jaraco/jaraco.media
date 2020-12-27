@@ -1,8 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
-
-from __future__ import unicode_literals, print_function
-
 '''
 routines for acquiring dvd details, based on dvdinfo.py (many thanks
 to Sybren Stüvel, http://stuvel.eu/dvdinfo).
@@ -44,7 +40,7 @@ class MetaTitleParser(type):
         cls._all_parsers -= set(bases)
 
 
-class TitleParser(object):
+class TitleParser:
     __metaclass__ = MetaTitleParser
 
     def __init__(self, info):

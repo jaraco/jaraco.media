@@ -11,7 +11,7 @@ import httpagentparser
 from . import config
 
 
-class Movie(object):
+class Movie:
     def __init__(self, filename, class_):
         self.class_ = class_
         self.filename = filename
@@ -31,7 +31,7 @@ class Movie(object):
         return q
 
 
-class Index(object):
+class Index:
     def __init__(self, filter=None):
         self.filter = filter
 

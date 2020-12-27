@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import os
 import subprocess
 import argparse
@@ -11,7 +9,6 @@ import platform
 import sys
 import ctypes
 
-import six
 import path
 from jaraco.ui import menu
 
@@ -65,7 +62,7 @@ def has_hidden_attribute(filepath):
 path.is_hidden = is_hidden
 
 
-class TitleInfo(object):
+class TitleInfo:
     def __init__(self, title_no, title, episode, root, ext):
         self.__dict__.update(vars())
         del self.self
@@ -84,7 +81,7 @@ class TitleInfo(object):
 
 def get_titles(root):
     title_durations()
-    title_no = eval(six.moves.input('enter starting DVD title number> '))
+    title_no = eval(input('enter starting DVD title number> '))
     visible_files = sorted(file for file in root.files() if not file.is_hidden())
     if visible_files:
         last_file = visible_files[-1].basename()
@@ -93,10 +90,10 @@ def get_titles(root):
     else:
         last_episode = 1
     prompt = f'enter starting episode [{last_episode}]> '
-    episode = eval(six.moves.input(prompt) or 'None') or last_episode
+    episode = eval(input(prompt) or 'None') or last_episode
     ext = '.mp4'
     while True:
-        title = six.moves.input('enter title> ')
+        title = input('enter title> ')
         if not title:
             return
         yield TitleInfo(title_no, title, episode, root, ext)
@@ -106,7 +103,7 @@ def get_titles(root):
 
 def quick_brake():
     name = dvd.infer_name()
-    title = six.moves.input(f"Movie title ({name})> ") or name
+    title = input(f"Movie title ({name})> ") or name
     config.movies_root.isdir() or config.movies_root.makedirs()
     init_environment()
     dest = config.movies_root / title + '.mp4'
@@ -124,13 +121,13 @@ def find_root():
     choices = [showdir.basename() for showdir in root.dirs()]
     show = menu.Menu(choices).get_choice('Choose show (blank for new)> ')
     if not show:
-        show = six.moves.input('Show name> ')
+        show = input('Show name> ')
     show_dir = root / show
     show_dir.makedirs_p()
     choices = [seasondir.basename() for seasondir in show_dir.dirs()]
     season = menu.Menu(choices).get_choice('Choose season (blank for new)> ')
     if not season:
-        season = 'Season %d' % eval(six.moves.input('Season Number> '))
+        season = 'Season %d' % eval(input('Season Number> '))
     season_dir = show_dir / season
     season_dir.makedirs_p()
     return season_dir
