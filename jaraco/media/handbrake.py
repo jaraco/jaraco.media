@@ -14,7 +14,6 @@ import ctypes
 import six
 import path
 from jaraco.ui import menu
-from jaraco.text import local_format as lf
 try:
 	from jaraco.windows.power import no_sleep
 except ImportError:
@@ -84,7 +83,7 @@ def get_titles(root):
 		last_episode = int(re.match(r'\d+', last_file).group(0)) + 1
 	else:
 		last_episode = 1
-	prompt = lf('enter starting episode [{last_episode}]> ')
+	prompt = f'enter starting episode [{last_episode}]> '
 	episode = eval(six.moves.input(prompt) or 'None') or last_episode
 	ext = '.mp4'
 	while True:
@@ -98,7 +97,7 @@ def get_titles(root):
 
 def quick_brake():
 	name = dvd.infer_name()
-	title = six.moves.input(lf("Movie title ({name})> ")) or name
+	title = six.moves.input(f"Movie title ({name})> ") or name
 	config.movies_root.isdir() or config.movies_root.makedirs()
 	init_environment()
 	dest = config.movies_root / title + '.mp4'
