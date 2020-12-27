@@ -14,6 +14,7 @@ import datetime
 import argparse
 from itertools import count
 from subprocess import Popen, PIPE, STDOUT
+from typing import Set
 
 import pkg_resources
 
@@ -35,7 +36,7 @@ class MetaTitleParser(type):
     A metaclass for title parsers that keeps track of all of them.
     """
 
-    _all_parsers = set()
+    _all_parsers: 'Set[MetaTitleParser]' = set()
 
     def __init__(cls, name, bases, attrs):
         cls._all_parsers.add(cls)
