@@ -59,7 +59,7 @@ def has_hidden_attribute(filepath):
     return filesystem.GetFileAttributes(filepath).hidden
 
 
-path.is_hidden = is_hidden
+path.Path.is_hidden = is_hidden
 
 
 class TitleInfo:
