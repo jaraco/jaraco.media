@@ -1,3 +1,8 @@
+v3.2.0
+======
+
+Rely on ``jaraco.path`` for hidden file detection.
+
 v3.1.1
 ======
 

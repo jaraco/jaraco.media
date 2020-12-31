@@ -4,13 +4,14 @@ import argparse
 import re
 import datetime
 import threading
-import importlib
 import platform
 import sys
 import ctypes
 
 import path
+import jaraco.path
 from jaraco.ui import menu
+from jaraco.functools import call_aside
 
 try:
     from jaraco.windows.power import no_sleep
@@ -20,6 +21,15 @@ from more_itertools.recipes import consume
 
 from . import dvd
 from . import config
+
+
+@call_aside
+def add_hidden_method():
+    """
+    >>> path.Path('.').is_hidden()
+    False
+    """
+    path.Path.is_hidden = jaraco.path.is_hidden
 
 
 def source_is_high_def():
@@ -44,22 +54,6 @@ def get_handbrake_cmd():
         str(quality),
         # '--large-file',
     ]
-
-
-def is_hidden(filepath):
-    filepath = os.path.abspath(filepath)
-    return filepath.startswith('.') or has_hidden_attribute(filepath)
-
-
-def has_hidden_attribute(filepath):
-    try:
-        filesystem = importlib.import_module('jaraco.windows.filesystem')
-    except ImportError:
-        return False
-    return filesystem.GetFileAttributes(filepath).hidden
-
-
-path.Path.is_hidden = is_hidden
 
 
 class TitleInfo:
