@@ -1,3 +1,8 @@
+v3.1.1
+======
+
+Fixed error in handbrake path handling.
+
 v3.1.0
 ======
 
