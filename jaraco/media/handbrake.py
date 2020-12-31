@@ -49,7 +49,7 @@ def has_hidden_attribute(filepath):
 		return False
 	return filesystem.GetFileAttributes(filepath).hidden
 
-path.is_hidden = is_hidden
+path.Path.is_hidden = is_hidden
 
 class TitleInfo(object):
 	def __init__(self, title_no, title, episode, root, ext):
