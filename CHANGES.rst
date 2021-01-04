@@ -1,3 +1,8 @@
+v3.3.0
+======
+
+Allow detection of renamed libmmbd from newer releases of MakeMKV.
+
 v3.2.0
 ======
 

@@ -215,8 +215,9 @@ def title_durations():
 def init_environment():
     if platform.system() != 'Darwin':
         return
-    lib = path.Path('/Applications/MakeMKV.app/Contents/lib/libmmbd.dylib')
-    if not lib.isfile():
+    libs = path.Path('/Applications/MakeMKV.app/Contents/lib')
+    lib = next(iter(libs.glob('libmmbd*.dylib')), None)
+    if not lib:
         print("Need to install MakeMKV", file=sys.stderr)
         raise SystemExit(1)
     root = path.Path('~/lib').expanduser()
