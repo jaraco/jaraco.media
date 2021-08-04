@@ -19,12 +19,23 @@ except ImportError:
 
 
 def banner():
-    '''Display the banner'''
+    """
+    Display the banner
+
+    >>> banner()
+    ==================================================
+    jaraco.media version ...
+    Jason R. Coombs <jaraco@jaraco.com>
+    https://github.com/jaraco/jaraco.media
+    ==================================================
+    <BLANKLINE>
+    """
+    md = metadata.metadata('jaraco.media')
 
     print(50 * '=')
-    print('jaraco.media version', metadata.version('jaraco.media'))
-    print('Jason R. Coombs <jaraco@jaraco.com>')
-    print('http://bitbucket.org/jaraco/jaraco.media')
+    print(f'{md["Name"]} version {md["Version"]}')
+    print(f'{md["Author"]} <{md["Author-Email"]}>')
+    print(f'{md["Home-page"]}')
     print(50 * '=')
     print()
 
