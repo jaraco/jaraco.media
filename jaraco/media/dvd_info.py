@@ -53,9 +53,7 @@ class MetaTitleParser(type):
         cls._all_parsers -= set(bases)
 
 
-class TitleParser:
-    __metaclass__ = MetaTitleParser
-
+class TitleParser(metaclass=MetaTitleParser):
     def __init__(self, info):
         # info is the object that stores title info
         self.info = info
