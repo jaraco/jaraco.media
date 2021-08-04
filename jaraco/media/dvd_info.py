@@ -12,15 +12,17 @@ from itertools import count
 from subprocess import Popen, PIPE, STDOUT
 from typing import Set
 
-import pkg_resources
+try:
+    from importlib import metadata  # type: ignore
+except ImportError:
+    import importlib_metadata as metadata  # type: ignore
 
 
 def banner():
     '''Display the banner'''
 
     print(50 * '=')
-    version = pkg_resources.require('jaraco.media')[0].version
-    print('jaraco.media version', version)
+    print('jaraco.media version', metadata.version('jaraco.media'))
     print('Jason R. Coombs <jaraco@jaraco.com>')
     print('http://bitbucket.org/jaraco/jaraco.media')
     print(50 * '=')
