@@ -1,3 +1,8 @@
+v3.4.0
+======
+
+Refreshed package metadata. Fixed a few bugs. Updated dependencies.
+
 v3.3.1
 ======
 
