@@ -9,13 +9,13 @@ import platform
 
 import path
 import inflect
+from more_itertools import flatten
 
 try:
     import win32api
 except Exception:
     pass
 from jaraco.text import trim, WordSet, FoldedCase
-from jaraco.itertools import flatten
 
 from jaraco.media import cropdetect
 from jaraco.media.arguments import HyphenArgs, ColonDelimitedArgs
