@@ -21,6 +21,20 @@
    :target: https://blog.jaraco.com/skeleton
 
 
+concat
+------
+
+FFmpeg provides a routine to
+`concatenate media files <https://trac.ffmpeg.org/wiki/Concatenate>`_.
+Unfortunately, the UI for that routine is so bad that even ffmpeg
+provides multiple, platform-specific techniques to generate the input.
+``jaraco.media.compat``, in contrast, takes a number of input files
+and optionally an output file and input filter, creates the input file
+in its required syntax and then runs ffmpeg against that file. Example::
+
+    $ python -m jaraco.media.concat /Volumes/drone/DCIM/100MEDIA/DJI_*.MP4 -i '(17|18|19)' -o /Volumes/Public/Flights/2022-02-20.mp4
+
+
 Troubleshooting
 ---------------
 

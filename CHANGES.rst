@@ -1,3 +1,9 @@
+v3.5.0
+======
+
+Added concat module, useful for concatenating media files using
+ffmpeg, but providing a convenient interface.
+
 v3.4.0
 ======
 
