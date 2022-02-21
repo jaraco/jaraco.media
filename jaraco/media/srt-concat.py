@@ -2,7 +2,6 @@
 Concatenate SRT files based on the length of associated media files.
 """
 
-import contextlib
 import functools
 import re
 import subprocess
@@ -15,15 +14,6 @@ import autocommand
 import path
 from . import srt
 from tempora import parse_timedelta
-
-
-@contextlib.contextmanager
-def write_names_to_file(names):
-    with path.TempDir() as dir:
-        file = dir.joinpath('names.txt')
-        lines = (f"file '{name}'" for name in names)
-        file.write_text('\n'.join(lines))
-        yield file
 
 
 def get_duration(media_file):
