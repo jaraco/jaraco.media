@@ -8,12 +8,13 @@ import subprocess
 import itertools
 import datetime
 import sys
-from more_itertools import islice_extended as islice
 
 import autocommand
 import path
 from . import srt
 from tempora import parse_timedelta
+from more_itertools import islice_extended as islice
+from jaraco.itertools import accumulate
 
 
 def get_duration(media_file):
@@ -31,19 +32,6 @@ def get_duration(media_file):
         media_file,
     ]
     return parse_timedelta(subprocess.check_output(cmd, text=True))
-
-
-def accumulate(increments):
-    """
-    >>> list(accumulate([1, 2, 3]))
-    [1, 3, 6]
-    """
-    items_ = iter(increments)
-    value = next(items_)
-    yield value
-    for item in items_:
-        value += item
-        yield value
 
 
 @autocommand.autocommand(__name__)

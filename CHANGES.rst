@@ -1,3 +1,8 @@
+v3.6.0
+======
+
+Use accumulate function from jaraco.itertools.
+
 v3.5.0
 ======
 
