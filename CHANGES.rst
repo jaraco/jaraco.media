@@ -8,6 +8,8 @@ Added srt-concat module, for concatenating the srt files associated
 with the media files, honoring the offsets as found in those media
 files.
 
+Require Python 3.7 or later.
+
 v3.4.0
 ======
 
