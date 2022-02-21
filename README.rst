@@ -35,6 +35,15 @@ in its required syntax and then runs ffmpeg against that file. Example::
     $ python -m jaraco.media.concat /Volumes/drone/DCIM/100MEDIA/DJI_*.MP4 -i '(17|18|19)' -o /Volumes/Public/Flights/2022-02-20.mp4
 
 
+srt-concat
+----------
+
+Concatenate SRT files, updating the offsets based on the durations
+of their associated media files. Example::
+
+    $ python -m jaraco.media.srt-concat /Volumes/Drone/DCIM/100MEDIA/DJI_00*.SRT -i '(17|18|19)' -o /Volumes/Public/Flights/2022-02-20.srt
+
+
 Troubleshooting
 ---------------
 

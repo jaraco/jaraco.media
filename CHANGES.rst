@@ -4,6 +4,10 @@ v3.5.0
 Added concat module, useful for concatenating media files using
 ffmpeg, but providing a convenient interface.
 
+Added srt-concat module, for concatenating the srt files associated
+with the media files, honoring the offsets as found in those media
+files.
+
 v3.4.0
 ======
 
