@@ -44,6 +44,13 @@ of their associated media files. Example::
     $ python -m jaraco.media.srt-concat /Volumes/Drone/DCIM/100MEDIA/DJI_00*.SRT -i '(17|18|19)' -o /Volumes/Public/Flights/2022-02-20.srt
 
 
+splice
+------
+
+Extract timestamps from a video.
+
+    $ python -m jaraco.media.splice infile.mp4 outfile.mp4 00:00:00-01:32:46 01:47:20-01:49:17
+
 Troubleshooting
 ---------------
 
