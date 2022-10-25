@@ -111,68 +111,19 @@ def splice_video(  # noqa: F722
     ]
     with tempfile.TemporaryDirectory() as tempdir:
         tempdir = convert_path(tempdir)
-        concat_file_blocks = []
-
-        for idx, (start, end) in enumerate(timestamps_include):
-            print(f"\nPreparing segment {start} to {end}\n")
-            start = convert_timestamp_to_s(start)
-            end = convert_timestamp_to_s(end)
-            if round(start, TIME_PRECISION) not in keyframe_times_rounded:
-                next_keyframe = min([time for time in keyframe_times if time > start])
-                time_base_raw = get_ffprobe_values(input_file, FFPROBE_TIME_BASE_OPTION)
-                time_base = time_base_raw.split("/")[-1]
-                pre_output_path = tempdir / f"pre_encode_{idx}.mp4"
-                pre_duration = round(next_keyframe - start, TIME_PRECISION + 1)
-                encode_command = (
-                    "ffmpeg",
-                    "-y",
-                    "-ss",
-                    str(start),
-                    "-i",
-                    input_file.as_posix(),
-                    "-t",
-                    str(pre_duration),
-                    "-video_track_timescale",
-                    time_base,
-                    "-c:v",
-                    "libx264",
-                    "-preset",
-                    "veryfast",
-                    pre_output_path.as_posix(),
-                )
-                subprocess.run(encode_command, check=True)
-
-                concat_file_blocks.append(
-                    f"file '{pre_output_path.as_posix()}'\n"
-                    f"duration {pre_duration}\n"
-                )
-
-            else:
-                next_keyframe = keyframe_times[
-                    keyframe_times_rounded.index(round(start))
-                ]
-
-            post_output_path = tempdir / f"post_copy_{idx}.mp4"
-            post_duration = round(end - next_keyframe, TIME_PRECISION + 1)
-            copy_command = (
-                "ffmpeg",
-                "-y",
-                "-ss",
-                str(next_keyframe),
-                "-i",
-                input_file.as_posix(),
-                "-t",
-                str(post_duration),
-                "-c",
-                "copy",
-                post_output_path.as_posix(),
+        concat_file_contents = "\n".join(
+            gen_file_block(
+                end,
+                idx,
+                input_file,
+                keyframe_times,
+                keyframe_times_rounded,
+                start,
+                tempdir,
             )
-            subprocess.run(copy_command, check=True)
-            concat_file_blocks.append(
-                f"file '{post_output_path.as_posix()}'\n" f"duration {post_duration}\n"
-            )
+            for idx, (start, end) in enumerate(timestamps_include)
+        )
 
-        concat_file_contents = "\n".join(concat_file_blocks)
         print("\nWriting concat file contents:\n")
         print(concat_file_contents)
         concat_file_path = tempdir / "splice_concat_file_list.txt"
@@ -193,3 +144,57 @@ def splice_video(  # noqa: F722
             output_file.as_posix(),
         )
         subprocess.run(concat_command, check=True)
+
+
+def gen_file_block(
+    end, idx, input_file, keyframe_times, keyframe_times_rounded, start, tempdir
+):
+    print(f"\nPreparing segment {start} to {end}\n")
+    start = convert_timestamp_to_s(start)
+    end = convert_timestamp_to_s(end)
+    if round(start, TIME_PRECISION) not in keyframe_times_rounded:
+        next_keyframe = min([time for time in keyframe_times if time > start])
+        time_base_raw = get_ffprobe_values(input_file, FFPROBE_TIME_BASE_OPTION)
+        time_base = time_base_raw.split("/")[-1]
+        pre_output_path = tempdir / f"pre_encode_{idx}.mp4"
+        pre_duration = round(next_keyframe - start, TIME_PRECISION + 1)
+        encode_command = (
+            "ffmpeg",
+            "-y",
+            "-ss",
+            str(start),
+            "-i",
+            input_file.as_posix(),
+            "-t",
+            str(pre_duration),
+            "-video_track_timescale",
+            time_base,
+            "-c:v",
+            "libx264",
+            "-preset",
+            "veryfast",
+            pre_output_path.as_posix(),
+        )
+        subprocess.run(encode_command, check=True)
+
+        return f"file '{pre_output_path.as_posix()}'\nduration {pre_duration}\n"
+
+    else:
+        next_keyframe = keyframe_times[keyframe_times_rounded.index(round(start))]
+    post_output_path = tempdir / f"post_copy_{idx}.mp4"
+    post_duration = round(end - next_keyframe, TIME_PRECISION + 1)
+    copy_command = (
+        "ffmpeg",
+        "-y",
+        "-ss",
+        str(next_keyframe),
+        "-i",
+        input_file.as_posix(),
+        "-t",
+        str(post_duration),
+        "-c",
+        "copy",
+        post_output_path.as_posix(),
+    )
+    subprocess.run(copy_command, check=True)
+    return f"file '{post_output_path.as_posix()}'\n" f"duration {post_duration}\n"
