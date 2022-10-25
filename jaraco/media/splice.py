@@ -1,5 +1,5 @@
 import datetime
-from pathlib import Path
+import pathlib
 import subprocess
 import tempfile
 
@@ -13,7 +13,7 @@ FFPROBE_TIME_BASE_OPTION = ["stream=time_base"]
 
 
 def convert_path(input_path):
-    return Path(input_path).expanduser().resolve()
+    return pathlib.Path(input_path).expanduser().resolve()
 
 
 def split_range(time_range):
