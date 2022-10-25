@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
-import argparse
 import datetime
 from pathlib import Path
 import subprocess
 import tempfile
+
+import autocommand
 
 
 TIME_PRECISION = 2
@@ -17,8 +18,8 @@ def convert_path(input_path):
     return Path(input_path).expanduser().resolve()
 
 
-def convert_timestamps_cli(timestamps):
-    return [(*time_range.split("-"),) for time_range in timestamps]
+def split_range(time_range):
+    return tuple(time_range.split("-"))
 
 
 def convert_timestamp_to_isoformat(input_timestamp):
@@ -186,37 +187,19 @@ def splice_video(input_file, output_file, timestamps_include):
         subprocess.run(concat_command, check=True)
 
 
-def generate_arg_parser():
-    parser_main = argparse.ArgumentParser(
-        description="Split and combine specific chunks from a media w/ffmpeg."
-    )
-    parser_main.add_argument("input_file", help="The media file to read in")
-    parser_main.add_argument(
-        "output_file", help="The file to output the edited result to"
-    )
-    parser_main.add_argument(
-        "timestamps_include",
-        nargs="+",
-        help=(
-            "Start and end timestamps to to include in the final video, "
-            "in the form HH:MM:SS.ffffff-HH:MM:SS.ffffff or SS.fff-SS.fff"
-        ),
-    )
-    return parser_main
-
-
-def main(sys_argv=None):
-    parser_main = generate_arg_parser()
-    parsed_args = parser_main.parse_args(sys_argv)
+@autocommand.autocommand(__name__)
+def main(  # noqa: F722
+    input_file: "The media file to read in",
+    output_file: "The file to output the edited result to",
+    *timestamps_include: (
+        split_range,
+        "Start and end timestamps to to include in the final video, "  # noqa: F722
+        "in the form HH:MM:SS.ffffff-HH:MM:SS.ffffff or SS.fff-SS.fff",
+    ),
+):
+    "Split and combine specific chunks from a media w/ffmpeg."
     splice_video(
-        input_file=parsed_args.input_file,
-        output_file=parsed_args.output_file,
-        timestamps_include=convert_timestamps_cli(parsed_args.timestamps_include),
+        input_file=input_file,
+        output_file=output_file,
+        timestamps_include=timestamps_include,
     )
-
-
-# %%
-
-
-if __name__ == "__main__":
-    main()
