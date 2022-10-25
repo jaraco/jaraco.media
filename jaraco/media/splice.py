@@ -90,6 +90,76 @@ def get_keyframe_times(input_file):
     return convert_keyframe_times(get_keyframe_times_raw(input_file))
 
 
+def file_block_natural(
+    end, idx, input_file, keyframe_times, keyframe_times_rounded, start, tempdir
+):
+    next_keyframe = keyframe_times[keyframe_times_rounded.index(round(start))]
+    post_output_path = tempdir / f"post_copy_{idx}.mp4"
+    post_duration = round(end - next_keyframe, TIME_PRECISION + 1)
+    copy_command = (
+        "ffmpeg",
+        "-y",
+        "-ss",
+        str(next_keyframe),
+        "-i",
+        input_file.as_posix(),
+        "-t",
+        str(post_duration),
+        "-c",
+        "copy",
+        post_output_path.as_posix(),
+    )
+    subprocess.run(copy_command, check=True)
+    return post_output_path, post_duration
+
+
+def file_block_adjusted(
+    idx, input_file, keyframe_times, keyframe_times_rounded, start, tempdir
+):
+    if round(start, TIME_PRECISION) in keyframe_times_rounded:
+        # no adjustment needed
+        return
+    next_keyframe = min([time for time in keyframe_times if time > start])
+    time_base_raw = get_ffprobe_values(input_file, FFPROBE_TIME_BASE_OPTION)
+    time_base = time_base_raw.split("/")[-1]
+    pre_output_path = tempdir / f"pre_encode_{idx}.mp4"
+    pre_duration = round(next_keyframe - start, TIME_PRECISION + 1)
+    encode_command = (
+        "ffmpeg",
+        "-y",
+        "-ss",
+        str(start),
+        "-i",
+        input_file.as_posix(),
+        "-t",
+        str(pre_duration),
+        "-video_track_timescale",
+        time_base,
+        "-c:v",
+        "libx264",
+        "-preset",
+        "veryfast",
+        pre_output_path.as_posix(),
+    )
+    subprocess.run(encode_command, check=True)
+    return pre_output_path, pre_duration
+
+
+def gen_file_block(
+    end, idx, input_file, keyframe_times, keyframe_times_rounded, start, tempdir
+):
+    print(f"\nPreparing segment {start} to {end}\n")
+    start = convert_timestamp_to_s(start)
+    end = convert_timestamp_to_s(end)
+
+    output_path, duration = file_block_adjusted(
+        idx, input_file, keyframe_times, keyframe_times_rounded, start, tempdir
+    ) or file_block_natural(
+        end, idx, input_file, keyframe_times, keyframe_times_rounded, start, tempdir
+    )
+    return f"file '{output_path.as_posix()}'\nduration {duration}\n"
+
+
 @autocommand.autocommand(__name__)
 def splice_video(  # noqa: F722
     input_file: "The media file to read in",
@@ -144,73 +214,3 @@ def splice_video(  # noqa: F722
             output_file.as_posix(),
         )
         subprocess.run(concat_command, check=True)
-
-
-def gen_file_block(
-    end, idx, input_file, keyframe_times, keyframe_times_rounded, start, tempdir
-):
-    print(f"\nPreparing segment {start} to {end}\n")
-    start = convert_timestamp_to_s(start)
-    end = convert_timestamp_to_s(end)
-
-    output_path, duration = file_block_adjusted(
-        idx, input_file, keyframe_times, keyframe_times_rounded, start, tempdir
-    ) or file_block_natural(
-        end, idx, input_file, keyframe_times, keyframe_times_rounded, start, tempdir
-    )
-    return f"file '{output_path.as_posix()}'\nduration {duration}\n"
-
-
-def file_block_natural(
-    end, idx, input_file, keyframe_times, keyframe_times_rounded, start, tempdir
-):
-    next_keyframe = keyframe_times[keyframe_times_rounded.index(round(start))]
-    post_output_path = tempdir / f"post_copy_{idx}.mp4"
-    post_duration = round(end - next_keyframe, TIME_PRECISION + 1)
-    copy_command = (
-        "ffmpeg",
-        "-y",
-        "-ss",
-        str(next_keyframe),
-        "-i",
-        input_file.as_posix(),
-        "-t",
-        str(post_duration),
-        "-c",
-        "copy",
-        post_output_path.as_posix(),
-    )
-    subprocess.run(copy_command, check=True)
-    return post_output_path, post_duration
-
-
-def file_block_adjusted(
-    idx, input_file, keyframe_times, keyframe_times_rounded, start, tempdir
-):
-    if round(start, TIME_PRECISION) in keyframe_times_rounded:
-        # no adjustment needed
-        return
-    next_keyframe = min([time for time in keyframe_times if time > start])
-    time_base_raw = get_ffprobe_values(input_file, FFPROBE_TIME_BASE_OPTION)
-    time_base = time_base_raw.split("/")[-1]
-    pre_output_path = tempdir / f"pre_encode_{idx}.mp4"
-    pre_duration = round(next_keyframe - start, TIME_PRECISION + 1)
-    encode_command = (
-        "ffmpeg",
-        "-y",
-        "-ss",
-        str(start),
-        "-i",
-        input_file.as_posix(),
-        "-t",
-        str(pre_duration),
-        "-video_track_timescale",
-        time_base,
-        "-c:v",
-        "libx264",
-        "-preset",
-        "veryfast",
-        pre_output_path.as_posix(),
-    )
-    subprocess.run(encode_command, check=True)
-    return pre_output_path, pre_duration
