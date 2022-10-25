@@ -92,7 +92,17 @@ def get_keyframe_times(input_file):
     return convert_keyframe_times(get_keyframe_times_raw(input_file))
 
 
-def splice_video(input_file, output_file, timestamps_include):
+@autocommand.autocommand(__name__)
+def splice_video(  # noqa: F722
+    input_file: "The media file to read in",
+    output_file: "The file to output the edited result to",
+    *timestamps_include: (
+        split_range,
+        "Start and end timestamps to to include in the final video, "  # noqa: F722
+        "in the form HH:MM:SS.ffffff-HH:MM:SS.ffffff or SS.fff-SS.fff",
+    ),
+):
+    "Split and combine specific chunks from a media w/ffmpeg."
     input_file = convert_path(input_file)
     output_file = convert_path(output_file)
 
@@ -185,21 +195,3 @@ def splice_video(input_file, output_file, timestamps_include):
             output_file.as_posix(),
         )
         subprocess.run(concat_command, check=True)
-
-
-@autocommand.autocommand(__name__)
-def main(  # noqa: F722
-    input_file: "The media file to read in",
-    output_file: "The file to output the edited result to",
-    *timestamps_include: (
-        split_range,
-        "Start and end timestamps to to include in the final video, "  # noqa: F722
-        "in the form HH:MM:SS.ffffff-HH:MM:SS.ffffff or SS.fff-SS.fff",
-    ),
-):
-    "Split and combine specific chunks from a media w/ffmpeg."
-    splice_video(
-        input_file=input_file,
-        output_file=output_file,
-        timestamps_include=timestamps_include,
-    )

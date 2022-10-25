@@ -1,3 +1,9 @@
+v4.0.0
+======
+
+``splice.splice_video`` now expects ``timestamps_include`` to be
+a ``starargs`` parameter instead of an explicit tuple.
+
 v3.7.0
 ======
 
