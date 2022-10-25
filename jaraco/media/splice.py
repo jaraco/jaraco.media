@@ -91,10 +91,10 @@ def get_keyframe_times(input_file):
 
 
 def file_block_natural(
-    end, idx, input_file, keyframe_times, keyframe_times_rounded, start, tempdir
+    end, idx, input_file, keyframe_times, keyframe_times_rounded, start, temp_path
 ):
     next_keyframe = keyframe_times[keyframe_times_rounded.index(round(start))]
-    post_output_path = tempdir / f"post_copy_{idx}.mp4"
+    post_output_path = temp_path / f"post_copy_{idx}.mp4"
     post_duration = round(end - next_keyframe, TIME_PRECISION + 1)
     copy_command = (
         "ffmpeg",
@@ -114,7 +114,7 @@ def file_block_natural(
 
 
 def file_block_adjusted(
-    idx, input_file, keyframe_times, keyframe_times_rounded, start, tempdir
+    idx, input_file, keyframe_times, keyframe_times_rounded, start, temp_path
 ):
     if round(start, TIME_PRECISION) in keyframe_times_rounded:
         # no adjustment needed
@@ -122,7 +122,7 @@ def file_block_adjusted(
     next_keyframe = min([time for time in keyframe_times if time > start])
     time_base_raw = get_ffprobe_values(input_file, FFPROBE_TIME_BASE_OPTION)
     time_base = time_base_raw.split("/")[-1]
-    pre_output_path = tempdir / f"pre_encode_{idx}.mp4"
+    pre_output_path = temp_path / f"pre_encode_{idx}.mp4"
     pre_duration = round(next_keyframe - start, TIME_PRECISION + 1)
     encode_command = (
         "ffmpeg",
@@ -146,25 +146,25 @@ def file_block_adjusted(
 
 
 def gen_file_block(
-    end, idx, input_file, keyframe_times, keyframe_times_rounded, start, tempdir
+    end, idx, input_file, keyframe_times, keyframe_times_rounded, start, temp_path
 ):
     print(f"\nPreparing segment {start} to {end}\n")
     start = convert_timestamp_to_s(start)
     end = convert_timestamp_to_s(end)
 
     output_path, duration = file_block_adjusted(
-        idx, input_file, keyframe_times, keyframe_times_rounded, start, tempdir
+        idx, input_file, keyframe_times, keyframe_times_rounded, start, temp_path
     ) or file_block_natural(
-        end, idx, input_file, keyframe_times, keyframe_times_rounded, start, tempdir
+        end, idx, input_file, keyframe_times, keyframe_times_rounded, start, temp_path
     )
     return f"file '{output_path.as_posix()}'\nduration {duration}\n"
 
 
 @autocommand.autocommand(__name__)
 def splice_video(  # noqa: F722
-    input_file: "The media file to read in",
-    output_file: "The file to output the edited result to",
-    *timestamps_include: (
+    input_file: "The media file to read in",  # type: ignore
+    output_file: "The file to output the edited result to",  # type: ignore
+    *timestamps_include: (  # type: ignore
         split_range,
         "Start and end timestamps to to include in the final video, "  # noqa: F722
         "in the form HH:MM:SS.ffffff-HH:MM:SS.ffffff or SS.fff-SS.fff",
@@ -180,7 +180,7 @@ def splice_video(  # noqa: F722
         round(frame_time, TIME_PRECISION) for frame_time in keyframe_times
     ]
     with tempfile.TemporaryDirectory() as tempdir:
-        tempdir = convert_path(tempdir)
+        temp_path = pathlib.Path(tempdir)
         concat_file_contents = "\n".join(
             gen_file_block(
                 end,
@@ -189,14 +189,14 @@ def splice_video(  # noqa: F722
                 keyframe_times,
                 keyframe_times_rounded,
                 start,
-                tempdir,
+                temp_path,
             )
             for idx, (start, end) in enumerate(timestamps_include)
         )
 
         print("\nWriting concat file contents:\n")
         print(concat_file_contents)
-        concat_file_path = tempdir / "splice_concat_file_list.txt"
+        concat_file_path = temp_path / "splice_concat_file_list.txt"
         concat_file_path.write_text(concat_file_contents, encoding="UTF-8")
 
         print("\nRunning concat\n")
