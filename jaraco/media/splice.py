@@ -1,3 +1,4 @@
+import contextlib
 import datetime
 import pathlib
 import subprocess
@@ -160,6 +161,12 @@ def gen_file_block(
     return f"file '{output_path.as_posix()}'\nduration {duration}\n"
 
 
+@contextlib.contextmanager
+def TemporaryPath():
+    with tempfile.TemporaryDirectory() as temp_dir:
+        yield pathlib.Path(temp_dir)
+
+
 @autocommand.autocommand(__name__)
 def splice_video(  # noqa: F722
     input_file: "The media file to read in",  # type: ignore
@@ -179,8 +186,7 @@ def splice_video(  # noqa: F722
     keyframe_times_rounded = [
         round(frame_time, TIME_PRECISION) for frame_time in keyframe_times
     ]
-    with tempfile.TemporaryDirectory() as tempdir:
-        temp_path = pathlib.Path(tempdir)
+    with TemporaryPath() as temp_path:
         concat_file_contents = "\n".join(
             gen_file_block(
                 end,
