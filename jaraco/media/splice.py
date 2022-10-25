@@ -153,11 +153,12 @@ def gen_file_block(
     start = convert_timestamp_to_s(start)
     end = convert_timestamp_to_s(end)
 
-    return file_block_adjusted(
+    output_path, duration = file_block_adjusted(
         idx, input_file, keyframe_times, keyframe_times_rounded, start, tempdir
     ) or file_block_natural(
         end, idx, input_file, keyframe_times, keyframe_times_rounded, start, tempdir
     )
+    return f"file '{output_path.as_posix()}'\nduration {duration}\n"
 
 
 def file_block_natural(
@@ -180,7 +181,7 @@ def file_block_natural(
         post_output_path.as_posix(),
     )
     subprocess.run(copy_command, check=True)
-    return f"file '{post_output_path.as_posix()}'\n" f"duration {post_duration}\n"
+    return post_output_path, post_duration
 
 
 def file_block_adjusted(
@@ -212,4 +213,4 @@ def file_block_adjusted(
         pre_output_path.as_posix(),
     )
     subprocess.run(encode_command, check=True)
-    return f"file '{pre_output_path.as_posix()}'\nduration {pre_duration}\n"
+    return pre_output_path, pre_duration
