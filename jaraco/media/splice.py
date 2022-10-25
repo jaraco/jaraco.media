@@ -179,8 +179,7 @@ def gen_file_block(
 
         return f"file '{pre_output_path.as_posix()}'\nduration {pre_duration}\n"
 
-    else:
-        next_keyframe = keyframe_times[keyframe_times_rounded.index(round(start))]
+    next_keyframe = keyframe_times[keyframe_times_rounded.index(round(start))]
     post_output_path = tempdir / f"post_copy_{idx}.mp4"
     post_duration = round(end - next_keyframe, TIME_PRECISION + 1)
     copy_command = (
