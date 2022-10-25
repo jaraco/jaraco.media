@@ -167,7 +167,7 @@ def TemporaryPath():
         yield pathlib.Path(temp_dir)
 
 
-@autocommand.autocommand(__name__)
+@autocommand.autocommand(__name__)  # noqa: F722
 def splice_video(  # noqa: F722
     input_file: "The media file to read in",  # type: ignore
     output_file: "The file to output the edited result to",  # type: ignore
