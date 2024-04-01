@@ -11,7 +11,7 @@ import ctypes
 import path
 import jaraco.path
 from jaraco.ui import menu
-from jaraco.functools import call_aside
+from jaraco.functools import invoke
 
 try:
     from jaraco.windows.power import no_sleep
@@ -23,7 +23,7 @@ from . import dvd
 from . import config
 
 
-@call_aside
+@invoke
 def add_hidden_method():
     """
     >>> path.Path('.').is_hidden()
