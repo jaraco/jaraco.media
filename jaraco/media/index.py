@@ -137,11 +137,9 @@ def handle_isapi():
 
 def serve():
     Site.setup_application('/')
-    cherrypy.config.update(
-        {
-            'server.socket_host': '::0',
-        }
-    )
+    cherrypy.config.update({
+        'server.socket_host': '::0',
+    })
     if hasattr(cherrypy.engine, "signal_handler"):
         cherrypy.engine.signal_handler.subscribe()
     if hasattr(cherrypy.engine, "console_control_handler"):

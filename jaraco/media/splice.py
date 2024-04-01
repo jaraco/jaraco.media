@@ -167,10 +167,10 @@ def TemporaryPath():
         yield pathlib.Path(temp_dir)
 
 
-@autocommand.autocommand(__name__)  # noqa: F722
-def splice_video(  # noqa: F722
-    input_file: "The media file to read in",  # type: ignore
-    output_file: "The file to output the edited result to",  # type: ignore
+@autocommand.autocommand(__name__)
+def splice_video(
+    input_file: "The media file to read in",  # type: ignore # noqa: F722
+    output_file: "The file to output the edited result to",  # type: ignore # noqa: F722
     *timestamps_include: (  # type: ignore
         split_range,
         "Start and end timestamps to to include in the final video, "  # noqa: F722
