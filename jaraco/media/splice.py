@@ -65,7 +65,7 @@ def get_ffprobe_values(input_file, options):
         *options,
         "-of",
         "csv=print_section=0",
-        input_file.as_posix(),
+        input_file,
     )
     keyframe_output = subprocess.run(
         ffprobe_command, capture_output=True, check=True, encoding="UTF-8"
@@ -103,12 +103,12 @@ def file_block_natural(
         "-ss",
         str(next_keyframe),
         "-i",
-        input_file.as_posix(),
+        input_file,
         "-t",
         str(post_duration),
         "-c",
         "copy",
-        post_output_path.as_posix(),
+        post_output_path,
     )
     subprocess.run(copy_command, check=True)
     return post_output_path, post_duration
@@ -131,7 +131,7 @@ def file_block_adjusted(
         "-ss",
         str(start),
         "-i",
-        input_file.as_posix(),
+        input_file,
         "-t",
         str(pre_duration),
         "-video_track_timescale",
@@ -140,7 +140,7 @@ def file_block_adjusted(
         "libx264",
         "-preset",
         "veryfast",
-        pre_output_path.as_posix(),
+        pre_output_path,
     )
     subprocess.run(encode_command, check=True)
     return pre_output_path, pre_duration
@@ -158,7 +158,7 @@ def gen_file_block(
     ) or file_block_natural(
         end, idx, input_file, keyframe_times, keyframe_times_rounded, start, temp_path
     )
-    return f"file '{output_path.as_posix()}'\nduration {duration}\n"
+    return f"file '{output_path}'\nduration {duration}\n"
 
 
 @contextlib.contextmanager
@@ -218,9 +218,9 @@ def splice_video(
             "-safe",
             "0",
             "-i",
-            concat_file_path.as_posix(),
+            concat_file_path,
             "-c",
             "copy",
-            output_file.as_posix(),
+            output_file,
         )
         subprocess.run(concat_command, check=True)
