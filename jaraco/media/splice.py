@@ -169,8 +169,14 @@ def TemporaryPath():
 
 @autocommand.autocommand(__name__)
 def splice_video(
-    input_file: (convert_path, "The media file to read in"),  # type: ignore # noqa: F722
-    output_file: (convert_path, "The file to output the edited result to"),  # type: ignore # noqa: F722
+    input_file: (  # type: ignore
+        convert_path,
+        "The media file to read in",  # noqa: F722
+    ),
+    output_file: (  # type: ignore
+        convert_path,
+        "The file to output the edited result to",  # noqa: F722
+    ),
     *timestamps_include: (  # type: ignore
         split_range,
         "Start and end timestamps to to include in the final video, "  # noqa: F722
