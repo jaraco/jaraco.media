@@ -169,8 +169,8 @@ def TemporaryPath():
 
 @autocommand.autocommand(__name__)
 def splice_video(
-    input_file: "The media file to read in",  # type: ignore # noqa: F722
-    output_file: "The file to output the edited result to",  # type: ignore # noqa: F722
+    input_file: (convert_path, "The media file to read in"),  # type: ignore # noqa: F722
+    output_file: (convert_path, "The file to output the edited result to"),  # type: ignore # noqa: F722
     *timestamps_include: (  # type: ignore
         split_range,
         "Start and end timestamps to to include in the final video, "  # noqa: F722
@@ -178,8 +178,6 @@ def splice_video(
     ),
 ):
     "Split and combine specific chunks from a media w/ffmpeg."
-    input_file = convert_path(input_file)
-    output_file = convert_path(output_file)
 
     print("Retrieving keyframes")
     keyframe_times = get_keyframe_times(input_file)
