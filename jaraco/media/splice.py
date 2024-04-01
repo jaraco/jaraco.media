@@ -179,7 +179,7 @@ def splice_video(
     ),
     *timestamps_include: (  # type: ignore
         split_range,
-        "Start and end timestamps to to include in the final video, "  # noqa: F722
+        "Start and end timestamps to include in the final video, "  # noqa: F722
         "in the form HH:MM:SS.ffffff-HH:MM:SS.ffffff or SS.fff-SS.fff",
     ),
 ):
