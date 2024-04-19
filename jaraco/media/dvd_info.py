@@ -12,6 +12,8 @@ from itertools import count
 from subprocess import Popen, PIPE, STDOUT
 from typing import Set
 
+from jaraco.packaging.metadata import extract_author, extract_email, hunt_down_url
+
 try:
     from importlib import metadata  # type: ignore
 except ImportError:
@@ -34,8 +36,8 @@ def banner():
 
     print(50 * '=')
     print(f'{md["Name"]} version {md["Version"]}')
-    print(f'{md["Author"]} <{md["Author-Email"]}>')
-    print(f'{md["Home-page"]}')
+    print(f'{extract_author(md)} <{extract_email(md)}>')
+    print(f'{hunt_down_url(md)}')
     print(50 * '=')
     print()
 
