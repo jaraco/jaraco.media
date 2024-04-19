@@ -1,1 +1,0 @@
-Utilize helpers in jaraco.packaging.metadata to parse the project's metadata.

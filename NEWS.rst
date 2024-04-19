@@ -1,3 +1,12 @@
+v4.0.1
+======
+
+Bugfixes
+--------
+
+- Utilize helpers in jaraco.packaging.metadata to parse the project's metadata. (#2)
+
+
 v4.0.0
 ======
 
