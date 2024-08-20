@@ -312,12 +312,11 @@ def encode_dvd():
         'Output file %s already exists' % command.other_options['o']
     )
 
-    errors = open(os.devnull, 'w')
     two_pass_handler = MultiPassHandler(command)
     for _pass in two_pass_handler:
         _pass_args = tuple(_pass.get_args())
         log.debug('executing with %s', _pass_args)
-        proc = subprocess.Popen(_pass_args, stderr=errors)
+        proc = subprocess.Popen(_pass_args, stderr=subprocess.DEVNULL)
         proc.wait()
 
 
@@ -329,9 +328,8 @@ def re_encode(file, video_options, audio_options):
     command.source = [file]
     command.audio_options = audio_options
     command.video_options = video_options
-    errors = open(os.devnull, 'w')
     print('executing with', tuple(command.get_args()))
-    proc = subprocess.Popen(command.get_args(), stderr=errors)
+    proc = subprocess.Popen(command.get_args(), stderr=subprocess.DEVNULL)
     if proc.wait() == 0:
         print('success')
 
@@ -405,8 +403,7 @@ def rip_subtitles():
     # command['vobsuboutid'] = 'en'
 
     command = tuple(command.get_args())
-    errors = open(os.devnull, 'w')
-    proc = subprocess.Popen(command, stderr=errors)
+    proc = subprocess.Popen(command, stderr=subprocess.DEVNULL)
     proc.wait()
 
 

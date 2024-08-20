@@ -85,13 +85,12 @@ def build_command(dvd_device=None, title=""):
 
 
 def get_input(command=None):
-    from subprocess import Popen, PIPE, list2cmdline
+    from subprocess import Popen, PIPE, list2cmdline, DEVNULL
 
-    null = open('NUL', 'w')
     command = command or build_command(*parse_args())
     args = tuple(command.get_args())
     log.debug(list2cmdline(args))
-    mencoder = Popen(args, stdout=PIPE, stderr=null)
+    mencoder = Popen(args, stdout=PIPE, stderr=DEVNULL)
     return mencoder
 
 
