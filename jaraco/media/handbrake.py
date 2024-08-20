@@ -16,7 +16,7 @@ from jaraco.functools import invoke
 try:
     from jaraco.windows.power import no_sleep
 except ImportError:
-    from jaraco.context import null as no_sleep
+    from contextlib import nullcontext as no_sleep
 from more_itertools.recipes import consume
 
 from . import dvd
