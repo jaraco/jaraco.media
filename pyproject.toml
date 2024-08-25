@@ -77,6 +77,7 @@ type = [
 	"pytest-mypy",
 
 	# local
+	"types-pywin32"
 ]
 
 
@@ -96,7 +97,3 @@ update-anydvd = "jaraco.media.dvd:update_anydvd"
 
 
 [tool.setuptools_scm]
-
-
-[tool.pytest-enabler.mypy]
-# Disabled due to jaraco/skeleton#143
