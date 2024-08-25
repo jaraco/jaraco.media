@@ -94,4 +94,9 @@ mkv-to-mp4 = "jaraco.media.matroska:handle_command_line"
 adjust-sub = "jaraco.media.srt:AdjustCommand.run"
 update-anydvd = "jaraco.media.dvd:update_anydvd"
 
+
 [tool.setuptools_scm]
+
+
+[tool.pytest-enabler.mypy]
+# Disabled due to jaraco/skeleton#143
