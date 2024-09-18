@@ -4,20 +4,16 @@ routines for acquiring dvd details, based on dvdinfo.py (many thanks
 to Sybren Stüvel, http://stuvel.eu/dvdinfo).
 '''
 
+import argparse
+import datetime
 import re
 import sys
-import datetime
-import argparse
+from importlib import metadata
 from itertools import count
-from subprocess import Popen, PIPE, STDOUT
+from subprocess import PIPE, STDOUT, Popen
 from typing import Set
 
 from jaraco.packaging.metadata import extract_author, extract_email, hunt_down_url
-
-try:
-    from importlib import metadata  # type: ignore
-except ImportError:
-    import importlib_metadata as metadata  # type: ignore
 
 
 def banner():
