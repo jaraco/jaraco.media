@@ -48,8 +48,7 @@ def convert_timestamp_to_s(input_timestamp):
         return (input_timestamp - datetime.datetime.min).total_seconds()
 
     raise TypeError(
-        f"Timestamp must be float, string or date/time, "
-        f"not {type(input_timestamp)!r}"
+        f"Timestamp must be float, string or date/time, not {type(input_timestamp)!r}"
     )
 
 

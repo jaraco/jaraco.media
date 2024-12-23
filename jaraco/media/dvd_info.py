@@ -171,8 +171,7 @@ def title_info(device, title):
 
     # need at least two -v to get "Found NAVI packet"
     mpcmd = (
-        'mplayer -v -v -v -identify -nosound -frames 0 '
-        '-dvd-device %s dvd://%i -vo null'
+        'mplayer -v -v -v -identify -nosound -frames 0 -dvd-device %s dvd://%i -vo null'
     )
 
     cmd = mpcmd % (device, title)
