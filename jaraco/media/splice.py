@@ -6,7 +6,6 @@ import tempfile
 
 import autocommand
 
-
 TIME_PRECISION = 2
 
 FFPROBE_FRAME_TIME_OPTION = ["packet=pts_time,flags"]
@@ -168,15 +167,15 @@ def TemporaryPath():
 
 @autocommand.autocommand(__name__)
 def splice_video(
-    input_file: (  # type: ignore
+    input_file: (  # type: ignore[syntax] # Consider using Annotated
         convert_path,
         "The media file to read in",  # noqa: F722
     ),
-    output_file: (  # type: ignore
+    output_file: (  # type: ignore[syntax] # Consider using Annotated
         convert_path,
         "The file to output the edited result to",  # noqa: F722
     ),
-    *timestamps_include: (  # type: ignore
+    *timestamps_include: (  # type: ignore[syntax] # Consider using Annotated
         split_range,
         "Start and end timestamps to include in the final video, "  # noqa: F722
         "in the form HH:MM:SS.ffffff-HH:MM:SS.ffffff or SS.fff-SS.fff",
