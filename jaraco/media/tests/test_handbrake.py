@@ -1,9 +1,9 @@
 import subprocess
-from importlib_resources import files
 
 import path
+from importlib_resources import files
 
-from jaraco.media import handbrake, dvd
+from jaraco.media import dvd, handbrake
 
 
 def test_title_durations(monkeypatch):

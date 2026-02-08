@@ -4,20 +4,15 @@ routines for acquiring dvd details, based on dvdinfo.py (many thanks
 to Sybren Stüvel, http://stuvel.eu/dvdinfo).
 '''
 
+import argparse
+import datetime
 import re
 import sys
-import datetime
-import argparse
+from importlib import metadata
 from itertools import count
-from subprocess import Popen, PIPE, STDOUT
-from typing import Set
+from subprocess import PIPE, STDOUT, Popen
 
 from jaraco.packaging.metadata import extract_author, extract_email, hunt_down_url
-
-try:
-    from importlib import metadata  # type: ignore
-except ImportError:
-    import importlib_metadata as metadata  # type: ignore
 
 
 def banner():
@@ -47,7 +42,7 @@ class MetaTitleParser(type):
     A metaclass for title parsers that keeps track of all of them.
     """
 
-    _all_parsers: 'Set[MetaTitleParser]' = set()
+    _all_parsers = set['MetaTitleParser']()
 
     def __init__(cls, name, bases, attrs):
         cls._all_parsers.add(cls)

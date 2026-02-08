@@ -1,24 +1,19 @@
 import argparse
-import re
-import os
-import subprocess
-from os.path import join
-from copy import deepcopy
 import logging
+import os
 import platform
+import re
+import subprocess
+from copy import deepcopy
+from os.path import join
 
-import path
 import inflect
+import path
+from jaraco.text import FoldedCase, WordSet, trim
 from more_itertools import flatten
 
-try:
-    import win32api
-except Exception:
-    pass
-from jaraco.text import trim, WordSet, FoldedCase
-
 from jaraco.media import cropdetect
-from jaraco.media.arguments import HyphenArgs, ColonDelimitedArgs
+from jaraco.media.arguments import ColonDelimitedArgs, HyphenArgs
 
 log = logging.getLogger(__name__)
 
@@ -61,6 +56,8 @@ def get_source():
 def infer_name(device=None):
     device = device or get_source()
     try:
+        import win32api
+
         label = win32api.GetVolumeInformation(device)[0]
     except Exception:
         label = os.path.basename(device)

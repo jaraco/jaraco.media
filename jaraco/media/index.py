@@ -1,12 +1,12 @@
 import itertools
 import os
-import urllib
 import traceback
+import urllib
 
-import path
 import cherrypy
 import genshi.template
 import httpagentparser
+import path
 
 from . import config
 

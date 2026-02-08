@@ -1,8 +1,8 @@
-import re
-import os
+import argparse
 import itertools
 import logging
-import argparse
+import os
+import re
 
 log = logging.getLogger(__name__)
 
@@ -65,7 +65,7 @@ def parse_args():
 
 
 def build_command(dvd_device=None, title=""):
-    from jaraco.media.dvd import MEncoderCommand, HyphenArgs
+    from jaraco.media.dvd import HyphenArgs, MEncoderCommand
 
     command = MEncoderCommand()
     command.source = ['dvd://%(title)s' % vars()]
@@ -85,7 +85,7 @@ def build_command(dvd_device=None, title=""):
 
 
 def get_input(command=None):
-    from subprocess import Popen, PIPE, list2cmdline, DEVNULL
+    from subprocess import DEVNULL, PIPE, Popen, list2cmdline
 
     command = command or build_command(*parse_args())
     args = tuple(command.get_args())
