@@ -7,12 +7,13 @@ import dataclasses
 import datetime
 import itertools
 import re
+import shutil
 import subprocess
 
 import path
 from more_itertools import map_reduce
 
-from jaraco.media import config, dvd, handbrake
+from jaraco.media import config, dvd
 
 MIN_FEATURE_LENGTH = datetime.timedelta(minutes=60)
 
@@ -37,6 +38,14 @@ def _parse_duration(s):
     """
     h, m, sec = map(int, s.split(':'))
     return datetime.timedelta(hours=h, minutes=m, seconds=sec)
+
+
+def ensure_mkv():
+    """Ensure makemkvcon is available, raising SystemExit with a helpful message if not."""
+    if not shutil.which('makemkvcon'):
+        raise SystemExit(
+            "makemkvcon not found. Install MakeMKV from https://www.makemkv.com/"
+        )
 
 
 _TINFO = re.compile(r'^TINFO:(?P<title>\d+),(?P<attr>\d+),\d+,"(?P<value>.*)"')
@@ -116,7 +125,7 @@ def quick_mkv():
     )
     args = parser.parse_args()
 
-    handbrake.init_environment()
+    ensure_mkv()
 
     output_dir = path.Path(args.output)
     output_dir.makedirs_p()
