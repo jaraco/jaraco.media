@@ -1,24 +1,24 @@
 import argparse
-import re
-import os
-import subprocess
-from os.path import join
-from copy import deepcopy
 import logging
+import os
 import platform
+import re
+import subprocess
+from copy import deepcopy
+from os.path import join
 
-import path
 import inflect
+import path
 from more_itertools import flatten
 
 try:
     import win32api
 except Exception:
     pass
-from jaraco.text import trim, WordSet, FoldedCase
+from jaraco.text import FoldedCase, WordSet, trim
 
 from jaraco.media import cropdetect
-from jaraco.media.arguments import HyphenArgs, ColonDelimitedArgs
+from jaraco.media.arguments import ColonDelimitedArgs, HyphenArgs
 
 log = logging.getLogger(__name__)
 

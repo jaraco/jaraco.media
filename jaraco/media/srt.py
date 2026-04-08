@@ -1,6 +1,6 @@
+import argparse
 import datetime
 import itertools
-import argparse
 import sys
 
 _sample_srt_entries = """

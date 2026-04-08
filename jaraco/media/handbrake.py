@@ -1,17 +1,17 @@
-import os
-import subprocess
 import argparse
-import re
-import datetime
-import threading
-import platform
-import sys
 import ctypes
+import datetime
+import os
+import platform
+import re
+import subprocess
+import sys
+import threading
 
-import path
 import jaraco.path
-from jaraco.ui import menu
+import path
 from jaraco.functools import invoke
+from jaraco.ui import menu
 
 try:
     from jaraco.windows.power import no_sleep
@@ -19,8 +19,7 @@ except ImportError:
     from contextlib import nullcontext as no_sleep
 from more_itertools.recipes import consume
 
-from . import dvd
-from . import config
+from . import config, dvd
 
 
 @invoke

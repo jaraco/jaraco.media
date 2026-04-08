@@ -2,19 +2,20 @@
 Concatenate SRT files based on the length of associated media files.
 """
 
+import datetime
 import functools
+import itertools
 import re
 import subprocess
-import itertools
-import datetime
 import sys
 
 import autocommand
 import path
-from . import srt
-from tempora import parse_timedelta
-from more_itertools import islice_extended as islice
 from jaraco.itertools import accumulate
+from more_itertools import islice_extended as islice
+from tempora import parse_timedelta
+
+from . import srt
 
 
 def get_duration(media_file):

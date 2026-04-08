@@ -6,7 +6,6 @@ import tempfile
 
 import autocommand
 
-
 TIME_PRECISION = 2
 
 FFPROBE_FRAME_TIME_OPTION = ["packet=pts_time,flags"]
