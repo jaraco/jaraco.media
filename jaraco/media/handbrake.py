@@ -19,7 +19,7 @@ except ImportError:
     from contextlib import nullcontext as no_sleep
 from more_itertools.recipes import consume
 
-from . import config, dvd
+from . import config, dvd, makemkv
 
 
 @invoke
@@ -97,7 +97,7 @@ def get_titles(root):
 def quick_brake():
     name = dvd.infer_name()
     title = input(f"Movie title ({name})> ") or name
-    config.movies_root.isdir() or config.movies_root.makedirs()
+    config.movies_root.is_dir() or config.movies_root.makedirs()
     init_environment()
     dest = config.movies_root / title + '.mp4'
     cmd = get_handbrake_cmd() + [
@@ -214,11 +214,9 @@ def title_durations():
 def init_environment():
     if platform.system() != 'Darwin':
         return
+    makemkv.ensure()
     libs = path.Path('/Applications/MakeMKV.app/Contents/lib')
     lib = next(iter(libs.glob('libmmbd*.dylib')), None)
-    if not lib:
-        print("Need to install MakeMKV", file=sys.stderr)
-        raise SystemExit(1)
     root = path.Path('~/lib').expanduser()
     root.makedirs_p()
     link_names = 'libaacs.dylib', 'libbdplus.dylib'
