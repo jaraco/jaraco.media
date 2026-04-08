@@ -9,13 +9,8 @@ from os.path import join
 
 import inflect
 import path
-from more_itertools import flatten
-
-try:
-    import win32api
-except Exception:
-    pass
 from jaraco.text import FoldedCase, WordSet, trim
+from more_itertools import flatten
 
 from jaraco.media import cropdetect
 from jaraco.media.arguments import ColonDelimitedArgs, HyphenArgs
@@ -61,6 +56,8 @@ def get_source():
 def infer_name(device=None):
     device = device or get_source()
     try:
+        import win32api
+
         label = win32api.GetVolumeInformation(device)[0]
     except Exception:
         label = os.path.basename(device)
