@@ -39,14 +39,14 @@ def _parse_duration(s):
     return datetime.timedelta(hours=h, minutes=m, seconds=sec)
 
 
-_TINFO = re.compile(r'^TINFO:(\d+),(\d+),\d+,"(.*)"')
+_TINFO = re.compile(r'^TINFO:(?P<title>\d+),(?P<attr>\d+),\d+,"(?P<value>.*)"')
 
 
 def _parse_tinfo(line):
     """Parse a TINFO line into (title_num, attr_id, value) or None."""
     m = _TINFO.match(line)
     if m:
-        return int(m.group(1)), int(m.group(2)), m.group(3)
+        return int(m.group('title')), int(m.group('attr')), m.group('value')
 
 
 def _build_title(num, attrs):
