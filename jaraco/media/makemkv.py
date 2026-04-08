@@ -40,7 +40,7 @@ def _parse_duration(s):
     return datetime.timedelta(hours=h, minutes=m, seconds=sec)
 
 
-def ensure_mkv():
+def ensure():
     """Ensure makemkvcon is available, raising SystemExit with a helpful message if not."""
     if not shutil.which('makemkvcon'):
         raise SystemExit(
@@ -125,7 +125,7 @@ def quick_mkv():
     )
     args = parser.parse_args()
 
-    ensure_mkv()
+    ensure()
 
     output_dir = path.Path(args.output)
     output_dir.makedirs_p()

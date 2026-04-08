@@ -19,7 +19,7 @@ except ImportError:
     from contextlib import nullcontext as no_sleep
 from more_itertools.recipes import consume
 
-from . import config, dvd
+from . import config, dvd, makemkv
 
 
 @invoke
@@ -214,9 +214,7 @@ def title_durations():
 def init_environment():
     if platform.system() != 'Darwin':
         return
-    from jaraco.media.makemkv import ensure_mkv
-
-    ensure_mkv()
+    makemkv.ensure()
     libs = path.Path('/Applications/MakeMKV.app/Contents/lib')
     lib = next(iter(libs.glob('libmmbd*.dylib')), None)
     root = path.Path('~/lib').expanduser()
