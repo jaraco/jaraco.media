@@ -98,7 +98,7 @@ def get_titles(root):
 def quick_brake():
     name = dvd.infer_name()
     title = input(f"Movie title ({name})> ") or name
-    config.movies_root.isdir() or config.movies_root.makedirs()
+    config.movies_root.is_dir() or config.movies_root.makedirs()
     init_environment()
     dest = config.movies_root / title + '.mp4'
     cmd = get_handbrake_cmd() + [
