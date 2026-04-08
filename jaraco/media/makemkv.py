@@ -5,10 +5,12 @@ Rip the main feature from a Blu-ray disc using MakeMKV without transcoding.
 import argparse
 import dataclasses
 import datetime
+import itertools
 import re
 import subprocess
 
 import path
+from more_itertools import map_reduce
 
 from jaraco.media import config, dvd, handbrake
 
@@ -37,35 +39,38 @@ def _parse_duration(s):
     return datetime.timedelta(hours=h, minutes=m, seconds=sec)
 
 
+_TINFO = re.compile(r'^TINFO:(\d+),(\d+),\d+,"(.*)"')
+
+
+def _parse_tinfo(line):
+    """Parse a TINFO line into (title_num, attr_id, value) or None."""
+    m = _TINFO.match(line)
+    if m:
+        return int(m.group(1)), int(m.group(2)), m.group(3)
+
+
+def _build_title(num, attrs):
+    """Build a TitleInfo from a (title_num, [(attr_id, value)]) pair, or None if no duration."""
+    info = dict(attrs)
+    if 9 not in info:
+        return None
+    return TitleInfo(
+        number=num,
+        duration=_parse_duration(info[9]),
+        size=info.get(10, 'unknown'),
+        filename=info.get(27, f'title_{num:02d}.mkv'),
+    )
+
+
 def scan_titles(disc='disc:0'):
     """Scan a disc and return a list of TitleInfo objects."""
     cmd = ['makemkvcon', '--robot', 'info', disc]
     output = subprocess.check_output(cmd, stderr=subprocess.DEVNULL, text=True)
-
-    titles: dict[int, dict] = {}
-    for line in output.splitlines():
-        m = re.match(r'^TINFO:(\d+),(\d+),\d+,"(.*)"', line)
-        if not m:
-            continue
-        title_num, attr_id, value = int(m.group(1)), int(m.group(2)), m.group(3)
-        titles.setdefault(title_num, {})
-        if attr_id == 9:
-            titles[title_num]['duration'] = _parse_duration(value)
-        elif attr_id == 10:
-            titles[title_num]['size'] = value
-        elif attr_id == 27:
-            titles[title_num]['filename'] = value
-
-    return [
-        TitleInfo(
-            number=num,
-            duration=info.get('duration', datetime.timedelta()),
-            size=info.get('size', 'unknown'),
-            filename=info.get('filename', f'title_{num:02d}.mkv'),
-        )
-        for num, info in sorted(titles.items())
-        if 'duration' in info
-    ]
+    parsed = filter(None, map(_parse_tinfo, output.splitlines()))
+    by_title = map_reduce(
+        parsed, keyfunc=lambda t: t[0], valuefunc=lambda t: (t[1], t[2])
+    )
+    return list(filter(None, itertools.starmap(_build_title, sorted(by_title.items()))))
 
 
 def choose_title(titles):
