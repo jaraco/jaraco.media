@@ -1,3 +1,18 @@
+v4.1.0
+======
+
+Features
+--------
+
+- Added quick-mkv command.
+
+
+Bugfixes
+--------
+
+- Update usage of path library.
+
+
 v4.0.1
 ======
 
