@@ -10,7 +10,7 @@ log = logging.getLogger(__name__)
 def terminate(process):
     try:
         process.terminate()
-    except WindowsError:
+    except OSError:
         pass  # process has probably already terminated on its own
 
 
