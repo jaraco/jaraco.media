@@ -353,7 +353,7 @@ def fix_fourcc():
     """
     parser = argparse.ArgumentParser(usage=trim(fix_fourcc.__doc__))
     parser.add_argument('source')
-    options, args = parser.parse_args()
+    args = parser.parse_args()
 
     re_encode(args.source, get_video_copy_options(), get_audio_copy_options())
 
