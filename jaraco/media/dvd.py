@@ -59,7 +59,7 @@ def infer_name(device=None):
         import win32api
 
         label = win32api.GetVolumeInformation(device)[0]
-    except Exception:
+    except Exception:  # noqa: BLE001 # fall back to the path on any failure
         label = os.path.basename(device)
     return guess_output_filename(label)
 
@@ -123,7 +123,7 @@ class MEncoderCommand:
                 yield str(value)
 
     def set_device(self, value):
-        assert os.path.exists(value), "Couldn't find device %s" % value
+        assert os.path.exists(value), f"Couldn't find device {value}"
         self.device = HyphenArgs({'dvd-device': value})
 
     def __setitem__(self, key, value):
@@ -151,7 +151,7 @@ class MultiPassHandler:
         self.passes = passes
 
     def setup_log_file(self):
-        filename, ext = os.path.splitext(self.command.other_options['o'])
+        filename, _ = os.path.splitext(self.command.other_options['o'])
         multi_pass_temp_file = filename + '_pass.log'
         self.command['passlogfile'] = multi_pass_temp_file
 
@@ -159,7 +159,7 @@ class MultiPassHandler:
         inflect_eng = inflect.engine()
         for current_pass in range(1, self.passes + 1):
             current_pass_th = inflect_eng.ordinal(current_pass)
-            log.info('Modifying command for %s pass.' % current_pass_th)
+            log.info(f'Modifying command for {current_pass_th} pass.')
             method = [self.early_pass, self.last_pass][current_pass == self.passes]
             yield method(current_pass)
 
@@ -185,7 +185,7 @@ class MultiPassHandler:
             return
         try:
             os.path.exists(filename) and os.remove(filename)
-        except Exception:
+        except Exception:  # noqa: BLE001 # cleanup failure is only logged
             log.error('Error removing logfile %s', filename)
 
 
@@ -274,17 +274,17 @@ def encode_dvd():
     videos_path = join(os.environ['PUBLIC'], 'Videos', 'Movies')
 
     default_title = infer_name(device)
-    title_prompt = 'Enter output filename [%s]> ' % default_title
+    title_prompt = f'Enter output filename [{default_title}]> '
     user_title = input(title_prompt) or default_title
 
-    filename = '%(user_title)s.avi' % vars()
+    filename = f'{user_title}.avi'
     target = os.path.join(videos_path, user_title)
     output_filename = os.path.join(videos_path, filename)
 
     command['o'] = output_filename
 
     dvd_title = args.title
-    command.source = ['dvd://%(dvd_title)s' % vars()]
+    command.source = [f'dvd://{dvd_title}']
     if args.test:
         command['chapter'] = '2-2'
 
@@ -306,7 +306,7 @@ def encode_dvd():
         command['vobsuboutindex'] = '0'
 
     assert not os.path.exists(command.other_options['o']), (
-        'Output file %s already exists' % command.other_options['o']
+        f"Output file {command.other_options['o']} already exists"
     )
 
     two_pass_handler = MultiPassHandler(command)
@@ -320,7 +320,7 @@ def encode_dvd():
 def re_encode(file, video_options, audio_options):
     command = MEncoderCommand()
     fn, ext = os.path.splitext(file)
-    dest = ''.join((fn, ' (fixed)', ext))
+    dest = f'{fn} (fixed){ext}'
     command['o'] = dest
     command.source = [file]
     command.audio_options = audio_options
@@ -382,11 +382,11 @@ def rip_subtitles():
     videos_path = join(os.environ['PUBLIC'], 'Videos', 'Movies')
 
     default_title = infer_name(device)
-    title_prompt = 'Enter output filename [%s]> ' % default_title
+    title_prompt = f'Enter output filename [{default_title}]> '
     user_title = input(title_prompt) or default_title
     target = os.path.join(videos_path, user_title)
 
-    command.source = ['dvd://%(title)s' % vars(args)]
+    command.source = [f'dvd://{args.title}']
 
     command['o'] = os.devnull
 

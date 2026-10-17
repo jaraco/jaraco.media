@@ -1,4 +1,3 @@
-#!/usr/bin/python
 '''
 routines for acquiring dvd details, based on dvdinfo.py (many thanks
 to Sybren Stüvel, http://stuvel.eu/dvdinfo).
@@ -11,6 +10,7 @@ import sys
 from importlib import metadata
 from itertools import count
 from subprocess import PIPE, STDOUT, Popen
+from typing import ClassVar
 
 from jaraco.packaging.metadata import extract_author, extract_email, hunt_down_url
 
@@ -42,7 +42,7 @@ class MetaTitleParser(type):
     A metaclass for title parsers that keeps track of all of them.
     """
 
-    _all_parsers = set['MetaTitleParser']()
+    _all_parsers: ClassVar = set['MetaTitleParser']()
 
     def __init__(cls, name, bases, attrs):
         cls._all_parsers.add(cls)
@@ -133,9 +133,9 @@ class TitleInfo(dict):
 
     def __str__(self):
         buffer = []
-        buffer.append('Number: %(number)s' % self)
-        buffer.append('Title length: %(length)s' % self)
-        buffer.append('Chapters: %(chapters)s' % self)
+        buffer.append('Number: {number}'.format(**self))
+        buffer.append('Title length: {length}'.format(**self))
+        buffer.append('Chapters: {chapters}'.format(**self))
         buffer.append('Audio tracks:')
         aud_fmt = '\taid=%(aid)3i lang=%(language)s fmt=%(format)s'
 
@@ -204,7 +204,7 @@ def main():
         for title in count(1):
             if isinstance(max_title, int) and title > max_title:
                 break
-            sys.stdout.write('Reading title %i/%s   \r' % (title, max_title))
+            sys.stdout.write(f'Reading title {title}/{max_title}   \r')
             sys.stdout.flush()
 
             info = title_info(args.device, title)
@@ -225,7 +225,7 @@ def main():
         titles_with_audio.sort(key=lambda t: -t['chapters'])
 
         if not titles_with_audio:
-            raise SystemExit("Unable to find any titles with audio on %s" % args.device)
+            raise SystemExit(f"Unable to find any titles with audio on {args.device}")
 
         for title in titles_with_audio:
             print()

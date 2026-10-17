@@ -169,16 +169,18 @@ def TemporaryPath():
 def splice_video(
     input_file: (  # type: ignore[syntax] # Consider using Annotated
         convert_path,
-        "The media file to read in",  # noqa: F722
+        "The media file to read in",
     ),
     output_file: (  # type: ignore[syntax] # Consider using Annotated
         convert_path,
-        "The file to output the edited result to",  # noqa: F722
+        "The file to output the edited result to",
     ),
     *timestamps_include: (  # type: ignore[syntax] # Consider using Annotated
         split_range,
-        "Start and end timestamps to include in the final video, "  # noqa: F722
-        "in the form HH:MM:SS.ffffff-HH:MM:SS.ffffff or SS.fff-SS.fff",
+        (
+            "Start and end timestamps to include in the final video, "
+            "in the form HH:MM:SS.ffffff-HH:MM:SS.ffffff or SS.fff-SS.fff"
+        ),
     ),
 ):
     "Split and combine specific chunks from a media w/ffmpeg."

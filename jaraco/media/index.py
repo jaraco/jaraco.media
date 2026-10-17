@@ -57,7 +57,7 @@ class Index:
     @staticmethod
     def is_media(path):
         media_extensions = ('.mp4', '.avi')
-        name, ext = os.path.splitext(path)
+        _, ext = os.path.splitext(path)
         return ext in media_extensions
 
 
@@ -107,7 +107,7 @@ class Site:
             import isapi_wsgi
 
             return isapi_wsgi.ISAPISimpleHandler(cls.setup_application('/media'))
-        except Exception:
+        except Exception:  # noqa: BLE001 # report errors to the ISAPI host log
             traceback.print_exc()
 
 

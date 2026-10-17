@@ -1,7 +1,7 @@
 import abc
 from collections import OrderedDict
 
-__all__ = ['DelimitedArgs', 'HyphenArgs', 'ColonDelimitedArgs']
+__all__ = ['ColonDelimitedArgs', 'DelimitedArgs', 'HyphenArgs']
 
 
 class DelimitedArgs(OrderedDict):
@@ -48,7 +48,7 @@ class HyphenArgs(DelimitedArgs):
 
     @staticmethod
     def add_hyphen(value):
-        return '-%s' % value
+        return f'-{value}'
 
     def arg_items(self):
         return zip(self.hyphenated_keys(), self.values())

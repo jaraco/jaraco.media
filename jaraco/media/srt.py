@@ -62,7 +62,9 @@ class SubEntry:
     @staticmethod
     def get_entries(file):
         if isinstance(file, str):
-            file = open(file)
+            with open(file) as strm:
+                yield from SubEntry.get_entries(strm)
+            return
         while True:
             try:
                 yield SubEntry.get_entry(file)
@@ -142,7 +144,8 @@ class SubEntry:
     @staticmethod
     def write_entries(file, entries):
         if isinstance(file, str):
-            file = open(file, 'w')
+            with open(file, 'w') as strm:
+                return SubEntry.write_entries(strm, entries)
         for entry in entries:
             file.write(str(entry))
             file.write('\n')

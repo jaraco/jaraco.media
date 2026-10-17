@@ -59,8 +59,8 @@ def parse_args():
     args = parser.parse_args()
     title = args.title
     device = args.device
-    log.info(['using default device', 'using device %s' % device][bool(device)])
-    log.info(['using default title', 'using title %s' % title][bool(title)])
+    log.info(['using default device', f'using device {device}'][bool(device)])
+    log.info(['using default title', f'using title {title}'][bool(title)])
     return device, title
 
 
@@ -68,11 +68,11 @@ def build_command(dvd_device=None, title=""):
     from jaraco.media.dvd import HyphenArgs, MEncoderCommand
 
     command = MEncoderCommand()
-    command.source = ['dvd://%(title)s' % vars()]
+    command.source = [f'dvd://{title}']
     command.audio_options = HyphenArgs(nosound=None)
     limit = 24
     round = 16
-    command.video_filter = HyphenArgs(vf='cropdetect=%(limit)s:%(round)s' % locals())
+    command.video_filter = HyphenArgs(vf=f'cropdetect={limit}:{round}')
     command.video_options = HyphenArgs(ovc='lavc')
     command['o'] = os.path.devnull
     # command['ss'] = '20' # skip the first 20 seconds
@@ -102,7 +102,7 @@ def process_input(process, n_frames=1000):
     pattern = re.compile(r'.*crop=(\d+:\d+:\d+:\d+).*')
 
     crop_matches = filter(None, map(pattern.match, process.stdout))
-    crop_values = map(lambda match: match.group(1), crop_matches)
+    crop_values = (match.group(1) for match in crop_matches)
     preceeding_items = itertools.takewhile(
         within_consecutive_limit(n_frames), crop_values
     )
@@ -112,7 +112,7 @@ def process_input(process, n_frames=1000):
         target = next(crop_values)
     except StopIteration:
         raise InsufficientFramesError(
-            "Not enough frames to detect %d consecutive same" % n_frames
+            f"Not enough frames to detect {n_frames} consecutive same"
         )
     finally:
         clean_up(process)

@@ -120,7 +120,7 @@ def find_root():
     choices = [seasondir.basename() for seasondir in show_dir.dirs()]
     season = menu.Menu(choices).get_choice('Choose season (blank for new)> ')
     if not season:
-        season = 'Season %d' % eval(input('Season Number> '))
+        season = f'Season {int(input("Season Number> "))}'
     season_dir = show_dir / season
     season_dir.makedirs_p()
     return season_dir
@@ -228,7 +228,7 @@ def init_environment():
 
     try:
         ctypes.CDLL('/usr/local/lib/libdvdcss.2.dylib')
-    except Exception:
+    except Exception:  # noqa: BLE001 # any load failure means it's unavailable
         msg = "Need libdvdcss (brew install libdvdcss)"
         print(msg, file=sys.stderr)
         raise SystemExit(1)

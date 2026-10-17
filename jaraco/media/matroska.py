@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # Little script to depack Matroska file, and repack them
 # in an MP4 format.
 
@@ -23,8 +22,8 @@ def handle_command_line():
     args = get_args()
     filename = args.filename
     basename = os.path.basename(filename)
-    name, ext = os.path.splitext(basename)
-    message("Unpacking file: %s" % filename)
+    name, _ = os.path.splitext(basename)
+    message(f"Unpacking file: {filename}")
     subprocess.Popen([
         r'C:\Program Files (x86)\mkvtoolnix\mkvextract',  # 'mkvextract',
         'tracks',
