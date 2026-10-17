@@ -109,7 +109,7 @@ def process_input(process, n_frames=1000):
 
     log.info('processed %d frames', len(tuple(preceeding_items)))
     try:
-        target = crop_values.next()
+        target = next(crop_values)
     except StopIteration:
         raise InsufficientFramesError(
             "Not enough frames to detect %d consecutive same" % n_frames
