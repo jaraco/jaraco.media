@@ -338,7 +338,7 @@ def transcode():
     Transcode a video by copying the video, but encoding the audio
     into mp3 format.
     """
-    parser = argparse.ArgumentParser(usage=trim(fix_fourcc.__doc__))
+    parser = argparse.ArgumentParser(usage=trim(transcode.__doc__))
     parser.add_argument('source')
     args = parser.parse_args()
 
