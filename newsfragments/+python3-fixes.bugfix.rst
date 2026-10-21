@@ -1,0 +1,1 @@
+``index`` no longer uses the Python 2 only ``itertools.ifilter``, ``cropdetect`` accepts the bytes the encoder writes, and the media command renders its options as command line arguments instead of bare keys.

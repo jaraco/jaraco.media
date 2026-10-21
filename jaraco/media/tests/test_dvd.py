@@ -81,3 +81,19 @@ def test_re_encode_commands(func, monkeypatch):
     func()
     [(source, _, _)] = calls
     assert source == 'movie.avi'
+
+
+def test_command_args_render_the_options():
+    """The delimited options are rendered as command line arguments."""
+    command = dvd.MEncoderCommand()
+    command.source = ['dvd://1']
+    command.video_options = dvd.HyphenArgs(
+        lavcopts=dvd.ColonDelimitedArgs(vcodec='libx264')
+    )
+    command.audio_options = dvd.HyphenArgs(nosound=None)
+    assert list(command.get_args()) == [
+        'mencoder',
+        'dvd://1',
+        '-lavcopts vcodec=libx264',
+        '-nosound',
+    ]

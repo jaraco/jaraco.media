@@ -48,3 +48,17 @@ def test_process_input_insufficient():
     process = FakeProcess('[CROP] crop=720:480:0:0\n')
     with pytest.raises(cropdetect.InsufficientFramesError):
         cropdetect.process_input(process, n_frames=2)
+
+
+class FakeBytesProcess(FakeProcess):
+    def __init__(self, output=b''):
+        self.stdout = io.BytesIO(output)
+        self.terminated = False
+
+
+def test_process_input_accepts_bytes():
+    """The encoder writes bytes, which are decoded before the crop is read."""
+    lines = [b'noise\n'] + [b'[CROP] crop=720:480:0:0\n'] * 4
+    process = FakeBytesProcess(b''.join(lines))
+    assert cropdetect.process_input(process, n_frames=2) == '720:480:0:0'
+    assert process.terminated

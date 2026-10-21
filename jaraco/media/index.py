@@ -1,4 +1,3 @@
-import itertools
 import os
 import traceback
 import urllib
@@ -42,12 +41,12 @@ class Index:
 
     def get_media(self, root):
         items = (os.path.join(root, item) for item in os.listdir(root))
-        files = itertools.ifilter(os.path.isfile, items)
-        mfiles = itertools.ifilter(self.is_media, files)
+        files = filter(os.path.isfile, items)
+        mfiles = filter(self.is_media, files)
         return mfiles
 
     def __iter__(self):
-        return itertools.ifilter(self.filter, self.get_all())
+        return filter(self.filter, self.get_all())
 
     def get_all(self):
         for class_, root in self.get_named_map().items():

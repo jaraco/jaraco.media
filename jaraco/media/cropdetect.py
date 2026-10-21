@@ -101,7 +101,11 @@ class InsufficientFramesError(RuntimeError):
 def process_input(process, n_frames=1000):
     pattern = re.compile(r'.*crop=(\d+:\d+:\d+:\d+).*')
 
-    crop_matches = filter(None, map(pattern.match, process.stdout))
+    lines = (
+        line.decode(errors='replace') if isinstance(line, bytes) else line
+        for line in process.stdout
+    )
+    crop_matches = filter(None, map(pattern.match, lines))
     crop_values = (match.group(1) for match in crop_matches)
     preceeding_items = itertools.takewhile(
         within_consecutive_limit(n_frames), crop_values
