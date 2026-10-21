@@ -18,7 +18,7 @@ class DelimitedArgs(OrderedDict):
 
     def get_args(self):
         return [
-            self.value_join.join(item for item in arg if item)
+            self.value_join.join(str(item) for item in arg if item)
             for arg in self.arg_items()
         ]
 

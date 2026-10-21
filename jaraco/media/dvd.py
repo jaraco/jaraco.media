@@ -13,7 +13,7 @@ from jaraco.text import FoldedCase, WordSet, trim
 from more_itertools import flatten
 
 from jaraco.media import cropdetect
-from jaraco.media.arguments import ColonDelimitedArgs, HyphenArgs
+from jaraco.media.arguments import ColonDelimitedArgs, DelimitedArgs, HyphenArgs
 
 log = logging.getLogger(__name__)
 
@@ -118,6 +118,10 @@ class MEncoderCommand:
         for arg in arg_order:
             arg = getattr(self, arg, None)
             if arg is None:
+                continue
+            if isinstance(arg, DelimitedArgs):
+                # the options are rendered by the arguments class
+                yield from arg.get_args()
                 continue
             for value in arg:
                 yield str(value)
